@@ -28,3 +28,11 @@ To view a page, start a local web server in this folder (for example `python3 -m
 
 The export never includes hidden files (files whose names start with a dot) or
 files the editor keeps for its own use.
+
+## GitHub Pages
+
+GitHub Pages runs Jekyll by default, and Jekyll does not publish folders whose
+names start with `_`. The original `_runtime/` folder was therefore missing on the
+live site, so the page's template (`{{ … }}`, `<sc-for>`, `<sc-if>`) was never
+rendered. The runtime now lives in `runtime/`, and an empty `.nojekyll` file turns
+Jekyll off. Keep both when you redeploy.

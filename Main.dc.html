@@ -1,0 +1,1313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>XYZ — Trade the World</title>
+<script src="./_runtime/react.js"></script>
+<script src="./_runtime/react-dom.js"></script>
+<script src="./_runtime/support.js"></script>
+<script src="./assets/657d955f8022079dfa2fac5db0609268.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@600;700&amp;family=Archivo:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#050505}
+a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
+.xyz-hero *{box-sizing:border-box}
+.xyz-px{transition:transform .9s cubic-bezier(.16,.84,.24,1);will-change:transform}
+.xyz-in{animation:xyzIn 1.1s cubic-bezier(.16,.84,.24,1) backwards}
+@keyframes xyzIn{from{opacity:0;transform:translateY(28px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.xyz-chartpulse{animation:xyzChart 5.5s ease-in-out infinite}
+@keyframes xyzChart{0%,100%{opacity:0}50%{opacity:.42}}
+.xyz-ray{animation:xyzRay 13s ease-in-out infinite alternate;transform-origin:50% 0}
+@keyframes xyzRay{0%{transform:rotate(-5deg);opacity:.35}50%{opacity:.75}100%{transform:rotate(5deg);opacity:.45}}
+.xyz-spin{animation:xyzSpin 40s linear infinite;transform-origin:50% 50%}
+@keyframes xyzSpin{to{transform:rotate(360deg)}}
+.xyz-cap{background:linear-gradient(105deg,#0d0603 0%,#3a1404 14%,#ff6a1a 30%,#ffe0a8 37%,#b23d0a 46%,#2a0d03 55%,#ff7a2a 68%,#ffd18f 74%,#5a1d05 84%,#0d0603 100%);background-size:220% 100%;animation:xyzCap 5s linear infinite}
+@keyframes xyzCap{from{background-position:0% 50%}to{background-position:220% 50%}}
+.xyz-cap:hover{box-shadow:0 0 34px rgba(255,106,26,.6),inset 0 0 12px rgba(0,0,0,.8) !important}
+.xyz-card{position:absolute;opacity:0;transform:perspective(900px) translate(var(--fx),var(--fy)) scale(.12) rotateY(var(--ry)) rotateX(60deg);will-change:transform,opacity;pointer-events:none}
+[data-phase="landed"] .xyz-card{animation:xyzEmerge 1.25s cubic-bezier(.18,1.25,.32,1) var(--d) forwards}
+@keyframes xyzEmerge{0%{opacity:0;transform:perspective(900px) translate(var(--fx),var(--fy)) scale(.12) rotateY(var(--ry)) rotateX(60deg) rotateZ(-30deg)}18%{opacity:1}60%{transform:perspective(900px) translate(calc(var(--fx) * -0.06),calc(var(--fy) * -0.06)) scale(1.08) rotateY(calc(var(--ry) * -0.15)) rotateX(-6deg) rotateZ(3deg)}100%{opacity:1;transform:perspective(900px) translate(0,0) scale(1) rotateY(0deg) rotateX(0deg) rotateZ(0deg)}}
+.xyz-card-in{animation:xyzCardFloat 6.5s ease-in-out infinite;animation-delay:var(--fd);filter:drop-shadow(0 0 10px rgba(255,100,20,.45)) drop-shadow(0 18px 18px rgba(0,0,0,.55))}
+@keyframes xyzCardFloat{0%,100%{transform:perspective(700px) translateY(0) rotateY(0deg) rotateX(0deg)}33%{transform:perspective(700px) translateY(-5%) rotateY(9deg) rotateX(4deg)}66%{transform:perspective(700px) translateY(-2%) rotateY(-7deg) rotateX(-3deg)}}
+.xyz-offer a{transition:color .5s ease}
+.xyz-cta:hover .xyz-cta-dot{transform:translateX(3px)}
+.xyz-menu{display:none}
+.xyz-scroller{scrollbar-width:none}.xyz-scroller::-webkit-scrollbar{display:none}
+.xyz-ph{animation:xyzIn .8s cubic-bezier(.16,.84,.24,1) backwards}
+@media (max-width:1100px){.xyz-nav-pill a{padding:0 14px !important;font-size:14px !important}}
+@media (max-width:860px){
+  .xyz-nav-pill{display:none !important}
+  .xyz-menu{display:flex}
+  .xyz-cta-label{display:none}
+  .xyz-left{top:96px !important}
+  .xyz-left h1{font-size:52px !important}
+  .xyz-left .xyz-smart{font-size:28px !important}
+  .xyz-right{top:auto !important;bottom:96px !important;right:auto !important;left:20px !important;align-items:flex-start !important;text-align:left !important}
+  .xyz-right ul{flex-direction:row !important;flex-wrap:wrap;gap:4px 16px !important}
+  .xyz-right ul a{font-size:14px !important;line-height:1.6 !important}
+  .xyz-right .xyz-we{font-size:12px !important}
+  .xyz-badge{display:none !important}
+  .xyz-245{font-size:84px !important;bottom:150px !important;right:16px !important}
+  .xyz-word{font-size:22px !important}
+  .xyz-word-l{left:6vw !important}.xyz-word-r{left:auto !important;right:4vw !important}
+  .xyz-capbtn{width:64px !important;height:28px !important}
+}
+@media (prefers-reduced-motion:reduce){
+  .xyz-ray,.xyz-chartpulse,.xyz-spin,.xyz-cap,.xyz-card-in{animation:none}
+  .xyz-in{animation-duration:.01s}
+}
+
+/* ===== Section 2: global team ===== */
+.xyz-word2{display:inline;color:#ffffff;opacity:clamp(.3, calc(.3 + (var(--hp) * 18 - var(--i)) * .7), 1);transition:opacity .2s linear}
+.xyz-mover{transform:translate3d(0, calc(var(--t, 0) * var(--dist, 0px) * -1), 0);transition:transform .35s cubic-bezier(.2,.7,.2,1);will-change:transform}
+.xyz-s2 .rv{transition:opacity 1.1s cubic-bezier(.16,.84,.24,1),transform 1.1s cubic-bezier(.16,.84,.24,1),filter 1.1s ease}
+.xyz-s2[data-in="0"] .rv{opacity:0;transform:translateY(48px) scale(.97);filter:blur(6px)}
+.xyz-s2 .rv-d1{transition-delay:.1s}.xyz-s2 .rv-d2{transition-delay:.25s}.xyz-s2 .rv-d3{transition-delay:.4s}.xyz-s2 .rv-d4{transition-delay:.55s}.xyz-s2 .rv-d5{transition-delay:.7s}
+.xyz-float-a{animation:xyzFloatA 9s ease-in-out infinite}
+.xyz-float-b{animation:xyzFloatB 6.5s ease-in-out infinite}
+.xyz-float-c{animation:xyzFloatC 7.5s ease-in-out infinite}
+@keyframes xyzFloatA{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes xyzFloatB{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(1.6deg)}}
+@keyframes xyzFloatC{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(-1.2deg)}}
+.xyz-glow{animation:xyzGlowB 6s ease-in-out infinite}
+@keyframes xyzGlowB{0%,100%{opacity:.75}50%{opacity:1}}
+.xyz-marquee{display:flex;width:max-content;animation:xyzMarq 32s linear infinite}
+@keyframes xyzMarq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (max-width:760px){
+  .xyz-s2-canvas{aspect-ratio:auto !important;height:1180px}
+  .xyz-s2-pin{padding-top:56px !important}
+  .xyz-s2-h{top:56px !important;width:90% !important}
+  .xyz-s2-h h2{font-size:32px !important}
+  .xyz-s2-line{white-space:normal !important}
+  .xyz-s2-dash{top:300px !important;left:6% !important;width:66% !important}
+  .xyz-s2-rock{top:560px !important;left:auto !important;right:6% !important;width:32% !important}
+  .xyz-s2-car{top:760px !important;left:16% !important;width:52% !important}
+  .xyz-s2-bg{top:auto !important;bottom:0 !important;height:560px !important;object-fit:cover}
+  .xyz-s2-mq{top:auto !important;bottom:44px !important;height:68px !important}
+  .xyz-pill{width:150px !important;margin-right:8px !important}
+  .xyz-pill span{font-size:26px !important}
+}
+}
+}
+@media (prefers-reduced-motion:reduce){.xyz-float-a,.xyz-float-b,.xyz-float-c,.xyz-glow{animation:none}}
+
+/* ===== Section 3: trading products ===== */
+.xyz-s3-line{position:relative;width:100%;height:9.2vw;display:flex;align-items:center;justify-content:center;transition:height .75s cubic-bezier(.2,.8,.2,1)}
+.xyz-s3-line[data-on="1"]{height:31vw}
+.xyz-s3-word{position:relative;z-index:2;margin:0;padding:0;border:0;background:none;cursor:pointer;font-family:'Antonio','Arial Narrow',sans-serif;font-weight:700;font-size:8.4vw;line-height:1;letter-spacing:-.045em;white-space:nowrap;color:#4a4a4a;filter:blur(3px);transform:translateX(0);transition:color .5s ease,filter .5s ease,transform .75s cubic-bezier(.2,.8,.2,1)}
+.xyz-s3-word:focus-visible{outline:2px solid #ff6a1a;outline-offset:8px;border-radius:6px}
+.xyz-s3-line[data-on="1"] .xyz-s3-word{color:#ffffff;filter:blur(0);transform:translateX(var(--shift))}
+.xyz-s3-card{position:absolute;top:50%;z-index:1;width:23vw;height:auto;display:block;pointer-events:none;opacity:0;transform:translateY(-50%) scale(.84) rotate(-2deg);transition:opacity .55s ease,transform .8s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 30px 50px rgba(0,0,0,.6))}
+.xyz-s3-line[data-on="1"] .xyz-s3-card{opacity:1;transform:translateY(-50%) scale(1) rotate(0deg)}
+@media (max-width:760px){
+  .xyz-s3-line{height:17vw}
+  .xyz-s3-line[data-on="1"]{height:74vw}
+  .xyz-s3-word{font-size:13vw}
+  .xyz-s3-line[data-on="1"] .xyz-s3-word{transform:none}
+  .xyz-s3-card{width:56vw;left:22vw !important}
+  .xyz-s3-lbl{font-size:12px !important}
+}
+
+/* ===== Section 4: stacked product panels ===== */
+.xyz-p4{position:absolute;inset:0;background:#0a0a0a;will-change:transform;transform-origin:50% 50%;
+  transform:translateY(calc(clamp(0, var(--p4, 0) * 2 - var(--k), 1) * -100%)) scale(calc(1 - .08 * clamp(0, var(--k) - var(--p4, 0) * 2, 1)));
+  transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.xyz-p4-in{opacity:calc(1 - .65 * clamp(0, var(--k) - var(--p4, 0) * 2, 1));transition:opacity .35s linear}
+@media (max-width:760px){
+  .xyz-p4-img{width:88vw !important}
+  .xyz-p4-meta{grid-template-columns:1fr 1fr !important}
+  .xyz-p4-meta .xyz-p4-mid{display:none}
+  .xyz-p4-bottom{flex-direction:column !important;align-items:flex-start !important;gap:18px !important}
+  .xyz-p4-bottom .xyz-p4-desc{text-align:left !important}
+  .xyz-p4-h{font-size:34px !important}
+}
+
+/* ===== Section 5: markets card shuffle ===== */
+.xyz-m5-card{position:absolute;left:22.57%;top:24.46%;width:21.73%;aspect-ratio:415/487;transform-origin:0% 50%;border-radius:22px;
+  transition:transform .95s cubic-bezier(.65,0,.25,1),filter .95s ease,opacity .7s ease,z-index 0s linear .32s;will-change:transform}
+.xyz-m5-card img{display:block;width:100%;height:100%;border-radius:22px;box-shadow:0 40px 80px rgba(0,0,0,.65)}
+.xyz-m5-ring{animation:xyzSpin 22s linear infinite;transform-origin:50% 50%}
+.xyz-m5-active{animation:xyzIn .6s cubic-bezier(.16,.84,.24,1) backwards}
+@media (max-width:900px){
+  .xyz-m5-frame{aspect-ratio:auto !important;height:980px}
+  .xyz-m5-left{top:40px !important}
+  .xyz-m5-rule{display:none}
+  .xyz-m5-card{left:18% !important;top:250px !important;width:56% !important;transform-origin:50% 50%}
+  .xyz-m5-ringwrap{left:auto !important;right:2% !important;top:640px !important;width:150px !important}
+  .xyz-m5-desc{left:6% !important;top:auto !important;bottom:40px !important;width:60% !important}
+  .xyz-m5-vline{display:none}
+}
+@media (prefers-reduced-motion:reduce){.xyz-m5-ring{animation-duration:90s}}
+
+/* ===== Section 6: phone + rocks cinematic ===== */
+.xyz-s6-par{position:absolute;transition:transform 1s cubic-bezier(.16,.84,.24,1);will-change:transform}
+.xyz-s6-phone{width:100%;height:100%;transform-origin:70% 100%;transition:transform 1.9s cubic-bezier(.16,.84,.24,1),opacity 1.1s ease}
+.xyz-s6[data-in="0"] .xyz-s6-phone{opacity:0;transform:perspective(1800px) translate3d(16%,32%,0) rotateX(26deg) rotateY(-30deg) rotateZ(9deg) scale(.86)}
+.xyz-s6-rock{width:100%;height:100%;transition:opacity 1.4s ease,transform 1.6s cubic-bezier(.16,.84,.24,1)}
+.xyz-s6[data-in="0"] .xyz-s6-rock{opacity:0;transform:scale(.9) translateY(30px)}
+.xyz-s6-fa{animation:xyzS6a 9s ease-in-out infinite}
+.xyz-s6-fb{animation:xyzS6b 7s ease-in-out infinite}
+.xyz-s6-fc{animation:xyzS6c 8s ease-in-out infinite}
+@keyframes xyzS6a{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-6px,-14px) rotate(-1.6deg)}}
+@keyframes xyzS6b{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(5px,-10px) rotate(3deg)}}
+@keyframes xyzS6c{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(4px,-12px) rotate(-2.5deg)}}
+.xyz-s6-beam{animation:xyzS6beam 5.5s ease-in-out infinite}
+@keyframes xyzS6beam{0%,100%{opacity:.35}50%{opacity:.85}}
+.xyz-s6-sweep{background:linear-gradient(100deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.10) 50%,rgba(255,255,255,0) 60%);background-size:300% 100%;animation:xyzS6sweep 4.5s linear infinite}
+@keyframes xyzS6sweep{from{background-position:120% 0}to{background-position:-20% 0}}
+.xyz-s6-tick{animation:xyzS6tick 1.6s ease-in-out infinite}
+@keyframes xyzS6tick{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
+@media (prefers-reduced-motion:reduce){.xyz-s6-fa,.xyz-s6-fb,.xyz-s6-fc,.xyz-s6-beam,.xyz-s6-sweep,.xyz-s6-tick{animation:none}}
+
+/* ===== Section 7: how it works ===== */
+.xyz-w7{color:#ffffff;opacity:clamp(.3, calc(.3 + (var(--hp7, 0) * 8 - var(--i)) * .7), 1);transition:opacity .2s linear}
+.xyz-s7-line{display:block;white-space:nowrap}
+.xyz-s7-card{opacity:var(--cp, 1);transform:translateY(calc((1 - var(--cp, 1)) * 70px));transition:opacity .25s linear,transform .35s cubic-bezier(.2,.7,.2,1);will-change:transform,opacity}
+@media (max-width:760px){
+  .xyz-s7-zone{height:calc(78vw + 30vh) !important}
+  .xyz-s7-sticky{height:78vw !important;padding-top:22vw !important}
+  .xyz-s7-h{font-size:10.6vw !important}
+  .xyz-s7-pillimg{width:15vw !important;height:6vw !important}
+  .xyz-s7-right{top:12vw !important;font-size:10px !important}
+  .xyz-s7-cards{width:92% !important;gap:14px !important}
+  .xyz-s7-card{padding:14px !important;gap:14px !important}
+  .xyz-s7-icon{width:30vw !important}
+  .xyz-s7-title{font-size:6.2vw !important}
+  .xyz-s7-desc{font-size:12px !important;max-width:none !important}
+  .xyz-s7-num{font-size:11px !important}
+}
+
+/* ===== Section 8: market reach ===== */
+.xyz-s8 .xyz-s8-rv{transition:opacity 1s ease,transform 1.1s cubic-bezier(.16,.84,.24,1)}
+.xyz-s8[data-in="0"] .xyz-s8-rv{opacity:0;transform:translateY(34px)}
+.xyz-s8-line{transform-origin:0 50%;transition:transform 1.3s cubic-bezier(.65,0,.25,1) .5s}
+.xyz-s8[data-in="0"] .xyz-s8-line{transform:scaleX(0)}
+.xyz-s8-light{-webkit-mask-image:radial-gradient(closest-side,#000 0%,rgba(0,0,0,.5) 45%,transparent 100%);mask-image:radial-gradient(closest-side,#000 0%,rgba(0,0,0,.5) 45%,transparent 100%);-webkit-mask-size:38% 90%;mask-size:38% 90%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;animation:xyzS8sweep 11s ease-in-out infinite alternate}
+@keyframes xyzS8sweep{from{-webkit-mask-position:-30% 40%;mask-position:-30% 40%}to{-webkit-mask-position:130% 60%;mask-position:130% 60%}}
+.xyz-s8-map{animation:xyzS8breath 6s ease-in-out infinite}
+@keyframes xyzS8breath{0%,100%{opacity:.85}50%{opacity:1}}
+.xyz-s8-ping{position:absolute;width:.55vw;height:.55vw;margin:-.275vw 0 0 -.275vw;border-radius:50%;background:#ff6a1a;box-shadow:0 0 12px 3px rgba(255,106,26,.7)}
+.xyz-s8-ping::after{content:"";position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(255,120,40,.8);animation:xyzS8ping 2.8s ease-out infinite;animation-delay:inherit}
+@keyframes xyzS8ping{0%{transform:scale(1);opacity:.9}100%{transform:scale(6);opacity:0}}
+@media (max-width:760px){
+  .xyz-s8-frame{aspect-ratio:auto !important;height:760px}
+  .xyz-s8-center{top:80px !important;font-size:12px !important}
+  .xyz-s8-right-lbl{display:none}
+  .xyz-s8-a{left:6% !important;top:150px !important}
+  .xyz-s8-b{left:6% !important;top:430px !important}
+  .xyz-s8-num{font-size:22vw !important}
+  .xyz-s8-ul{width:70vw !important}
+  .xyz-s8-desc{font-size:13px !important;max-width:80vw !important}
+  .xyz-s8-mapwrap{top:auto !important;bottom:0 !important;height:auto !important;aspect-ratio:1884/526}
+}
+@media (prefers-reduced-motion:reduce){.xyz-s8-light,.xyz-s8-map,.xyz-s8-ping::after{animation:none}}
+
+/* ===== Section 9: trade with total control ===== */
+.xyz-s9 .xyz-s9-rv{transition:opacity 1.2s ease,transform 1.4s cubic-bezier(.16,.84,.24,1)}
+.xyz-s9[data-in="0"] .xyz-s9-ring{opacity:0;transform:scale(.88)}
+.xyz-s9[data-in="0"] .xyz-s9-disk{opacity:0;transform:scale(.92)}
+.xyz-s9[data-in="0"] .xyz-s9-rock{opacity:0;transform:translateY(8cqw) scale(.96)}
+.xyz-s9[data-in="0"] .xyz-s9-txt{opacity:0;transform:translateY(3cqw)}
+.xyz-s9-pill{position:absolute;transform:translate(-50%,-50%) perspective(1200px) rotateX(var(--rx)) rotateY(var(--ry)) rotate(var(--rz));transition:transform 1.3s cubic-bezier(.2,1.25,.35,1),opacity .8s ease;will-change:transform}
+.xyz-s9[data-in="0"] .xyz-s9-pill{opacity:0;transform:translate(-50%,40%) perspective(1200px) rotateX(70deg) rotateY(calc(var(--ry) * 3)) rotate(calc(var(--rz) + 24deg)) scale(.7)}
+.xyz-s9-float{width:100%;height:100%;animation:xyzS9float 6s ease-in-out infinite;animation-delay:var(--fd)}
+@keyframes xyzS9float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-0.9cqw) rotate(1.2deg)}}
+.xyz-s9-sheen{animation:xyzS9sheen 9s ease-in-out infinite alternate;-webkit-mask-image:url(./assets/d201231c34089817e9b2edc6b4a629c0.webp);mask-image:url(./assets/d201231c34089817e9b2edc6b4a629c0.webp);-webkit-mask-size:100% 100%;mask-size:100% 100%}
+@keyframes xyzS9sheen{from{transform:translateX(-18%)}to{transform:translateX(18%)}}
+.xyz-s9-glow{animation:xyzS9glow 7s ease-in-out infinite}
+@keyframes xyzS9glow{0%,100%{opacity:.7}50%{opacity:1}}
+@media (max-width:760px){.xyz-s9-frame{width:170% !important;margin-left:-35% !important}}
+@media (prefers-reduced-motion:reduce){.xyz-s9-float,.xyz-s9-sheen,.xyz-s9-glow{animation:none}}
+
+/* ===== Section 10: trader stories ===== */
+.xyz-t-row{position:relative;display:flex;align-items:flex-start;gap:1.2cqw;padding-bottom:2.3cqw;margin-bottom:2.3cqw;border-bottom:1px solid transparent;transition:border-color .6s ease,padding .7s cubic-bezier(.2,.8,.2,1);cursor:pointer;outline:none}
+.xyz-t-row[data-on="1"]{border-bottom-color:#2e2e2e}
+.xyz-t-img{display:block;flex:none;width:9.8cqw;height:9.8cqw;object-fit:cover;border-radius:14px;filter:grayscale(1) brightness(.92) contrast(1.05);transition:width .75s cubic-bezier(.2,.8,.2,1),height .75s cubic-bezier(.2,.8,.2,1),filter .8s ease}
+.xyz-t-row[data-on="1"] .xyz-t-img{width:12.55cqw;height:13.4cqw;filter:none}
+.xyz-t-body{flex:1;min-width:0;max-height:0;overflow:hidden;opacity:0;transform:translateX(18px);pointer-events:none;transition:opacity .3s ease,transform .5s ease,max-height .6s cubic-bezier(.2,.8,.2,1)}
+.xyz-t-row[data-on="1"] .xyz-t-body{max-height:60cqw;opacity:1;transform:none;pointer-events:auto;transition:opacity .6s ease .3s,transform .7s cubic-bezier(.2,.8,.2,1) .3s,max-height .8s cubic-bezier(.2,.8,.2,1)}
+.xyz-t-row:focus-visible .xyz-t-img{outline:2px solid #ff6a1a;outline-offset:4px}
+.xyz-t-tag{display:inline-flex;align-items:center;border:1px solid #7a7a7a;border-radius:999px;padding:.6cqw 1.05cqw;font-size:clamp(11px,.72cqw,15px);color:#ffffff}
+@media (max-width:900px){
+  .xyz-s10-grid{grid-template-columns:1fr !important}
+  .xyz-s10-left{padding:56px 6% 24px !important;min-height:0 !important}
+  .xyz-s10-left .xyz-s10-h{font-size:17vw !important;margin-top:18px !important}
+  .xyz-s10-left .xyz-s10-pillwrap{margin-top:36px !important}
+  .xyz-s10-panel{padding:20px 4% 30px !important}
+  .xyz-t-img{width:26vw;height:26vw}
+  .xyz-t-row[data-on="1"] .xyz-t-img{width:34vw;height:38vw}
+  .xyz-t-body{max-width:none}
+  .xyz-t-body p{font-size:12px !important}
+}
+
+/* ===== Section 11: security ===== */
+.xyz-strip-up{animation-name:xyzStripUp;animation-timing-function:linear;animation-iteration-count:infinite;will-change:transform}
+.xyz-strip-down{animation-name:xyzStripDown;animation-timing-function:linear;animation-iteration-count:infinite;will-change:transform}
+@keyframes xyzStripUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@keyframes xyzStripDown{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+.xyz-film-up{animation:xyzFilmUp 16s linear infinite}
+.xyz-film-down{animation:xyzFilmDown 16s linear infinite}
+.xyz-film-mid{animation:xyzFilmMid 12s ease-in-out infinite alternate}
+@keyframes xyzFilmUp{0%{transform:translate(-8cqw,4.1cqw);opacity:0}18%{opacity:1}82%{opacity:1}100%{transform:translate(8cqw,-4.1cqw);opacity:0}}
+@keyframes xyzFilmDown{0%{transform:translate(8cqw,-4.1cqw);opacity:0}18%{opacity:1}82%{opacity:1}100%{transform:translate(-8cqw,4.1cqw);opacity:0}}
+@keyframes xyzFilmMid{0%{transform:translate(-2.4cqw,-1.2cqw) scale(1.01)}100%{transform:translate(2.4cqw,1.2cqw) scale(1.03)}}
+.xyz-s11-sweep{background:linear-gradient(117deg,rgba(255,255,255,0) 42%,rgba(255,236,220,.075) 50%,rgba(255,255,255,0) 58%);background-size:320% 100%;animation:xyzS11sweep 9s ease-in-out infinite;-webkit-mask-image:radial-gradient(ellipse 48% 46% at 55% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 48% 46% at 55% 50%,#000 55%,transparent 100%)}
+@keyframes xyzS11sweep{0%{background-position:110% 0}100%{background-position:-10% 0}}
+.xyz-w11{display:block;color:#ffffff;opacity:clamp(.28, calc(.28 + (var(--hp11, 0) * 5 - var(--i)) * .72), 1);transition:opacity .25s linear}
+@media (prefers-reduced-motion:reduce){.xyz-strip-up,.xyz-strip-down{animation-duration:400s !important}.xyz-film-up,.xyz-film-down,.xyz-film-mid,.xyz-s11-sweep{animation:none}}
+
+/* ===== Section 12: account types ===== */
+.xyz-acc{position:relative;display:flex;flex-direction:column;box-sizing:border-box;min-height:30.5cqw;padding:0.5cqw 0.55cqw 2cqw;border:1.5px solid #343434;border-radius:22px;background:#0a0a0a;overflow:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s ease,box-shadow .5s ease,opacity .9s ease}
+.xyz-acc:hover{transform:translateY(-8px);border-color:#5a5a5a;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.xyz-acc.xyz-acc-pro{border-color:#e8523a;box-shadow:0 0 0 1px rgba(232,82,58,.25),0 20px 70px rgba(232,82,58,.14)}
+.xyz-acc.xyz-acc-pro:hover{border-color:#ff6a4a;box-shadow:0 0 0 1px rgba(255,106,74,.4),0 28px 80px rgba(232,82,58,.26)}
+.xyz-acc-glow{position:absolute;left:0;right:0;bottom:0;height:28%;pointer-events:none;background:linear-gradient(180deg,rgba(120,38,12,0) 0%,rgba(120,38,12,.55) 100%);transition:opacity .5s ease}
+.xyz-acc-btn{display:flex;align-items:center;justify-content:space-between;height:2.9cqw;min-height:52px;padding:0 0.3cqw 0 1.05cqw;border-radius:999px;background:#161616;color:#ffffff;text-decoration:none;font-size:clamp(13px,.78cqw,17px);font-weight:500;letter-spacing:.01em;transition:background .35s ease}
+.xyz-acc-btn:hover{background:#222222;color:#ffffff}
+.xyz-acc-pro .xyz-acc-btn{background:#ffffff;color:#0a0a0a}
+.xyz-acc-pro .xyz-acc-btn:hover{background:#f1f1f1;color:#0a0a0a}
+.xyz-acc-arrow{display:flex;align-items:center;justify-content:center;width:2.65cqw;height:2.65cqw;min-width:44px;min-height:44px;border-radius:50%;background:#ffffff;color:#0a0a0a;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.xyz-acc-pro .xyz-acc-arrow{background:#0a0a0a;color:#ffffff}
+.xyz-acc-btn:hover .xyz-acc-arrow{transform:translateX(4px) rotate(-45deg)}
+.xyz-acc ul{margin:0;padding:0;list-style:none}
+.xyz-acc li{position:relative;padding-left:1.65cqw;font-size:clamp(13px,.8cqw,17px);line-height:1.6;color:#d4d4d4}
+.xyz-acc li::before{content:"";position:absolute;left:0.65cqw;top:.62em;width:7px;height:7px;border-radius:50%;background:#e6e6e6}
+.xyz-s12[data-in="0"] .xyz-acc{opacity:0}
+.xyz-s12[data-in="1"] .xyz-acc{animation:xyzAccIn 1.1s cubic-bezier(.16,.84,.24,1) backwards;animation-delay:var(--d,0s)}
+@keyframes xyzAccIn{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+.xyz-s12[data-in="0"] .xyz-s12-h{opacity:0;transform:translateY(30px)}
+.xyz-s12-h{transition:opacity 1s ease,transform 1.1s cubic-bezier(.16,.84,.24,1)}
+@media (max-width:900px){
+  .xyz-s12-h{font-size:17vw !important}
+  .xyz-s12-row{flex-direction:column !important;padding:0 5% !important;gap:18px !important}
+  .xyz-acc{min-height:0;padding:8px 8px 22px}
+  .xyz-acc-head{height:48px !important;font-size:11px !important}
+  .xyz-acc-body{padding:0 16px !important}
+  .xyz-acc h3{font-size:30px !important;margin-top:24px !important}
+  .xyz-acc li{padding-left:22px}
+  .xyz-acc li::before{left:6px}
+  .xyz-acc-desc{font-size:14px !important;max-width:none !important}
+  .xyz-acc-btnwrap{padding:0 16px !important;margin-top:28px !important}
+}
+
+/* ===== Final: CTA + contact + footer ===== */
+.xyz-rv13{transition:opacity 1.1s ease,transform 1.2s cubic-bezier(.16,.84,.24,1)}
+[data-in="0"] .xyz-rv13{opacity:0;transform:translateY(46px)}
+[data-in="0"] .xyz-rv13.d1{transition-delay:.12s}[data-in="1"] .xyz-rv13.d1{transition-delay:.12s}
+[data-in="1"] .xyz-rv13.d2{transition-delay:.25s}[data-in="1"] .xyz-rv13.d3{transition-delay:.4s}
+.xyz-ctam{display:flex;align-items:center;width:max-content;height:100%;animation:xyzMarq 26s linear infinite}
+.xyz-ctam span{flex:none}
+.xyz-ctabg{background:linear-gradient(100deg,#7a2c0c 0%,#c8601a 12%,#f2902c 30%,#c4541a 48%,#9a3510 66%,#6e220c 84%,#5a1a0a 100%);background-size:200% 100%;animation:xyzCtaBg 14s ease-in-out infinite alternate}
+@keyframes xyzCtaBg{from{background-position:0% 0}to{background-position:100% 0}}
+.xyz-smoke{animation:xyzSmoke 16s ease-in-out infinite alternate}
+@keyframes xyzSmoke{from{transform:translateX(-12%) scale(1)}to{transform:translateX(30%) scale(1.15)}}
+.xyz-star{animation:xyzSpin 14s linear infinite;display:inline-block}
+.xyz-iglow{position:absolute;width:12%;aspect-ratio:1/1;margin:-6% 0 0 -6%;border-radius:50%;background:radial-gradient(circle,rgba(255,120,40,.55) 0%,rgba(255,120,40,0) 65%);mix-blend-mode:screen;animation:xyzIGlow 4s ease-in-out infinite}
+@keyframes xyzIGlow{0%,100%{opacity:.35}50%{opacity:1}}
+.xyz-spark{position:absolute;border-radius:50%;background:#ffb070;box-shadow:0 0 6px 2px rgba(255,120,40,.55);animation:xyzSpark linear infinite}
+@keyframes xyzSpark{0%{transform:translateY(0);opacity:0}15%{opacity:1}85%{opacity:.8}100%{transform:translateY(-9cqw);opacity:0}}
+.xyz-field{display:block;width:100%;box-sizing:border-box;margin-top:1.2cqw;padding:0 0 1cqw .6cqw;border:0;border-bottom:1px solid #353535;background:transparent;color:#ffffff;font-family:'Archivo',sans-serif;font-size:clamp(12px,.82cqw,15px);outline:none;transition:border-color .3s ease}
+.xyz-field::placeholder{color:#7a7a7a}
+.xyz-field:focus{border-bottom-color:#ff6a1a}
+.xyz-fbtn{flex:1;display:flex;align-items:center;justify-content:space-between;height:2.95cqw;min-height:44px;padding:0 .25cqw 0 1cqw;border-radius:999px;border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:clamp(12px,.8cqw,15px);text-decoration:none;transition:transform .3s ease,background .3s ease}
+.xyz-fbtn:hover{transform:translateY(-2px)}
+.xyz-fbtn .xyz-fa{display:flex;align-items:center;justify-content:center;width:2.4cqw;height:2.4cqw;min-width:36px;min-height:36px;border-radius:50%;transition:transform .3s ease}
+.xyz-fbtn:hover .xyz-fa{transform:rotate(-45deg)}
+.xyz-flink{display:block;font-family:'Antonio','Arial Narrow',sans-serif;font-weight:600;font-size:clamp(16px,1.6cqw,30px);line-height:1;letter-spacing:-.02em;color:#8f8f8f;margin-top:1.55cqw;transition:color .3s ease,transform .3s ease}
+.xyz-flink:hover{color:#ffffff;transform:translateX(4px)}
+.xyz-social{display:flex;align-items:center;justify-content:center;width:28px;height:28px;color:#e0e0e0;border-radius:50%;transition:color .3s,background .3s}
+.xyz-social:hover{color:#0a0a0a;background:#ffffff}
+.xyz-lap-sweep{background:linear-gradient(100deg,rgba(255,255,255,0) 40%,rgba(255,200,150,.12) 50%,rgba(255,255,255,0) 60%);background-size:300% 100%;animation:xyzS6sweep 5s linear infinite;clip-path:polygon(29% 18%,64% 14%,72% 66%,34% 74%)}
+.xyz-bigglow{animation:xyzGlowB 6s ease-in-out infinite}
+@media (max-width:900px){
+  .xyz-cta-h{font-size:15vw !important}
+  .xyz-cta-band{height:80px !important}
+  .xyz-cta-band span{font-size:34px !important}
+  .xyz-contact{height:auto !important;display:flex;flex-direction:column}
+  .xyz-contact-bg{position:relative !important;width:100% !important;height:70vw !important}
+  .xyz-contact-h{font-size:14vw !important}
+  .xyz-form{position:relative !important;left:auto !important;top:auto !important;width:auto !important;height:auto !important;margin:20px 4% 0;padding:24px !important}
+  .xyz-form .xyz-lbl{font-size:14px !important;margin-top:22px !important}
+  .xyz-footer{height:auto !important;padding-bottom:40vw}
+  .xyz-fcols{position:relative !important;left:auto !important;top:auto !important;padding:40px 6% 0;flex-wrap:wrap;gap:28px !important}
+  .xyz-flogo{position:relative !important;left:auto !important;top:auto !important;padding:60px 6% 0}
+  .xyz-fvisual{position:relative !important;left:auto !important;top:auto !important;width:100% !important;height:60vw !important;margin-top:30px}
+  .xyz-fsocial{position:relative !important;left:auto !important;top:auto !important;flex-direction:row !important;padding:20px 6% 0}
+  .xyz-frisk{position:relative !important;top:auto !important;margin:30px auto 0;font-size:10px !important}
+}
+@media (prefers-reduced-motion:reduce){.xyz-ctam,.xyz-ctabg,.xyz-smoke,.xyz-star,.xyz-iglow,.xyz-spark,.xyz-lap-sweep,.xyz-bigglow{animation:none}}
+</style>
+</helmet>
+
+<div class="xyz-scroller" ref="{{ h.setRoot }}" onScroll="{{ h.onScroll }}" style="position: relative; width: 100%; height: 100vh; min-height: 640px; overflow-x: hidden; overflow-y: auto; scroll-snap-type: y mandatory; background: #050505; --mx: 0; --my: 0">
+<div style="position: relative; height: 400%">
+  <!-- one scroll-snap stop per instrument -->
+  <div id="forex" aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 25%; scroll-snap-align: start"></div>
+  <div id="indices" aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 25%; height: 25%; scroll-snap-align: start"></div>
+  <div id="stocks" aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 50%; height: 25%; scroll-snap-align: start"></div>
+  <div id="commodities" aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 75%; height: 25%; scroll-snap-align: start"></div>
+
+<div class="xyz-hero" onMouseMove="{{ h.onMove }}" onMouseLeave="{{ h.onLeave }}" style="position: sticky; top: 0; width: 100%; height: 25%; overflow: hidden; background: #050505; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif">
+
+  <!-- ===== Cinematic stage (the banner plate, 1920 × 921, scaled to cover) ===== -->
+  <div style="position: absolute; top: 77px; left: 0; right: 0; bottom: 0; overflow: hidden; container-type: size">
+    <div ref="{{ h.setStage }}" style="position: absolute; left: 50%; top: 50%; width: max(100cqw, calc(100cqh * 1920 / 921)); aspect-ratio: 1920 / 921; transform: translate(-50%, -50%)">
+      <img src="./assets/7da3a73f11cef7b0eb2e8e12aa65bf3a.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
+      <img ref="{{ h.setPlate }}" src="./assets/04f53b034e61fc42f0066be67245ce93.webp" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .2s ease-out">
+      <img class="xyz-chartpulse" src="./assets/7da3a73f11cef7b0eb2e8e12aa65bf3a.webp" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; filter: brightness(1.8) saturate(1.4); mix-blend-mode: screen; -webkit-mask-image: radial-gradient(ellipse 26% 42% at 64% 32%, #000 25%, transparent 75%); mask-image: radial-gradient(ellipse 26% 42% at 64% 32%, #000 25%, transparent 75%)">
+      <div class="xyz-ray" aria-hidden="true" style="position: absolute; top: -8%; left: 62%; width: 30%; height: 95%; background: conic-gradient(from 166deg at 50% 0%, rgba(255,255,255,0) 0deg, rgba(220,228,240,0.13) 12deg, rgba(255,255,255,0.04) 20deg, rgba(220,228,240,0.1) 26deg, rgba(255,255,255,0) 36deg); filter: blur(16px); mix-blend-mode: screen; pointer-events: none"></div>
+
+      <canvas ref="{{ h.setRock }}" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block"></canvas>
+
+      <sc-if value="{{ cardsOn }}" hint-placeholder-val="{{ true }}">
+      <!-- icon card behind the bull -->
+      <div class="xyz-card xyz-card-back" style="left: 41.8%; top: 19.1%; width: 9.15%; --fx: 38%; --fy: 205%; --ry: -35deg; --d: .12s; --fd: .3s">
+        <div class="xyz-card-in"><img src="./assets/a736134d26c0764268c99e8281496253.png" alt="Market trend card" style="display: block; width: 100%; height: auto"></div>
+      </div>
+      </sc-if>
+
+      <img ref="{{ h.setGhost1 }}" src="./assets/6fd72f99787217fcd200dbc65b983e81.webp" alt="" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 720px; height: 876px; transform-origin: 0 0; opacity: 0; filter: blur(4px); will-change: transform, opacity">
+      <img ref="{{ h.setGhost2 }}" src="./assets/6fd72f99787217fcd200dbc65b983e81.webp" alt="" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 720px; height: 876px; transform-origin: 0 0; opacity: 0; filter: blur(7px); will-change: transform, opacity">
+      <img ref="{{ h.setBull }}" src="./assets/6fd72f99787217fcd200dbc65b983e81.webp" alt="A glass cube holding gold dollar coins, landing on a stone slab" style="position: absolute; left: 0; top: 0; width: 720px; height: 876px; transform-origin: 0 0; opacity: 0; filter: drop-shadow(0 0 14px rgba(255,100,30,0.28)); will-change: transform, opacity">
+
+      <sc-if value="{{ cardsOn }}" hint-placeholder-val="{{ true }}">
+      <!-- icon cards emerging from the broken stone (in front of the bull) -->
+      <div class="xyz-card " style="left: 28.3%; top: 43.3%; width: 10.8%; --fx: 148%; --fy: 61%; --ry: 45deg; --d: .22s; --fd: 1.6s">
+        <div class="xyz-card-in"><img src="./assets/9a8306c343629bcc2189941d41e13c14.png" alt="Trading card" style="display: block; width: 100%; height: auto"></div>
+      </div>
+      <div class="xyz-card " style="left: 61.8%; top: 43%; width: 7.8%; --fx: -203%; --fy: 96%; --ry: -45deg; --d: .3s; --fd: .9s">
+        <div class="xyz-card-in"><img src="./assets/02167ae1b212116702ccfc3f173b99d5.png" alt="Stock card" style="display: block; width: 100%; height: auto"></div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ missing }}" hint-placeholder-val="{{ false }}">
+        <div class="xyz-ph" style="position: absolute; left: 39%; top: 14%; width: 22%; height: 50%; border: 1.5px dashed rgba(255,255,255,0.28); border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; background: rgba(0,0,0,0.25)">
+          <div style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(18px, 1.6vw, 32px); letter-spacing: 0.06em; color: #ffffff">{{ activeLabel }} VISUAL</div>
+          <div style="font-size: clamp(11px, 0.8vw, 15px); color: #b8b8b8">Waiting for your image</div>
+        </div>
+      </sc-if>
+
+      <canvas ref="{{ h.setFx }}" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none"></canvas>
+      <div ref="{{ h.setFlash }}" aria-hidden="true" style="position: absolute; inset: 0; opacity: 0; pointer-events: none; mix-blend-mode: screen; background: radial-gradient(38% 34% at 50% 69%, rgba(255,226,180,0.85) 0%, rgba(255,100,30,0.3) 45%, rgba(255,90,20,0) 75%)"></div>
+      <!-- hero image preload: real src attributes so paths resolve in the standalone export too -->
+      <div ref="{{ h.setPre }}" aria-hidden="true" style="display: none">
+        <img data-k="v0" src="./assets/6fd72f99787217fcd200dbc65b983e81.webp" alt="">
+        <img data-k="v1" src="./assets/42d4b3388c1f6f6e532a499c91612aad.webp" alt="">
+        <img data-k="v2" src="./assets/a7512c5913ea26d2310ae1db176989e7.webp" alt="">
+        <img data-k="v3" src="./assets/3aa01887b1436dade74a4db78ce503c2.webp" alt="">
+        <img data-k="pile" src="./assets/1d8de113b6178cfe5a1ed8c14d5ad46a.webp" alt="">
+        <img data-k="pileGlow" src="./assets/939c49d4053b3373b423457291b28c49.webp" alt="">
+        <img data-k="rubble" src="./assets/6139981ebdb5fdabf26156089a1f6582.webp" alt="">
+        <img data-k="rubbleGlow" src="./assets/141d680bc20880f7ba4b06e1c87ab19c.webp" alt="">
+        <!-- section images whose paths live only in script data -->
+        <img data-id="82cf04b7b57932be90082a5aa90b88ef" src="./assets/82cf04b7b57932be90082a5aa90b88ef.png" alt="">
+        <img data-id="06a8efacc4ab20ad92ca00b9501b65b3" src="./assets/06a8efacc4ab20ad92ca00b9501b65b3.png" alt="">
+        <img data-id="bc8b7af709d92cf32173f866fade8c3c" src="./assets/bc8b7af709d92cf32173f866fade8c3c.png" alt="">
+        <img data-id="8225ca22085ca39ee3d05c38d906d33a" src="./assets/8225ca22085ca39ee3d05c38d906d33a.webp" alt="">
+        <img data-id="bc07a2235369c5b39e7e7ca228848b79" src="./assets/bc07a2235369c5b39e7e7ca228848b79.webp" alt="">
+        <img data-id="2cea34aed85cf3f652a7c65805962057" src="./assets/2cea34aed85cf3f652a7c65805962057.webp" alt="">
+        <img data-id="bce739096067f7a8677ee2685de0ae70" src="./assets/bce739096067f7a8677ee2685de0ae70.png" alt="">
+        <img data-id="b0b0bcd41d1faf124ea44ea868f95ffc" src="./assets/b0b0bcd41d1faf124ea44ea868f95ffc.png" alt="">
+        <img data-id="d039f43cfa728eb898b2ba5bf13c621a" src="./assets/d039f43cfa728eb898b2ba5bf13c621a.png" alt="">
+        <img data-id="c717e966bbecc17acc9ff193b003ee90" src="./assets/c717e966bbecc17acc9ff193b003ee90.png" alt="">
+        <img data-id="572c52bed4edb0b08c509ca505eaedb5" src="./assets/572c52bed4edb0b08c509ca505eaedb5.webp" alt="">
+        <img data-id="17067675ad51cbc893122b3ce634242c" src="./assets/17067675ad51cbc893122b3ce634242c.webp" alt="">
+        <img data-id="61a2dac41be86b41268ded27e0d2f1b5" src="./assets/61a2dac41be86b41268ded27e0d2f1b5.webp" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Vignette ===== -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(130% 100% at 50% 45%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.55) 100%)"></div>
+
+  <!-- ===== Navigation ===== -->
+  <header style="position: absolute; top: 0; left: 0; right: 0; height: 77px; background: #070707; display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(20px, 3.8vw, 73px); z-index: 10">
+    <a href="#" aria-label="XYZ home" style="display: flex; align-items: baseline; color: #ffffff; font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 21px; letter-spacing: 0.04em">XYZ<span style="color: #ff5a1f">.</span></a>
+    <nav class="xyz-nav-pill" aria-label="Primary" style="position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 2px; height: 44px; padding: 3px; border-radius: 999px; background: #161616; border: 1px solid rgba(255,255,255,0.05)">
+      <a href="#" aria-current="page" style="display: flex; align-items: center; height: 38px; padding: 0 27px; border-radius: 999px; background: #ffffff; color: #0a0a0a; font-size: 16px; font-weight: 500">Home</a>
+      <a href="#" style="display: flex; align-items: center; height: 38px; padding: 0 27px; border-radius: 999px; color: #a6a6a6; font-size: 16px">About</a>
+      <a href="#" style="display: flex; align-items: center; height: 38px; padding: 0 27px; border-radius: 999px; color: #a6a6a6; font-size: 16px">Accounts</a>
+      <a href="#" style="display: flex; align-items: center; height: 38px; padding: 0 27px; border-radius: 999px; color: #a6a6a6; font-size: 16px">Markets</a>
+      <a href="#" style="display: flex; align-items: center; height: 38px; padding: 0 27px; border-radius: 999px; color: #a6a6a6; font-size: 16px">Contact</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 10px">
+      <a class="xyz-cta" href="#" aria-label="Open an Account" style="display: flex; align-items: center; gap: 16px; height: 44px; padding: 0 4px 0 20px; border-radius: 999px; background: #ffffff; color: #0a0a0a; font-size: 16px; font-weight: 500">
+        <span class="xyz-cta-label">Open an Account</span>
+        <span class="xyz-cta-dot" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; background: #0a0a0a; transition: transform .3s ease">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </a>
+      <button class="xyz-menu" type="button" aria-label="Open menu" style="align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 999px; background: #161616; border: 1px solid rgba(255,255,255,0.1); cursor: pointer">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Headline ===== -->
+  <div class="xyz-left xyz-px" style="position: absolute; top: 20%; left: clamp(20px, 3.8vw, 73px); z-index: 5; transform: translate3d(calc(var(--mx) * 8px), calc(var(--my) * 6px), 0); pointer-events: none">
+    <div class="xyz-in xyz-smart" style="animation-delay: .15s; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(30px, 3.15vw, 72px); line-height: 1; letter-spacing: -0.04em; background: linear-gradient(180deg, #9a9a9a 0%, #5c5c5c 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">TRADE SMART ’26</div>
+    <h1 style="margin: clamp(8px, 1.1vw, 24px) 0 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(56px, 6.05vw, 140px); line-height: 1.03; letter-spacing: -0.045em; color: #ffffff">
+      <span class="xyz-in" style="display: block; animation-delay: .3s">TRADE</span>
+      <span class="xyz-in" style="display: block; animation-delay: .45s">THE WORLD</span>
+    </h1>
+  </div>
+
+  <!-- ===== Circular badge ===== -->
+  <div class="xyz-badge xyz-px" style="position: absolute; left: clamp(20px, 3.9vw, 76px); top: 60%; width: clamp(120px, 10.4vw, 220px); height: clamp(120px, 10.4vw, 220px); z-index: 5; transform: translate3d(calc(var(--mx) * 12px), calc(var(--my) * 10px), 0)">
+    <svg class="xyz-spin" viewBox="0 0 200 200" role="img" aria-label="Built for traders" style="position: absolute; inset: 0; width: 100%; height: 100%">
+      <defs><path id="xyzCircle" d="M100,18 a82,82 0 1,1 0,164 a82,82 0 1,1 0,-164"></path></defs>
+      <text fill="#d8d8d8" style="font-family: 'Archivo', sans-serif; font-size: 27px; letter-spacing: 10px; font-weight: 400"><textPath href="#xyzCircle" startOffset="1%">BUILT FOR TRADERS</textPath></text>
+    </svg>
+    <svg viewBox="0 0 200 200" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%">
+      <circle cx="100" cy="100" r="27" stroke="#d8d8d8" stroke-width="2" fill="none"></circle>
+      <path d="M84 84c6 2 8 6 6 10s2 7 6 7 5 5 3 9M110 76c-3 4-1 8 3 9s5 6 2 10M98 126c2-5 7-6 9-3s6 0 7-4" stroke="#d8d8d8" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </div>
+
+  <!-- ===== Instruments ===== -->
+  <div id="offer" class="xyz-right xyz-offer xyz-px" style="position: absolute; top: 25.2%; right: clamp(20px, 3.8vw, 73px); z-index: 5; display: flex; flex-direction: column; align-items: flex-end; text-align: right; transform: translate3d(calc(var(--mx) * 8px), calc(var(--my) * 6px), 0)">
+    <div class="xyz-in xyz-we" style="animation-delay: .5s; font-size: clamp(13px, 0.92vw, 19px); color: #ffffff; letter-spacing: 0.01em; margin-bottom: clamp(10px, 1vw, 22px)">/ WE OFFER</div>
+    <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: inherit">
+      <sc-for list="{{ offers }}" as="item" hint-placeholder-count="4">
+        <li class="xyz-in" style="animation-delay: {{ item.delay }}"><a href="{{ item.href }}" onClick="{{ item.go }}" aria-current="{{ item.current }}" style="display: block; transition: color .4s ease; font-size: clamp(17px, 1.4vw, 30px); line-height: clamp(30px, 2.2vw, 46px); letter-spacing: 0.01em; color: {{ item.color }}">{{ item.label }}</a></li>
+      </sc-for>
+    </ul>
+  </div>
+
+  <!-- ===== 24/5 ===== -->
+  <div class="xyz-245 xyz-px" aria-label="Trading 24 hours, 5 days a week" style="position: absolute; right: clamp(16px, 4.1vw, 80px); bottom: 15.3%; z-index: 4; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(100px, 11.6vw, 250px); line-height: 0.78; letter-spacing: -0.045em; background: linear-gradient(180deg, rgba(150,150,150,0.55) 0%, rgba(95,95,95,0.38) 55%, rgba(45,45,45,0.2) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; transform: translate3d(calc(var(--mx) * -16px), calc(var(--my) * -10px), 0)">24/5</div>
+
+  <!-- ===== LET'S TRADE ===== -->
+  <span class="xyz-in xyz-word xyz-word-l" style="position: absolute; left: 16.8vw; bottom: 5.4%; z-index: 6; animation-delay: .7s; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(24px, 2.4vw, 52px); line-height: 1; letter-spacing: 1.12em; color: #ffffff">LET’S</span>
+  <button class="xyz-cap xyz-capbtn" type="button" onClick="{{ h.replay }}" aria-label="Replay the landing" style="position: absolute; left: 50%; bottom: 5%; z-index: 6; transform: translateX(-50%); width: clamp(84px, 6.9vw, 140px); height: clamp(32px, 2.5vw, 50px); padding: 0; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 0 24px rgba(255,106,26,0.35), inset 0 0 12px rgba(0,0,0,0.8); cursor: pointer"></button>
+  <span class="xyz-in xyz-word xyz-word-r" style="position: absolute; left: 66.3vw; bottom: 5.4%; z-index: 6; animation-delay: .8s; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(24px, 2.4vw, 52px); line-height: 1; letter-spacing: 1.12em; color: #ffffff">TRADE</span>
+</div>
+</div>
+
+<!-- ===================== SECTION 2 — GLOBAL TEAM ===================== -->
+<section ref="{{ h.setSec }}" class="xyz-s2" aria-labelledby="xyz-s2-title" style="position: relative; scroll-snap-align: start; background: #070707; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; overflow: clip">
+  <div class="xyz-s2-canvas" style="position: relative; width: 100%; aspect-ratio: 1807 / 2048">
+    <!-- original rocky landscape (static) -->
+    <img class="xyz-s2-bg" src="./assets/1143602d4a0afaf2dd4cf8f7d9e9345e.webp" alt="" aria-hidden="true" style="position: absolute; left: 0; top: 49.3%; width: 100%; height: 50.7%; display: block">
+    <div class="xyz-glow" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 40%; pointer-events: none; mix-blend-mode: screen; background: radial-gradient(70% 70% at 18% 100%, rgba(255,70,25,0.32) 0%, rgba(255,70,25,0) 70%), radial-gradient(60% 55% at 85% 100%, rgba(255,110,40,0.22) 0%, rgba(255,110,40,0) 70%)"></div>
+    <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 47%; height: 10%; pointer-events: none; background: linear-gradient(180deg, #070707 0%, rgba(7,7,7,0) 100%)"></div>
+
+    <!-- heading: held at its original spot while the section scrolls; grey to white word by word -->
+    <div class="xyz-s2-pin" style="position: absolute; left: 0; right: 0; top: 0; height: 76%; padding-top: 10.88vw; z-index: 3; pointer-events: none">
+      <div class="xyz-s2-h" style="position: sticky; top: 10.88vw; width: max-content; max-width: 96%; margin: 0 auto; text-align: center">
+        <h2 id="xyz-s2-title" ref="{{ h.setHead }}" style="margin: 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(30px, 3.3vw, 72px); line-height: 1.04; letter-spacing: -0.05em; color: #ffffff; --hp: 0">
+          <sc-for list="{{ s2lines }}" as="line" hint-placeholder-count="4">
+            <span class="xyz-s2-line" style="display: block; white-space: nowrap">
+              <sc-for list="{{ line.words }}" as="word" hint-placeholder-count="5">
+                <span class="xyz-word2" style="--i: {{ word.i }}">{{ word.w }}</span>
+              </sc-for>
+            </span>
+          </sc-for>
+        </h2>
+      </div>
+    </div>
+
+    <!-- three images: rise faster than the page, each at its own speed -->
+    <div class="xyz-s2-dash xyz-mover" ref="{{ h.setImg1 }}" style="position: absolute; left: 6.4%; top: 13.1%; width: 26.8%; z-index: 2; --dist: 260px">
+      <img class="xyz-float-a" src="./assets/f9db924ab36ec415c452233bfe6d9614.webp" alt="XYZ trading dashboard on a laptop and phone, set between dark rocks lit by a red laser line" style="display: block; width: 100%; height: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.6)">
+    </div>
+    <div class="xyz-s2-rock xyz-mover" ref="{{ h.setImg2 }}" style="position: absolute; left: 74.6%; top: 37%; width: 10.5%; z-index: 2; --dist: 560px">
+      <img class="xyz-float-b" src="./assets/28018b46e60c0d9f5ec49c46692034e4.webp" alt="A floating rock above a sunset horizon with a circular logo badge" style="display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.55), 0 0 30px rgba(255,120,40,0.18)">
+    </div>
+    <div class="xyz-s2-car xyz-mover" ref="{{ h.setImg3 }}" style="position: absolute; left: 37%; top: 52.8%; width: 17.2%; z-index: 2; --dist: 420px">
+      <img class="xyz-float-c" src="./assets/6e6f7cb6507dd444acfea31496aeaca4.webp" alt="An orange sports coupe with TRADING livery, headlights glowing in the dark" style="display: block; width: 100%; height: auto; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 44px rgba(255,110,30,0.28)">
+    </div>
+
+    <!-- value marquee (original position, scrolls with the page) -->
+    <div class="xyz-s2-mq" style="position: absolute; left: 0; right: 0; top: 88.6%; height: 6.5%; z-index: 4; overflow-x: clip; overflow-y: visible; padding: 2px 0; box-sizing: content-box; margin-top: -2px">
+      <ul class="xyz-marquee" aria-label="Our values" style="list-style: none; margin: 0; padding: 0; height: 100%">
+        <sc-for list="{{ pills }}" as="pill" hint-placeholder-count="12">
+          <li class="xyz-pill" aria-hidden="{{ pill.dup }}" style="flex: none; box-sizing: border-box; width: 17.6vw; height: 100%; margin-right: 0.7vw; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,214,196,0.38); border-radius: 999px"><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(24px, 2.85vw, 60px); letter-spacing: -0.04em; color: rgba(255,232,224,0.82)">{{ pill.label }}</span></li>
+        </sc-for>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 3 — TRADING PRODUCTS ===================== -->
+<section class="xyz-s3" aria-label="Trading instruments" onMouseLeave="{{ h.s3leave }}" style="position: relative; min-height: 100vh; scroll-snap-align: start; background: #060606; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; overflow: hidden; display: flex; flex-direction: column; justify-content: center; padding: 22vh 0 14vh; box-sizing: border-box">
+  <div class="xyz-s3-lbl" style="position: absolute; left: 3.4vw; top: 16vh; font-size: clamp(12px, 0.82vw, 17px); color: #c8c8c8">[Trading Instruments]</div>
+  <div class="xyz-s3-lbl" style="position: absolute; right: 3.1vw; top: 16vh; font-size: clamp(12px, 0.82vw, 17px); color: #c8c8c8">[Engineered for Better Trading]</div>
+  <sc-for list="{{ s3 }}" as="ln" hint-placeholder-count="3">
+    <div class="xyz-s3-line" data-on="{{ ln.on }}" onMouseEnter="{{ ln.enter }}" onMouseLeave="{{ h.s3leave }}">
+      <img class="xyz-s3-card" src="{{ ln.src }}" alt="{{ ln.alt }}" style="left: {{ ln.cardLeft }}">
+      <button class="xyz-s3-word" type="button" onClick="{{ ln.enter }}" onFocus="{{ ln.enter }}" onBlur="{{ h.s3leave }}" aria-pressed="{{ ln.pressed }}" style="--shift: {{ ln.shift }}">{{ ln.label }}</button>
+    </div>
+  </sc-for>
+</section>
+
+<!-- ===================== SECTION 4 — PRODUCT PANELS (pinned stack) ===================== -->
+<section ref="{{ h.setS4 }}" class="xyz-s4" aria-label="Our products" style="position: relative; height: 300vh; scroll-snap-align: start; background: #0a0a0a; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif">
+  <div ref="{{ h.setS4Stage }}" style="position: sticky; top: 0; height: 100vh; min-height: 620px; overflow: hidden; --p4: 0">
+    <sc-for list="{{ products }}" as="pr" hint-placeholder-count="3">
+      <article class="xyz-p4" aria-label="{{ pr.title }}" style="--k: {{ pr.k }}; z-index: {{ pr.z }}">
+        <div class="xyz-p4-in" style="height: 100%; box-sizing: border-box; padding: 6vh 3.8vw; display: flex; flex-direction: column; justify-content: center; gap: clamp(24px, 3.9vw, 64px)">
+          <div class="xyz-p4-meta" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; font-size: clamp(11px, 0.85vw, 15px)">
+            <div style="display: flex; align-items: center; gap: 2px">
+              <span style="background: #ffffff; color: #0a0a0a; border-radius: 999px; padding: 4px 12px; font-weight: 500">Products</span>
+              <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 999px; background: #ffffff; color: #0a0a0a; border: 1px solid #0a0a0a; box-shadow: 0 0 0 1px #ffffff">{{ pr.num }}</span>
+            </div>
+            <div class="xyz-p4-mid" style="text-align: center; color: #b5b5b5">Product Name: <span style="color: #ffffff; margin-left: 6px">{{ pr.name }}</span></div>
+            <div style="text-align: right; letter-spacing: 0.02em">GLOBAL MARKETS</div>
+          </div>
+          <img class="xyz-p4-img" src="{{ pr.src }}" alt="{{ pr.alt }}" style="display: block; width: min(44.6vw, calc(54vh * 1.58)); height: auto; margin: 0 auto; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)">
+          <div class="xyz-p4-bottom" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+            <h3 class="xyz-p4-h" style="margin: 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(30px, 3.45vw, 66px); line-height: 1.02; letter-spacing: -0.045em; position: relative">
+              <span style="display: block">GLOBAL</span>
+              <span style="display: inline-block; position: relative">{{ pr.line2 }}<sup style="position: absolute; left: 100%; top: -0.15em; margin-left: 0.15em; font-family: 'Archivo', sans-serif; font-weight: 400; font-size: 0.42em; letter-spacing: 0; color: #ff5a3c">[{{ pr.num }}]</sup></span>
+            </h3>
+            <div class="xyz-p4-desc" style="text-align: right; max-width: 30vw; min-width: 260px">
+              <div style="font-size: clamp(11px, 0.78vw, 14px); color: #ffffff; margin-bottom: 14px">[About This Product]</div>
+              <p style="margin: 0; font-size: clamp(13px, 1.02vw, 18px); line-height: 1.35; color: #a6a6a6">{{ pr.desc }}</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ===================== SECTION 5 — MARKETS / 4 ASSET CLASSES ===================== -->
+<section class="xyz-s5" aria-labelledby="xyz-s5-title" onMouseEnter="{{ h.m5pause }}" onMouseLeave="{{ h.m5resume }}" style="position: relative; min-height: 100vh; scroll-snap-align: start; background: #060606; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; overflow: hidden; display: flex; align-items: center">
+  <div class="xyz-m5-frame" style="position: relative; width: 100%; aspect-ratio: 1910 / 838">
+    <!-- hairlines -->
+    <div aria-hidden="true" style="position: absolute; left: 3.66%; right: 3.35%; top: 5%; height: 1px; background: #262626"></div>
+    <div class="xyz-m5-vline" aria-hidden="true" style="position: absolute; left: 50.15%; top: 5%; height: 19%; width: 1px; background: linear-gradient(180deg, #333333, rgba(51,51,51,0))"></div>
+
+    <!-- left -->
+    <div class="xyz-m5-left" style="position: absolute; left: 3.66%; top: 45.8%; z-index: 5">
+      <div style="display: flex; align-items: center; gap: 2px; font-size: clamp(13px, 0.83vw, 16px)">
+        <span style="background: #ffffff; color: #0a0a0a; border-radius: 999px; padding: 6px 16px; font-weight: 500">Markets</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; background: #ffffff; color: #0a0a0a; box-shadow: 0 0 0 2px #060606">04</span>
+      </div>
+    </div>
+    <div class="xyz-m5-rule" aria-hidden="true" style="position: absolute; left: 3.66%; top: 52.5%; width: 16.8%; height: 1px; background: #262626"></div>
+    <div class="xyz-m5-left" style="position: absolute; left: 3.66%; top: 55.8%; z-index: 5; margin-top: 0">
+      <div style="font-size: clamp(11px, 0.72vw, 14px); color: #a6a6a6; letter-spacing: 0.02em">OUR PRODUCTS</div>
+      <h2 id="xyz-s5-title" style="margin: 6px 0 0; font-family: 'Archivo', sans-serif; font-weight: 500; font-size: clamp(15px, 0.95vw, 19px); letter-spacing: 0.01em">4 ASSET CLASSES</h2>
+      <sc-if value="{{ m5.ready }}" hint-placeholder-val="{{ true }}">
+        <div class="xyz-m5-active" aria-live="polite" style="margin-top: 14px; font-size: clamp(12px, 0.8vw, 15px); color: #ff6a1a">— {{ m5.activeName }}</div>
+      </sc-if>
+    </div>
+
+    <!-- card stack -->
+    <sc-for list="{{ m5.cards }}" as="cd" hint-placeholder-count="4">
+      <button class="xyz-m5-card" type="button" onClick="{{ cd.pick }}" aria-label="Show {{ cd.name }}" style="padding: 0; border: 0; background: none; cursor: pointer; transform: {{ cd.tf }}; filter: {{ cd.filter }}; opacity: {{ cd.op }}; z-index: {{ cd.z }}">
+        <img src="{{ cd.src }}" alt="{{ cd.alt }}">
+      </button>
+    </sc-for>
+
+    <!-- rotating ring + globe -->
+    <div class="xyz-m5-ringwrap" style="position: absolute; left: 40.6%; top: 42.4%; width: 15.7%; aspect-ratio: 1 / 1; z-index: 1">
+      <svg class="xyz-m5-ring" viewBox="0 0 300 300" role="img" aria-label="Forex, Indices, Stocks, Commodities" style="position: absolute; inset: 0; width: 100%; height: 100%">
+        <defs><path id="xyzM5Circle" d="M150,30 a120,120 0 1,1 0,240 a120,120 0 1,1 0,-240"></path></defs>
+        <text style="font-family: 'Archivo', sans-serif; font-size: 26px; letter-spacing: 4px; font-weight: 400"><textPath href="#xyzM5Circle" startOffset="0%"><tspan fill="{{ m5.c0 }}">FOREX</tspan><tspan fill="#ffffff"> • </tspan><tspan fill="{{ m5.c1 }}">INDICES</tspan><tspan fill="#ffffff"> • </tspan><tspan fill="{{ m5.c2 }}">STOCKS</tspan><tspan fill="#ffffff"> • </tspan><tspan fill="{{ m5.c3 }}">COMMODITIES</tspan><tspan fill="#ffffff"> •</tspan></textPath></text>
+      </svg>
+      <svg viewBox="0 0 300 300" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%">
+        <circle cx="150" cy="150" r="47" stroke="#7a7a7a" stroke-width="3.5" fill="none"></circle>
+        <path d="M126 122c8 3 11 9 8 15s3 10 9 10 7 7 4 13M162 110c-4 6-2 12 4 13s8 9 3 15M146 186c3-7 10-9 13-4s9 0 10-6" stroke="#7a7a7a" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+
+    <!-- right -->
+    <p class="xyz-m5-desc" style="position: absolute; left: 86.02%; top: 47.6%; width: 10.6%; margin: 0; font-size: clamp(13px, 0.84vw, 16px); line-height: 1.6; color: #cfcfcf">Explore a focused range of global markets through Forex, Indices, Stocks, and Commodities.</p>
+  </div>
+</section>
+
+<!-- ===================== SECTION 6 — PHONE + ROCKS ===================== -->
+<section ref="{{ h.setS6 }}" class="xyz-s6" data-in="{{ s6In }}" aria-label="Trade EUR/USD on the go" onMouseMove="{{ h.s6move }}" onMouseLeave="{{ h.s6leave }}" style="position: relative; width: 100%; aspect-ratio: 1920 / 790; scroll-snap-align: start; background: #050302; overflow: hidden; --sx: 0; --sy: 0">
+  <div style="position: absolute; inset: 0; overflow: hidden; -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 5%, #000 93%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 5%, #000 93%, transparent 100%)">
+    <div style="position: absolute; left: 0; width: 100%; top: -7.3vw; aspect-ratio: 1920 / 1067">
+      <!-- background plate -->
+      <div class="xyz-s6-par" style="inset: -0.8%; transform: translate3d(calc(var(--sx, 0) * -6px), calc(var(--sy, 0) * -4px), 0)">
+        <img src="./assets/7236d30dd8de56003c4a7e8c0499b16d.webp" alt="" aria-hidden="true" style="display: block; width: 100%; height: 100%">
+      </div>
+      <!-- pulsing light beam along the orange horizon -->
+      <div class="xyz-s6-beam" aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; background: linear-gradient(149deg, rgba(255,120,30,0) 55%, rgba(255,150,60,0.30) 61%, rgba(255,190,110,0.42) 63%, rgba(255,120,30,0) 70%), radial-gradient(40% 40% at 92% 8%, rgba(255,140,40,0.35) 0%, rgba(255,140,40,0) 70%)"></div>
+      <!-- particles -->
+      <canvas ref="{{ h.setS6Canvas }}" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none"></canvas>
+      <!-- floating rocks (different depths) -->
+      <div class="xyz-s6-par" style="left: 9.95%; top: 71.04%; width: 11.04%; height: 22.49%; transform: translate3d(calc(var(--sx, 0) * 30px), calc(var(--sy, 0) * 18px), 0)"><div class="xyz-s6-rock" style="transition-delay: .5s"><img class="xyz-s6-fc" src="./assets/f20754eabeb94eb5310470b481357925.webp" alt="" aria-hidden="true" style="display: block; width: 100%; height: 100%"></div></div>
+      <div class="xyz-s6-par" style="left: 81.82%; top: 18.18%; width: 10.42%; height: 17.34%; transform: translate3d(calc(var(--sx, 0) * 14px), calc(var(--sy, 0) * 8px), 0)"><div class="xyz-s6-rock" style="transition-delay: .7s"><img class="xyz-s6-fb" src="./assets/69b619da3119a651a30d3a8b8b0e214e.webp" alt="" aria-hidden="true" style="display: block; width: 100%; height: 100%"></div></div>
+      <!-- phone -->
+      <div class="xyz-s6-par" style="left: 39.06%; top: 5.62%; width: 60.94%; height: 94.38%; transform: translate3d(calc(var(--sx, 0) * 18px), calc(var(--sy, 0) * 11px), 0)">
+        <div class="xyz-s6-phone" style="position: relative">
+          <img src="./assets/3c4a8e70c645cf3ac7214f9bd35562b2.webp" alt="A tilted smartphone showing a live EUR/USD chart at 1.08542 with BUY and SELL buttons" style="display: block; width: 100%; height: 100%">
+          <!-- screen shimmer + live price tick -->
+          <div class="xyz-s6-sweep" aria-hidden="true" style="position: absolute; inset: 0; mix-blend-mode: screen; clip-path: polygon(5.6% 5.9%, 50.9% 7.9%, 98% 93%, 38.4% 100%)"></div>
+          <div class="xyz-s6-tick" aria-hidden="true" style="position: absolute; left: 63.4%; top: 31.4%; width: 1.9%; aspect-ratio: 1 / 1; border-radius: 50%; background: radial-gradient(circle, rgba(120,255,150,0.95) 0%, rgba(60,220,110,0.5) 35%, rgba(60,220,110,0) 70%); mix-blend-mode: screen"></div>
+        </div>
+      </div>
+      <!-- big foreground rock (closest) -->
+      <div class="xyz-s6-par" style="left: 18.13%; top: 27.18%; width: 29.79%; height: 44.7%; transform: translate3d(calc(var(--sx, 0) * 40px), calc(var(--sy, 0) * 24px), 0)"><div class="xyz-s6-rock" style="transition-delay: .3s"><img class="xyz-s6-fa" src="./assets/a2bdaf4950879b27064df29f508ed933.webp" alt="" aria-hidden="true" style="display: block; width: 100%; height: 100%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 7 — HOW IT WORKS ===================== -->
+<section ref="{{ h.setS7 }}" class="xyz-s7" aria-labelledby="xyz-s7-title" style="position: relative; scroll-snap-align: start; background: #050505; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; padding-bottom: 10vw">
+  <div class="xyz-s7-zone" ref="{{ h.setS7Zone }}" style="position: relative; height: calc(44vw + 40vh)">
+    <div class="xyz-s7-sticky" style="position: sticky; top: 0; height: 44vw; padding-top: 11.5vw; box-sizing: border-box">
+      <div style="position: absolute; left: 50.6%; top: 7.6vw; transform: translateX(-50%); display: flex; align-items: center; gap: 2px; font-size: clamp(10px, 0.75vw, 14px)">
+        <span style="background: #ffffff; color: #0a0a0a; border-radius: 999px; padding: 4px 12px; font-weight: 500">HOW IT WORKS</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 999px; background: #ffffff; color: #0a0a0a; box-shadow: 0 0 0 2px #050505">05</span>
+      </div>
+      <div class="xyz-s7-right" style="position: absolute; right: 2.5vw; top: 10.9vw; text-align: right; font-size: clamp(9px, 0.75vw, 13px); line-height: 1.6; color: #d6d6d6">/ A SIMPLE JOURNEY<br>FROM ACCOUNT TO MARKET</div>
+      <h2 id="xyz-s7-title" ref="{{ h.setS7Head }}" class="xyz-s7-h" style="margin: 0; padding: 0 2.9vw 0 4vw; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 9.6vw; line-height: 1.06; letter-spacing: -0.045em; --hp7: 0">
+        <span class="xyz-s7-line"><span class="xyz-w7" style="--i: 0">ACCOUNT</span> <span class="xyz-w7" style="--i: 1">SETUP</span></span>
+        <span class="xyz-s7-line" style="display: flex; align-items: center; gap: 1.5vw"><span class="xyz-w7" style="--i: 2">FUNDING</span><img class="xyz-s7-pillimg" src="./assets/e3112cfa41957810910dadf67b8f6a3c.png" alt="" aria-hidden="true" style="display: block; width: 18.2vw; height: 7.1vw; object-fit: cover; border-radius: 999px"><span><span class="xyz-w7" style="--i: 3">YOUR</span> <span class="xyz-w7" style="--i: 4">TRADE</span></span></span>
+        <span class="xyz-s7-line" style="text-align: right"><span class="xyz-w7" style="--i: 5">START</span> <span class="xyz-w7" style="--i: 6">TRADING</span></span>
+      </h2>
+    </div>
+  </div>
+  <div class="xyz-s7-cards" style="width: 45.3%; margin: 0 auto; display: flex; flex-direction: column; gap: 1.8vw">
+      <article class="xyz-s7-card" ref="{{ h.setS7c1 }}" style="position: relative; display: flex; gap: 1.8vw; padding: 1.7vw; background: #111111; border: 1px solid #262626; border-radius: 10px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04)">
+        <div class="xyz-s7-icon" style="flex: none; width: 14vw; aspect-ratio: 1 / 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: radial-gradient(70% 55% at 100% 100%, rgba(255,140,60,0.95) 0%, rgba(255,120,40,0) 70%), linear-gradient(180deg, #080504 0%, #110706 38%, #6e190b 72%, #cf3713 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04)"><img src="./assets/964c9bd1071312523624ac842e4781e4.png" alt="A white line icon of an application form with a pen" style="display: block; width: 56%; height: auto"></div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 18px">
+          <h3 class="xyz-s7-title" style="margin: 0.4vw 0 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(20px, 2.35vw, 44px); line-height: 1.08; letter-spacing: -0.035em; color: #ffffff">CREATE YOUR<br>TRADING ACCOUNT</h3>
+          <p class="xyz-s7-desc" style="margin: 0 0 0.4vw; max-width: 21vw; font-size: clamp(11px, 0.85vw, 15px); line-height: 1.5; color: #b8b8b8">Complete the registration process and set up your trading account with the details you need to get started.</p>
+        </div>
+        <span class="xyz-s7-num" style="position: absolute; right: 1.8vw; top: 1.9vw; font-size: clamp(10px, 0.82vw, 14px); color: #9a9a9a">[01]</span>
+      </article>
+      <article class="xyz-s7-card" ref="{{ h.setS7c2 }}" style="position: relative; display: flex; gap: 1.8vw; padding: 1.7vw; background: #111111; border: 1px solid #262626; border-radius: 10px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04)">
+        <div class="xyz-s7-icon" style="flex: none; width: 14vw; aspect-ratio: 1 / 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: radial-gradient(70% 55% at 100% 100%, rgba(255,140,60,0.95) 0%, rgba(255,120,40,0) 70%), linear-gradient(180deg, #080504 0%, #110706 38%, #6e190b 72%, #cf3713 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04)"><img src="./assets/f4a4a01f53e92dacbc08b5bb29c5344d.png" alt="A white line icon of banknotes with a dollar sign" style="display: block; width: 56%; height: auto"></div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 18px">
+          <h3 class="xyz-s7-title" style="margin: 0.4vw 0 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(20px, 2.35vw, 44px); line-height: 1.08; letter-spacing: -0.035em; color: #ffffff">FUND YOUR<br>ACCOUNT</h3>
+          <p class="xyz-s7-desc" style="margin: 0 0 0.4vw; max-width: 21vw; font-size: clamp(11px, 0.85vw, 15px); line-height: 1.5; color: #b8b8b8">Choose an available payment method and add funds to your trading account before entering the market.</p>
+        </div>
+        <span class="xyz-s7-num" style="position: absolute; right: 1.8vw; top: 1.9vw; font-size: clamp(10px, 0.82vw, 14px); color: #9a9a9a">[02]</span>
+      </article>
+      <article class="xyz-s7-card" ref="{{ h.setS7c3 }}" style="position: relative; display: flex; gap: 1.8vw; padding: 1.7vw; background: #111111; border: 1px solid #262626; border-radius: 10px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04)">
+        <div class="xyz-s7-icon" style="flex: none; width: 14vw; aspect-ratio: 1 / 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: radial-gradient(70% 55% at 100% 100%, rgba(255,140,60,0.95) 0%, rgba(255,120,40,0) 70%), linear-gradient(180deg, #080504 0%, #110706 38%, #6e190b 72%, #cf3713 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04)"><img src="./assets/e780b129831fd14f5ebbd08eec74371a.png" alt="A white line icon of a monitor showing candlesticks and a stop-loss marker" style="display: block; width: 56%; height: auto"></div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 18px">
+          <h3 class="xyz-s7-title" style="margin: 0.4vw 0 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(20px, 2.35vw, 44px); line-height: 1.08; letter-spacing: -0.035em; color: #ffffff">CHOOSE YOUR<br>MARKET &amp; TRADE</h3>
+          <p class="xyz-s7-desc" style="margin: 0 0 0.4vw; max-width: 21vw; font-size: clamp(11px, 0.85vw, 15px); line-height: 1.5; color: #b8b8b8">Select your preferred instrument, review the market, place your trade, and manage your position from the platform.</p>
+        </div>
+        <span class="xyz-s7-num" style="position: absolute; right: 1.8vw; top: 1.9vw; font-size: clamp(10px, 0.82vw, 14px); color: #9a9a9a">[03]</span>
+      </article>
+  </div>
+</section>
+
+<!-- ===================== SECTION 8 — MARKET REACH ===================== -->
+<section ref="{{ h.setS8 }}" class="xyz-s8" data-in="{{ s8In }}" aria-labelledby="xyz-s8-title" style="position: relative; scroll-snap-align: start; background: #050505; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; overflow: hidden">
+  <div class="xyz-s8-frame" style="position: relative; width: 100%; aspect-ratio: 2576 / 1334">
+    <!-- dotted world map -->
+    <div class="xyz-s8-mapwrap" aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 46.1%; height: 53.9%; pointer-events: none">
+      <img class="xyz-s8-map" src="./assets/9a41e812c1b57e68f16a468f80ce6466.png" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
+      <img class="xyz-s8-light" src="./assets/9a41e812c1b57e68f16a468f80ce6466.png" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; filter: sepia(1) saturate(6) hue-rotate(-18deg) brightness(1.25)">
+      <span class="xyz-s8-ping" style="left: 29.5%; top: 25%; animation-delay: 0s"></span><span class="xyz-s8-ping" style="left: 49.2%; top: 30%; animation-delay: 0.6s"></span><span class="xyz-s8-ping" style="left: 60.6%; top: 52%; animation-delay: 1.2s"></span><span class="xyz-s8-ping" style="left: 82.3%; top: 38%; animation-delay: 1.8s"></span><span class="xyz-s8-ping" style="left: 75.3%; top: 70%; animation-delay: 0.9s"></span><span class="xyz-s8-ping" style="left: 84%; top: 90%; animation-delay: 2.2s"></span><span class="xyz-s8-ping" style="left: 26.5%; top: 79%; animation-delay: 1.5s"></span>
+      <canvas ref="{{ h.setS8Canvas }}" style="position: absolute; left: 0; right: 0; bottom: 0; top: -40%; width: 100%; height: 140%"></canvas>
+    </div>
+
+    <!-- top row -->
+    <div class="xyz-s8-rv" style="position: absolute; left: 3%; top: 3.7%; display: flex; align-items: center; gap: 2px; font-size: clamp(11px, 0.8vw, 16px)">
+      <span style="background: #ffffff; color: #0a0a0a; border-radius: 999px; padding: 0.45em 1.1em; font-weight: 500">MARKET REACH</span>
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 2.3em; height: 2.3em; border-radius: 999px; background: #ffffff; color: #0a0a0a; box-shadow: 0 0 0 2px #050505">06</span>
+    </div>
+    <h2 id="xyz-s8-title" class="xyz-s8-center xyz-s8-rv" style="position: absolute; left: 50.5%; top: 3%; transform: translateX(-50%); margin: 0; text-align: center; font-family: 'Archivo', sans-serif; font-weight: 400; font-size: clamp(12px, 0.86vw, 17px); line-height: 1.5; color: #d0d0d0; letter-spacing: 0.01em">MARKETS AT<br>YOUR FINGERTIPS.</h2>
+    <div class="xyz-s8-right-lbl xyz-s8-rv" style="position: absolute; right: 2.8%; top: 4.3%; font-size: clamp(11px, 0.86vw, 17px); color: #d0d0d0">/ MARKET COVERAGE</div>
+
+    <!-- 24/5 -->
+    <div class="xyz-s8-b" style="position: absolute; left: 68.6%; top: 28.5%">
+      <div class="xyz-s8-num xyz-s8-rv" style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 10.4vw; line-height: 1; letter-spacing: -0.04em; color: #ffffff; transition-delay: .15s" aria-label="24/5"><span ref="{{ h.setS8n2 }}">24</span>/5</div>
+      <div class="xyz-s8-ul xyz-s8-line" aria-hidden="true" style="margin: 2.6vw 0 0 0.4vw; width: 16.6vw; height: 3px; background: #ff4a1c; box-shadow: 0 0 12px rgba(255,74,28,0.8), 0 0 2px rgba(255,140,90,0.9)"></div>
+      <p class="xyz-s8-desc xyz-s8-rv" style="margin: 1.4vw 0 0 0.4vw; max-width: 16vw; font-size: clamp(12px, 0.82vw, 17px); line-height: 1.55; color: #d0d0d0; transition-delay: .35s">Market access available throughout the standard trading week for active traders.</p>
+    </div>
+
+    <!-- 100 -->
+    <div class="xyz-s8-a" style="position: absolute; left: 14.6%; top: 59.2%">
+      <div class="xyz-s8-num xyz-s8-rv" style="margin-left: 1.5vw; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 10.4vw; line-height: 1; letter-spacing: -0.04em; color: #ffffff; transition-delay: .3s"><span ref="{{ h.setS8n1 }}">100</span></div>
+      <div class="xyz-s8-ul xyz-s8-line" aria-hidden="true" style="margin: 2.6vw 0 0 0; width: 16.5vw; height: 3px; background: #ff4a1c; box-shadow: 0 0 12px rgba(255,74,28,0.8), 0 0 2px rgba(255,140,90,0.9); transition-delay: .7s"></div>
+      <p class="xyz-s8-desc xyz-s8-rv" style="margin: 1.4vw 0 0; max-width: 17vw; font-size: clamp(12px, 0.82vw, 17px); line-height: 1.55; color: #d0d0d0; transition-delay: .5s">Trading instruments available across multiple markets and trading opportunities.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 9 — TRADE WITH TOTAL CONTROL ===================== -->
+<section ref="{{ h.setS9 }}" class="xyz-s9" data-in="{{ s9In }}" aria-labelledby="xyz-s9-title" onMouseMove="{{ h.s9move }}" onMouseLeave="{{ h.s9leave }}" style="position: relative; scroll-snap-align: start; overflow: hidden; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; background: radial-gradient(60% 70% at 50% 45%, #050505 0%, #0a0a0a 60%, #0c0c0c 100%); --sx: 0; --sy: 0">
+  <div class="xyz-s9-glow" aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(45% 28% at 12% 100%, rgba(140,52,12,0.38) 0%, rgba(140,52,12,0) 100%), radial-gradient(40% 20% at 60% 100%, rgba(110,40,10,0.18) 0%, rgba(110,40,10,0) 100%)"></div>
+  <div class="xyz-s9-frame" style="position: relative; width: 100%; aspect-ratio: 2533 / 1456; container-type: inline-size">
+    <!-- outer ring -->
+    <div class="xyz-s9-ring xyz-s9-rv" aria-hidden="true" style="position: absolute; left: 21.5%; top: 4%; width: 59.4%; aspect-ratio: 1 / 1; border-radius: 50%; border: 1px solid rgba(255,255,255,0.09)"></div>
+    <!-- black disk -->
+    <div class="xyz-s9-disk xyz-s9-rv" aria-hidden="true" style="position: absolute; left: 26.85%; top: 13.26%; width: 48.7%; aspect-ratio: 1 / 1; border-radius: 50%; background: #000000; box-shadow: 0 0 6cqw rgba(0,0,0,0.6); transition-delay: .1s"></div>
+    <!-- rock (clipped to the disk) -->
+    <div class="xyz-s9-rock xyz-s9-rv" aria-hidden="true" style="position: absolute; left: 26.85%; top: 48.1%; width: 48.7%; height: 49.9%; transition-delay: .3s">
+      <div style="position: absolute; inset: 0; transform: translate3d(calc(var(--sx, 0) * -6px), calc(var(--sy, 0) * -4px), 0); transition: transform 1s cubic-bezier(.16,.84,.24,1)">
+        <img src="./assets/d201231c34089817e9b2edc6b4a629c0.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
+        <div class="xyz-s9-sheen" style="position: absolute; inset: 0; mix-blend-mode: screen; pointer-events: none; background: radial-gradient(30% 45% at 50% 35%, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 100%)"></div>
+      </div>
+    </div>
+
+    <!-- heading -->
+    <h2 id="xyz-s9-title" class="xyz-s9-txt xyz-s9-rv" style="position: absolute; left: 51.2%; top: 20.6%; transform: translateX(-50%); margin: 0; width: max-content; text-align: center; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 6.75cqw; line-height: 1.07; letter-spacing: -0.045em; color: #ffffff; transition-delay: .4s"><span style="display: block">TRADE WITH</span><span style="display: block">TOTAL CONTROL</span></h2>
+    <div class="xyz-s9-txt xyz-s9-rv" aria-hidden="true" style="position: absolute; left: 39.8%; top: 47.5%; width: 22.8%; height: 1px; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0) 100%); transition-delay: .55s"></div>
+    <div class="xyz-s9-txt xyz-s9-rv" style="position: absolute; left: 51.2%; top: 49.8%; transform: translateX(-50%); width: max-content; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 2.6cqw; letter-spacing: -0.03em; color: #ffffff; transition-delay: .65s">YOU’LL GET</div>
+
+    <!-- pills -->
+      <div class="xyz-s9-pill" style="left: 41.4%; top: 74.5%; width: 19.7cqw; height: 11.1cqw; --rz: -14deg; --rx: 18deg; --ry: -10deg; z-index: 1; transition-delay: 0.9s">
+        <div style="width: 100%; height: 100%; transform: translate3d(calc(var(--sx, 0) * 4px), calc(var(--sy, 0) * 3px), 0); transition: transform .9s cubic-bezier(.16,.84,.24,1)">
+          <div class="xyz-s9-float" style="--fd: 0.2s; display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 0 1.6cqw; overflow: hidden; border-radius: 999px; background: linear-gradient(170deg, #0b0b0b 0%, #000000 60%); border: 1.5px solid rgba(255,255,255,0.42); box-shadow: 0 2.5cqw 4cqw rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.12)">
+            <span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 2.45cqw; letter-spacing: 0.22em; margin-right: -0.22em; white-space: nowrap; color: #ffffff">CLARITY</span>
+          </div>
+        </div>
+      </div>
+      <div class="xyz-s9-pill" style="left: 61.1%; top: 76.4%; width: 19.9cqw; height: 11.8cqw; --rz: 21deg; --rx: 18deg; --ry: 12deg; z-index: 2; transition-delay: 1.1s">
+        <div style="width: 100%; height: 100%; transform: translate3d(calc(var(--sx, 0) * 8px), calc(var(--sy, 0) * 6px), 0); transition: transform .9s cubic-bezier(.16,.84,.24,1)">
+          <div class="xyz-s9-float" style="--fd: 1.4s; display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 0 1.6cqw; overflow: hidden; border-radius: 999px; background: linear-gradient(170deg, #0b0b0b 0%, #000000 60%); border: 1.5px solid rgba(255,255,255,0.42); box-shadow: 0 2.5cqw 4cqw rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.12)">
+            <span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 2.45cqw; letter-spacing: 0.22em; margin-right: -0.22em; white-space: nowrap; color: #ffffff">SPEED</span>
+          </div>
+        </div>
+      </div>
+      <div class="xyz-s9-pill" style="left: 51.2%; top: 87%; width: 19.5cqw; height: 11.4cqw; --rz: -21deg; --rx: 16deg; --ry: -6deg; z-index: 3; transition-delay: 1.3s">
+        <div style="width: 100%; height: 100%; transform: translate3d(calc(var(--sx, 0) * 12px), calc(var(--sy, 0) * 9px), 0); transition: transform .9s cubic-bezier(.16,.84,.24,1)">
+          <div class="xyz-s9-float" style="--fd: 0.8s; display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 0 1.6cqw; overflow: hidden; border-radius: 999px; background: linear-gradient(170deg, #0b0b0b 0%, #000000 60%); border: 1.5px solid rgba(255,255,255,0.42); box-shadow: 0 2.5cqw 4cqw rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.12)">
+            <span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 2.45cqw; letter-spacing: 0.22em; margin-right: -0.22em; white-space: nowrap; color: #f07a4a">FLEXIBILITY</span>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 10 — TRADER STORIES ===================== -->
+<section class="xyz-s10" aria-labelledby="xyz-s10-title" style="position: relative; scroll-snap-align: start; background: #080808; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; container-type: inline-size">
+  <div class="xyz-s10-grid" style="display: grid; grid-template-columns: 49.4% 42.5%; min-height: 46cqw">
+    <!-- left (fixed) -->
+    <div class="xyz-s10-left" style="position: relative; padding: 6.6cqw 0 0 6.9cqw">
+      <div style="font-size: clamp(13px, 1cqw, 20px); line-height: 1.35; color: #cfcfcf; letter-spacing: 0.01em">/ REAL TRADING EXPERIENCES<br>FROM OUR CLIENTS /</div>
+      <div class="xyz-s10-pillwrap" style="margin-top: 9cqw">
+        <span style="display: inline-block; background: #ffffff; color: #0a0a0a; border-radius: 999px; padding: 0.45em 1.05em; font-size: clamp(12px, 0.8cqw, 17px); font-weight: 500">TESTIMONIALS</span>
+      </div>
+      <h2 id="xyz-s10-title" class="xyz-s10-h" style="margin: 1.6cqw 0 0 -0.2cqw; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 9.45cqw; line-height: 0.98; letter-spacing: -0.05em; white-space: nowrap; color: #ffffff"><span style="display: block">TRADER</span><span style="display: block">STORIES</span></h2>
+    </div>
+
+    <!-- right: testimonials -->
+    <div class="xyz-s10-panel" role="list" style="background: #000000; padding: 3.7cqw 0 2cqw; margin-top: 3cqw">
+      <sc-for list="{{ tst }}" as="t" hint-placeholder-count="3">
+        <div class="xyz-t-row" role="listitem" tabindex="0" data-on="{{ t.on }}" onMouseEnter="{{ t.go }}" onFocus="{{ t.go }}" onClick="{{ t.go }}" aria-expanded="{{ t.expanded }}">
+          <img class="xyz-t-img" src="{{ t.src }}" alt="{{ t.alt }}">
+          <div class="xyz-t-body">
+            <div style="font-size: clamp(11px, 0.86cqw, 18px); color: #a8a8a8; letter-spacing: 0.02em">[THE EXPERIENCE]</div>
+            <p style="margin: 2.5cqw 0 0; max-width: 20.5cqw; font-size: clamp(12px, 0.82cqw, 17px); line-height: 1.62; color: #ffffff">{{ t.quote }}</p>
+            <div style="margin-top: 2.2cqw; font-size: clamp(12px, 0.8cqw, 16px); color: #ffffff">— Verified Trader</div>
+            <div style="margin-top: 1.8cqw; display: flex; gap: 0.3cqw; flex-wrap: wrap">
+              <span class="xyz-t-tag">{{ t.tag1 }}</span><span class="xyz-t-tag">{{ t.tag2 }}</span>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 11 — SECURITY ===================== -->
+<section ref="{{ h.setS11 }}" class="xyz-s11" aria-labelledby="xyz-s11-title" style="position: relative; scroll-snap-align: start; background: #0a0a0a; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; overflow: hidden; container-type: inline-size">
+  <div style="position: relative; width: 100%; aspect-ratio: 2408 / 1526">
+    <h2 id="xyz-s11-title" style="position: absolute; left: 6.2%; top: 0.6%; margin: 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.65cqw; line-height: 1.02; letter-spacing: -0.045em; color: #ffffff; z-index: 3"><span style="display: block">SECURITY THAT</span><span style="display: block">WORKS BEHIND THE SCENES</span></h2>
+
+    <!-- film-frame visual -->
+    <div aria-hidden="true" style="position: absolute; left: 14.87%; top: 19.99%; width: 84.3%; height: 67.2%; background: #000000; overflow: hidden">
+      <div style="position: absolute; left: 50%; top: 50%; width: 111.95%; height: 175.65%; transform: translate(-50%, -50%) rotate(25.6deg); container-type: inline-size">
+        <div class="xyz-strip-down" style="position: absolute; left: 11.7cqw; top: -4cqw; width: 19.1cqw; animation-duration: 48s"><img src="./assets/90911d32fe8ee21d9af9d1a47c254dee.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5172226ad801bdcd00ad7fd020140eb4.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5dec5d05916a12b94c8570d6f938be78.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/e6a4ee1901717292c3691dd30d78627b.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/90911d32fe8ee21d9af9d1a47c254dee.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5172226ad801bdcd00ad7fd020140eb4.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5dec5d05916a12b94c8570d6f938be78.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/e6a4ee1901717292c3691dd30d78627b.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"></div>
+        <div class="xyz-strip-up" style="position: absolute; left: 34.5cqw; top: -4cqw; width: 29.8cqw; animation-duration: 80s"><img src="./assets/5dec5d05916a12b94c8570d6f938be78.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/90911d32fe8ee21d9af9d1a47c254dee.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5172226ad801bdcd00ad7fd020140eb4.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/e6a4ee1901717292c3691dd30d78627b.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5dec5d05916a12b94c8570d6f938be78.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/90911d32fe8ee21d9af9d1a47c254dee.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5172226ad801bdcd00ad7fd020140eb4.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/e6a4ee1901717292c3691dd30d78627b.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"></div>
+        <div class="xyz-strip-down" style="position: absolute; left: 67.5cqw; top: -4cqw; width: 20.3cqw; animation-duration: 52s"><img src="./assets/e6a4ee1901717292c3691dd30d78627b.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5172226ad801bdcd00ad7fd020140eb4.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/90911d32fe8ee21d9af9d1a47c254dee.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5dec5d05916a12b94c8570d6f938be78.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/e6a4ee1901717292c3691dd30d78627b.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5172226ad801bdcd00ad7fd020140eb4.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/90911d32fe8ee21d9af9d1a47c254dee.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5dec5d05916a12b94c8570d6f938be78.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"></div>
+      </div>
+      <div class="xyz-s11-sweep" style="position: absolute; inset: 0; mix-blend-mode: screen; pointer-events: none"></div>
+      <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 55% 52% at 55% 48%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.85) 100%)"></div>
+    </div>
+
+    <div style="position: absolute; left: 6.2%; top: 72.6%; font-size: clamp(10px, 0.87cqw, 18px); line-height: 1.6; color: #e6e6e6; z-index: 3">/ PROTECTION ACROSS<br>YOUR TRADING EXPERIENCE</div>
+
+    <ul ref="{{ h.setS11Words }}" aria-label="Account, Secured, Funds, Encrypted data" style="position: absolute; left: 44.4%; top: 72.3%; margin: 0; padding: 0; list-style: none; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.65cqw; line-height: 1.0; letter-spacing: -0.045em; z-index: 3; --hp11: 0">
+      <li class="xyz-w11" style="--i: 0">ACCOUNT</li>
+      <li class="xyz-w11" style="--i: 1">SECURED</li>
+      <li class="xyz-w11" style="--i: 2">FUNDS</li>
+      <li class="xyz-w11" style="--i: 3">ENCRYPTED DATA</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== SECTION 12 — ACCOUNT TYPES ===================== -->
+<section ref="{{ h.setS12 }}" class="xyz-s12" data-in="{{ s12In }}" aria-labelledby="xyz-s12-title" style="position: relative; scroll-snap-align: start; background: #050505; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; container-type: inline-size; padding: 5cqw 0 6cqw">
+  <h2 id="xyz-s12-title" class="xyz-s12-h" style="margin: 0; text-align: center; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 9.7cqw; line-height: 0.95; letter-spacing: -0.045em; color: #ffffff; padding-left: 1.4cqw">ACCOUNT TYPES</h2>
+  <div class="xyz-s12-row" style="display: flex; gap: 0.85cqw; padding: 0 2.7cqw 0 5.55cqw; margin-top: 7cqw; align-items: stretch">
+      <article class="xyz-acc" style="flex: 1 1 0; min-width: 0; --d: 0s">
+        
+        <div class="xyz-acc-head" style="position: relative; display: flex; align-items: center; justify-content: space-between; height: 3.1cqw; padding: 0 1cqw; border-radius: 14px; background: #1a1a1a; font-size: clamp(11px, 0.74cqw, 16px); color: #ffffff; letter-spacing: 0.01em">
+          <span>/01</span><span style="position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap">BEST FOR FLEXIBLE TRADING</span><span aria-hidden="true" style="width: 0.55cqw; height: 0.55cqw; min-width: 8px; min-height: 8px; border-radius: 50%; background: #ffffff"></span>
+        </div>
+        <div class="xyz-acc-body" style="position: relative; padding: 0 0.7cqw">
+          <h3 style="margin: 1.8cqw 0 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 2.6cqw; line-height: 1.05; letter-spacing: -0.04em; color: #ffffff">STANDARD ACCOUNT</h3>
+          <p class="xyz-acc-desc" style="margin: 1.2cqw 0 0; max-width: 24cqw; font-size: clamp(13px, 0.8cqw, 17px); line-height: 1.6; color: #cfcfcf">A straightforward account for traders looking for essential trading features and flexible market access.</p>
+          <div aria-hidden="true" style="height: 1px; background: #2e2e2e; margin: 1.6cqw 0 1.55cqw"></div>
+          <ul><li>Competitive trading conditions</li><li>Flexible position sizing</li><li>Access to available markets</li><li>Multiple payment options</li><li>Trading platform access</li><li>Dedicated account support</li><li>Weekly Quality Check</li></ul>
+        </div>
+        <div class="xyz-acc-btnwrap" style="position: relative; margin-top: auto; padding: 2.5cqw 0.7cqw 0">
+          <a class="xyz-acc-btn" href="#" aria-label="Open a Standard Account"><span>OPEN ACCOUNT</span><span class="xyz-acc-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
+        </div>
+      </article>
+      <article class="xyz-acc xyz-acc-pro" style="flex: 1 1 0; min-width: 0; --d: 0.15s">
+        <div class="xyz-acc-glow" aria-hidden="true"></div>
+        <div class="xyz-acc-head" style="position: relative; display: flex; align-items: center; justify-content: space-between; height: 3.1cqw; padding: 0 1cqw; border-radius: 14px; background: #e8523a; font-size: clamp(11px, 0.74cqw, 16px); color: #ffffff; letter-spacing: 0.01em">
+          <span>/02</span><span style="position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap">POPULAR ACCOUNT</span><span aria-hidden="true" style="width: 0.55cqw; height: 0.55cqw; min-width: 8px; min-height: 8px; border-radius: 50%; background: #ffffff"></span>
+        </div>
+        <div class="xyz-acc-body" style="position: relative; padding: 0 0.7cqw">
+          <h3 style="margin: 1.8cqw 0 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 2.6cqw; line-height: 1.05; letter-spacing: -0.04em; color: #ffffff">PREMIUM ACCOUNT</h3>
+          <p class="xyz-acc-desc" style="margin: 1.2cqw 0 0; max-width: 24cqw; font-size: clamp(13px, 0.8cqw, 17px); line-height: 1.6; color: #cfcfcf">Enhanced trading conditions for experienced traders looking for greater flexibility and advanced features.</p>
+          <div aria-hidden="true" style="height: 1px; background: #2e2e2e; margin: 1.6cqw 0 1.55cqw"></div>
+          <ul><li>Enhanced trading conditions</li><li>Competitive spreads</li><li>Flexible leverage options</li><li>Priority account support</li><li>Advanced trading tools</li><li>Faster account assistance</li></ul>
+        </div>
+        <div class="xyz-acc-btnwrap" style="position: relative; margin-top: auto; padding: 2.5cqw 0.7cqw 0">
+          <a class="xyz-acc-btn" href="#" aria-label="Open a Premium Account"><span>OPEN ACCOUNT</span><span class="xyz-acc-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
+        </div>
+      </article>
+      <article class="xyz-acc" style="flex: 1 1 0; min-width: 0; --d: 0.3s">
+        
+        <div class="xyz-acc-head" style="position: relative; display: flex; align-items: center; justify-content: space-between; height: 3.1cqw; padding: 0 1cqw; border-radius: 14px; background: #1a1a1a; font-size: clamp(11px, 0.74cqw, 16px); color: #ffffff; letter-spacing: 0.01em">
+          <span>/03</span><span style="position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap">FOR EXPERIENCED TRADERS</span><span aria-hidden="true" style="width: 0.55cqw; height: 0.55cqw; min-width: 8px; min-height: 8px; border-radius: 50%; background: #ffffff"></span>
+        </div>
+        <div class="xyz-acc-body" style="position: relative; padding: 0 0.7cqw">
+          <h3 style="margin: 1.8cqw 0 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 2.6cqw; line-height: 1.05; letter-spacing: -0.04em; color: #ffffff">PRO ACCOUNT</h3>
+          <p class="xyz-acc-desc" style="margin: 1.2cqw 0 0; max-width: 24cqw; font-size: clamp(13px, 0.8cqw, 17px); line-height: 1.6; color: #cfcfcf">Designed for experienced traders seeking a more flexible setup and conditions aligned with their trading approach.</p>
+          <div aria-hidden="true" style="height: 1px; background: #2e2e2e; margin: 1.6cqw 0 1.55cqw"></div>
+          <ul><li>Flexible trading conditions</li><li>Higher leverage options*</li><li>Personalized support</li><li>Advanced trading features</li><li>Flexible position management</li><li>Dedicated account assistance</li></ul>
+        </div>
+        <div class="xyz-acc-btnwrap" style="position: relative; margin-top: auto; padding: 2.5cqw 0.7cqw 0">
+          <a class="xyz-acc-btn" href="#" aria-label="Open a Pro Account"><span>OPEN ACCOUNT</span><span class="xyz-acc-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
+        </div>
+      </article>
+  </div>
+</section>
+
+<!-- ===================== FINAL — CTA, CONTACT, FOOTER ===================== -->
+<section ref="{{ h.setS13 }}" data-in="{{ s13In }}" aria-labelledby="xyz-cta-title" style="position: relative; scroll-snap-align: start; background: #050505; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; container-type: inline-size; overflow: hidden; padding-bottom: 5cqw">
+  <div style="position: absolute; right: 3.9cqw; top: 0.6cqw; font-size: clamp(10px, 0.86cqw, 15px); color: #d6d6d6">READY WHEN YOU ARE</div>
+  <div class="xyz-star" aria-hidden="true" style="position: absolute; right: 3.9cqw; top: 3cqw; font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 7.5cqw; line-height: 1; color: #ffffff">✱</div>
+  <h2 id="xyz-cta-title" class="xyz-cta-h xyz-rv13" style="margin: 0; padding: 3.6cqw 0 0 3.9cqw; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 11.9cqw; line-height: 1.08; letter-spacing: -0.05em; color: #ffffff"><span style="display: block">YOUR NEXT</span><span style="display: block">TRADE STARTS HERE</span></h2>
+  <a class="xyz-cta-band xyz-ctabg xyz-rv13 d2" href="#xyz-contact" aria-label="Contact us" style="position: relative; display: block; margin: 3.6cqw 3.7cqw 0 3.9cqw; height: 11.2cqw; overflow: hidden; text-decoration: none">
+    <div class="xyz-smoke" aria-hidden="true" style="position: absolute; left: 20%; top: -40%; width: 40%; height: 180%; background: radial-gradient(40% 35% at 50% 50%, rgba(235,240,245,0.75) 0%, rgba(235,240,245,0.25) 45%, rgba(235,240,245,0) 75%); filter: blur(10px); mix-blend-mode: screen; pointer-events: none"></div>
+    <div class="xyz-ctam" aria-hidden="true"><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #f6c84a">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #ffffff">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #ff5a2a">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #f6c84a">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #ffffff">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #ff5a2a">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #f6c84a">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #ffffff">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #ff5a2a">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #f6c84a">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #ffffff">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #ff5a2a">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #f6c84a">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #ffffff">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #ff5a2a">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #f6c84a">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #ffffff">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span><span style="font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 3.6cqw; letter-spacing: -0.03em; color: #ff5a2a">CONTACT US</span><span class="xyz-star" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 5.2cqw; line-height: 1; color: #ffffff; margin: 0 4.2cqw">✱</span></div>
+  </a>
+</section>
+
+<section ref="{{ h.setS14 }}" id="xyz-contact" data-in="{{ s14In }}" class="xyz-contact" aria-labelledby="xyz-contact-title" style="position: relative; scroll-snap-align: start; height: 42.5cqw; background: #050505; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; container-type: inline-size">
+  <div class="xyz-contact-bg" style="position: absolute; left: 0; top: 0; width: 62.8%; height: 100%; overflow: hidden">
+    <img src="./assets/4cb329d4e60f40f5a4b9ed2a09de3fd6.webp" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
+    <span class="xyz-iglow" style="left: 32.9%; top: 39.3%"></span><span class="xyz-iglow" style="left: 24.8%; top: 77%; animation-delay: -1.3s"></span><span class="xyz-iglow" style="left: 67%; top: 67.8%; animation-delay: -2.6s"></span>
+    <div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none"><span class="xyz-spark" style="left: 34.1%; top: 31.3%; width: 4.0px; height: 2.2px; animation-duration: 8.2s; animation-delay: -3.7s"></span><span class="xyz-spark" style="left: 10.2%; top: 58.1%; width: 2.1px; height: 3.3px; animation-duration: 5.4s; animation-delay: -0.9s"></span><span class="xyz-spark" style="left: 43.2%; top: 82.0%; width: 2.4px; height: 2.7px; animation-duration: 8.8s; animation-delay: -9.5s"></span><span class="xyz-spark" style="left: 56.9%; top: 49.8%; width: 4.9px; height: 2.1px; animation-duration: 10.2s; animation-delay: -2.9s"></span><span class="xyz-spark" style="left: 18.0%; top: 28.8%; width: 2.9px; height: 4.4px; animation-duration: 6.1s; animation-delay: -5.8s"></span><span class="xyz-spark" style="left: 62.5%; top: 47.9%; width: 3.6px; height: 2.2px; animation-duration: 5.4s; animation-delay: -2.1s"></span><span class="xyz-spark" style="left: 66.2%; top: 52.1%; width: 2.9px; height: 3.8px; animation-duration: 7.7s; animation-delay: -3.0s"></span><span class="xyz-spark" style="left: 76.5%; top: 72.4%; width: 2.7px; height: 3.7px; animation-duration: 8.2s; animation-delay: -8.8s"></span><span class="xyz-spark" style="left: 70.7%; top: 41.6%; width: 4.9px; height: 2.4px; animation-duration: 7.5s; animation-delay: -7.6s"></span><span class="xyz-spark" style="left: 18.7%; top: 56.7%; width: 2.1px; height: 4.0px; animation-duration: 9.6s; animation-delay: -5.7s"></span><span class="xyz-spark" style="left: 83.8%; top: 43.5%; width: 4.1px; height: 3.8px; animation-duration: 8.5s; animation-delay: -4.6s"></span><span class="xyz-spark" style="left: 80.6%; top: 90.9%; width: 3.4px; height: 4.0px; animation-duration: 5.4s; animation-delay: -7.0s"></span><span class="xyz-spark" style="left: 63.2%; top: 94.5%; width: 4.5px; height: 2.9px; animation-duration: 7.3s; animation-delay: -6.7s"></span><span class="xyz-spark" style="left: 7.0%; top: 54.6%; width: 2.5px; height: 2.4px; animation-duration: 5.4s; animation-delay: -7.7s"></span><span class="xyz-spark" style="left: 16.6%; top: 38.6%; width: 3.2px; height: 4.6px; animation-duration: 5.5s; animation-delay: -4.5s"></span><span class="xyz-spark" style="left: 54.4%; top: 86.3%; width: 4.5px; height: 4.6px; animation-duration: 6.7s; animation-delay: -4.2s"></span><span class="xyz-spark" style="left: 37.3%; top: 86.3%; width: 4.9px; height: 2.5px; animation-duration: 6.1s; animation-delay: -2.3s"></span><span class="xyz-spark" style="left: 26.0%; top: 56.4%; width: 3.8px; height: 2.8px; animation-duration: 5.0s; animation-delay: -4.2s"></span><span class="xyz-spark" style="left: 38.2%; top: 62.5%; width: 4.9px; height: 4.1px; animation-duration: 8.1s; animation-delay: -6.2s"></span><span class="xyz-spark" style="left: 65.9%; top: 24.0%; width: 4.7px; height: 4.3px; animation-duration: 10.2s; animation-delay: -8.0s"></span><span class="xyz-spark" style="left: 40.3%; top: 49.9%; width: 2.3px; height: 3.9px; animation-duration: 5.4s; animation-delay: -0.7s"></span><span class="xyz-spark" style="left: 23.8%; top: 32.2%; width: 3.0px; height: 2.2px; animation-duration: 5.0s; animation-delay: -1.5s"></span><span class="xyz-spark" style="left: 14.1%; top: 47.3%; width: 2.1px; height: 4.6px; animation-duration: 8.7s; animation-delay: -1.5s"></span><span class="xyz-spark" style="left: 27.7%; top: 46.1%; width: 3.1px; height: 2.4px; animation-duration: 10.1s; animation-delay: -9.9s"></span><span class="xyz-spark" style="left: 46.9%; top: 56.3%; width: 2.3px; height: 2.3px; animation-duration: 7.1s; animation-delay: -2.6s"></span><span class="xyz-spark" style="left: 79.6%; top: 32.1%; width: 2.1px; height: 4.9px; animation-duration: 8.2s; animation-delay: -1.5s"></span><span class="xyz-spark" style="left: 53.9%; top: 22.0%; width: 3.6px; height: 4.9px; animation-duration: 10.2s; animation-delay: -7.0s"></span><span class="xyz-spark" style="left: 28.5%; top: 47.5%; width: 2.5px; height: 4.3px; animation-duration: 8.2s; animation-delay: -7.8s"></span></div>
+    <h2 id="xyz-contact-title" class="xyz-contact-h xyz-rv13" style="position: absolute; left: 6.2%; top: 14%; margin: 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 6.9cqw; line-height: 0.98; letter-spacing: -0.05em; color: #ffffff"><span style="display: block">CONTACT</span><span style="display: block">FORM</span></h2>
+    <p class="xyz-rv13 d2" style="position: absolute; left: 6.2%; bottom: 8%; margin: 0; max-width: 18cqw; font-size: clamp(11px, 0.8cqw, 15px); line-height: 1.55; color: #e0e0e0">Drop us a line, we’ll respond to you in 24 hours.</p>
+  </div>
+  <form class="xyz-form xyz-rv13 d1" onSubmit="{{ h.formSubmit }}" style="position: absolute; left: 62.85%; top: -0.25cqw; width: 33.3%; height: 42.75cqw; box-sizing: border-box; padding: 2.9cqw 2.5cqw 3cqw; border-radius: 16px; background: #1b1b1b; display: flex; flex-direction: column">
+    <label class="xyz-lbl" style="font-size: clamp(12px, 1cqw, 17px); color: #ffffff">Full Name<input class="xyz-field" type="text" name="name" required="" placeholder="Enter the Full Name" autocomplete="name"></label>
+    <label class="xyz-lbl" style="margin-top: 2.6cqw; font-size: clamp(12px, 1cqw, 17px); color: #ffffff">Your Email<input class="xyz-field" type="email" name="email" required="" placeholder="Enter the Email" autocomplete="email"></label>
+    <label class="xyz-lbl" style="margin-top: 2.6cqw; font-size: clamp(12px, 1cqw, 17px); color: #ffffff">Your Phone<input class="xyz-field" type="tel" name="phone" placeholder="Enter your phone number" autocomplete="tel"></label>
+    <label class="xyz-lbl" style="margin-top: 2.6cqw; font-size: clamp(12px, 1cqw, 17px); color: #ffffff">Your Message<textarea class="xyz-field" name="message" rows="3" required="" placeholder="Let us know about your Query" style="resize: none; padding-bottom: 3.2cqw"></textarea></label>
+    <div style="display: flex; gap: 0.7cqw; margin-top: auto">
+      <button class="xyz-fbtn" type="submit" style="background: #ffffff; color: #0a0a0a"><span>Submit</span><span class="xyz-fa" style="background: #0a0a0a; color: #ffffff"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+      <a class="xyz-fbtn" href="#" style="background: #2a2a2a; color: #ffffff">Open An Account<span class="xyz-fa" style="background: #ffffff; color: #0a0a0a"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
+    </div>
+  </form>
+</section>
+
+<footer ref="{{ h.setS15 }}" data-in="{{ s15In }}" class="xyz-footer" style="position: relative; scroll-snap-align: end; height: 49cqw; background: #050505; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; container-type: inline-size; overflow: hidden">
+  <div class="xyz-bigglow" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 20cqw; background: linear-gradient(180deg, rgba(60,24,8,0) 0%, rgba(70,28,8,0.85) 55%, rgba(90,36,10,1) 100%)"></div>
+  <div class="xyz-fvisual xyz-rv13 d1" aria-hidden="true" style="position: absolute; left: 36.6%; top: 5.06cqw; width: 58%; height: 30cqw">
+    <img src="./assets/f456fd864a6adc65792bd03e8bdf4990.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
+    <div class="xyz-lap-sweep" style="position: absolute; inset: 0; mix-blend-mode: screen"></div>
+  </div>
+  <div class="xyz-flogo xyz-rv13" style="position: absolute; left: 3.9cqw; top: 13.1cqw; font-weight: 600; font-size: clamp(22px, 2.4cqw, 44px); letter-spacing: 0.04em">XYZ<span style="color: #ff5a1f">.</span></div>
+  <div class="xyz-fcols xyz-rv13 d2" style="position: absolute; left: 3.9cqw; top: 19cqw; display: flex; gap: 0">
+    <div style="width: 13.9cqw"><nav aria-label="Market" style="min-width: 0"><div style="font-size: clamp(10px, 0.82cqw, 14px); color: #e0e0e0">[ Market ]</div><a class="xyz-flink" href="#">FOREX</a><a class="xyz-flink" href="#">INDICES</a><a class="xyz-flink" href="#">COMMODITIES</a><a class="xyz-flink" href="#">STOCK</a></nav></div>
+    <div style="width: 13.9cqw"><nav aria-label="Company" style="min-width: 0"><div style="font-size: clamp(10px, 0.82cqw, 14px); color: #e0e0e0">[ Company ]</div><a class="xyz-flink" href="#">ABOUT US</a><a class="xyz-flink" href="#">CONTACT US</a><a class="xyz-flink" href="#">FAQ</a><a class="xyz-flink" href="#">LEGAL POLICY</a></nav></div>
+    <div style="width: 13.9cqw"><nav aria-label="More Pages" style="min-width: 0"><div style="font-size: clamp(10px, 0.82cqw, 14px); color: #e0e0e0">[ More Pages ]</div><a class="xyz-flink" href="#">ACCOUNT TYPES</a><a class="xyz-flink" href="#">PLATFORM</a></nav></div>
+  </div>
+  <div class="xyz-fsocial xyz-rv13 d3" style="position: absolute; left: 93.9%; top: 20.8cqw; display: flex; flex-direction: column; gap: 0.9cqw">
+    <a class="xyz-social" href="#" aria-label="X"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></a>
+    <a class="xyz-social" href="#" aria-label="Instagram"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"></rect><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"></circle><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"></circle></svg></a>
+    <a class="xyz-social" href="#" aria-label="Dribbble"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle><path d="M5 7c5 1 10 1 14-2M3.5 13c6-2 11-1 16 3M9 3.5c3 4 5 10 6 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></a>
+  </div>
+  <div class="xyz-frisk" style="position: absolute; left: 50%; top: 35.1cqw; transform: translateX(-50%); width: 80%; text-align: center; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 400; font-size: clamp(9px, 0.66cqw, 13px); line-height: 1.75; letter-spacing: 0.06em; color: #a0a0a0">
+    <div>RISK WARNING:</div>
+    <div>THE FOREX MARKET IS HIGHLY SPECULATIVE AND CARRIES A LEVEL OF RISK THAT MAY NOT BE SUITABLE FOR ALL INVESTORS. YOU MAY LOSE PART OR ALL OF THE INVESTED CAPITAL; THEREFORE, YOU SHOULD NOT SPECULATE WITH CAPITAL YOU CANNOT AFFORD TO LOSE. YOU SHOULD BE AWARE OF ALL THE RISKS ASSOCIATED WITH FOREX TRADING. PLEASE MAKE SURE TO READ OUR TERMS AND CONDITIONS AND RISK DISCLOSURE STATEMENT BEFORE ENGAGING IN ANY TRADING ACTIVITY ON OUR PLATFORM.</div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  componentWillUnmount() {
+    this._dead = true;
+    if (this._dustRaf) cancelAnimationFrame(this._dustRaf);
+    if (this._cuRaf) cancelAnimationFrame(this._cuRaf);
+    if (this._emRaf) cancelAnimationFrame(this._emRaf);
+    clearInterval(this._m5t);
+    if (this._retry) clearTimeout(this._retry);
+    if (this._engine) { this._engine.dispose(); this._engine = null; }
+  }
+  _visuals() {
+    // menu order: FOREX, INDICES, STOCKS, COMMODITIES. null = image not uploaded yet.
+    return [
+      { src: './assets/6fd72f99787217fcd200dbc65b983e81.webp', w: 720, h: 876, feet: 851, cx: 353, scale: 0.61, alt: 'A glass cube holding gold dollar coins, landing on a stone slab' },
+      { src: './assets/42d4b3388c1f6f6e532a499c91612aad.webp', w: 900, h: 588, feet: 575, cx: 450, scale: 0.622, alt: 'A tablet showing a glowing orange candlestick chart, landing on the rocks' },
+      { src: './assets/a7512c5913ea26d2310ae1db176989e7.webp', w: 608, h: 495, feet: 476, cx: 308, scale: 0.95, alt: 'A faceted black bull with glowing orange seams landing on the rocks' },
+      { src: './assets/3aa01887b1436dade74a4db78ce503c2.webp', w: 760, h: 740, feet: 728, cx: 380, scale: 0.68, alt: 'An orange and black oil pumpjack with barrels, landing on the rocks' }
+    ];
+  }
+  _tryMount() {
+    const r = this._refs || {};
+    if (this._engine || this._mounting || !r.stage || !r.rock || !r.fx || !r.bull || !r.plate || !r.pre) return;
+    if (!window.XYZCharge) { this._retry = setTimeout(() => this._tryMount(), 150); return; }
+    // resolved urls come from the hidden preload <img>s (attribute paths survive the standalone export; JS string paths don't)
+    const pre = {};
+    Array.prototype.forEach.call(r.pre.querySelectorAll('img[data-k]'), (im) => { pre[im.getAttribute('data-k')] = im; });
+    const url = (k, fb) => (pre[k] && pre[k].src) || fb;
+    const loaded = (im) => (im.complete ? Promise.resolve() : new Promise((res) => { im.addEventListener('load', res, { once: true }); im.addEventListener('error', res, { once: true }); }))
+      .then(() => (im.naturalWidth && im.decode ? im.decode().catch(() => {}) : null));
+    this._mounting = true;
+    // wait for every hero image before the charge animation starts
+    Promise.all(Object.keys(pre).map((k) => loaded(pre[k]))).then(() => {
+      this._mounting = false;
+      const q = this._refs || {};
+      if (this._dead || this._engine || !q.stage || !q.rock || !q.fx || !q.bull) return;
+      // never hand drawImage a missing or broken image
+      const ctx = q.rock.getContext('2d');
+      if (ctx && !ctx._xyzSafe) {
+        const di = ctx.drawImage;
+        ctx.drawImage = function (img) { if (!img || img.naturalWidth === 0) return; return di.apply(this, arguments); };
+        ctx._xyzSafe = true;
+      }
+      try {
+        this._engine = window.XYZCharge.mount({
+          stage: q.stage, rockCanvas: q.rock, fxCanvas: q.fx, bull: q.bull,
+          ghosts: [q.g1, q.g2].filter(Boolean), flash: q.flash, plateBroken: q.plate,
+          visuals: this._visuals().map((v, i) => (v ? { ...v, src: url('v' + i, v.src) } : v)), initial: (this.state && this.state.active) || 0,
+          assets: { pile: url('pile', './assets/1d8de113b6178cfe5a1ed8c14d5ad46a.webp'), pileGlow: url('pileGlow', './assets/939c49d4053b3373b423457291b28c49.webp'), rubble: url('rubble', './assets/6139981ebdb5fdabf26156089a1f6582.webp'), rubbleGlow: url('rubbleGlow', './assets/141d680bc20880f7ba4b06e1c87ab19c.webp') }
+        });
+      } catch (e) { this._engine = null; }
+    });
+  }
+  _src(p) {
+    // use the browser-resolved url of the matching hidden preload <img> (survives the standalone export)
+    const pre = this._refs && this._refs.pre, id = String(p).split('/').pop();
+    const im = pre && pre.querySelector('img[data-id="' + id + '"]');
+    return (im && im.src) || p;
+  }
+  _s3() {
+    const cur = (this.state && this.state.s3 !== undefined) ? this.state.s3 : -1;
+    if (!this._s3enter) this._s3enter = [0, 1, 2].map((i) => () => { if (((this.state && this.state.s3) ?? -1) !== i) this.setState({ s3: i }); });
+    const rows = [
+      { label: 'TRADING', src: './assets/82cf04b7b57932be90082a5aa90b88ef.png', alt: 'A glass cube holding gold dollar coins above two floating stone slabs', shift: '-5.8vw', cardLeft: '47.7%' },
+      { label: 'PRODUCTS', src: './assets/06a8efacc4ab20ad92ca00b9501b65b3.png', alt: 'Gold coins, an oil barrel, gold bars, corn and stock and index tiles bursting out of glowing cracked rocks', shift: '8.9vw', cardLeft: '18.6%' },
+      { label: 'BUILT TO SCALE', src: './assets/bc8b7af709d92cf32173f866fade8c3c.png', alt: 'A surfboard riding a molten orange sea beside two glowing candlesticks', shift: '-9vw', cardLeft: '57%' }
+    ];
+    return rows.map((r, i) => ({ ...r, src: this._src(r.src), on: cur === i ? '1' : '0', pressed: cur === i ? 'true' : 'false', enter: this._s3enter[i] }));
+  }
+  _m5() {
+    const front = (this.state && this.state.m5 !== undefined) ? this.state.m5 : 3;
+    if (!this._m5pick) this._m5pick = [0, 1, 2, 3].map((i) => () => this.setState({ m5: i }));
+    const assets = [
+      { name: 'Forex Trading', src: './assets/bce739096067f7a8677ee2685de0ae70.png', alt: 'Forex Trading: green SELL and red BUY buttons among gold coins and candlesticks' },
+      { name: 'Indices Trading', src: './assets/b0b0bcd41d1faf124ea44ea868f95ffc.png', alt: 'Indices Trading: stacked glossy orange tiles labelled 100GBP, S35EUR, 200AUD, 225JPY and D40EUR' },
+      { name: 'Stock Trading', src: './assets/d039f43cfa728eb898b2ba5bf13c621a.png', alt: 'Stock Trading: company app icons riding roller-coaster carts past Wall Street' },
+      { name: 'Commodities Trading', src: './assets/c717e966bbecc17acc9ff193b003ee90.png', alt: 'Commodities Trading: rows of silver and gold GOLD/USD tiles' }
+    ];
+    const slots = [
+      { tf: 'perspective(1400px) translateX(0px) scale(1) rotateY(0deg)', filter: 'brightness(1)', op: 1, z: 10 },
+      { tf: 'perspective(1400px) translateX(-2.1vw) scale(0.77) rotateY(7deg)', filter: 'brightness(0.16) saturate(0)', op: 1, z: 9 },
+      { tf: 'perspective(1400px) translateX(-4.2vw) scale(0.64) rotateY(12deg)', filter: 'brightness(0.1) saturate(0)', op: 1, z: 8 },
+      { tf: 'perspective(1400px) translateX(-6vw) scale(0.52) rotateY(16deg)', filter: 'brightness(0.06) saturate(0)', op: 0, z: 7 }
+    ];
+    const cards = assets.map((a, i) => ({ ...a, src: this._src(a.src), ...slots[(i - front + 4) % 4], pick: this._m5pick[i] }));
+    const c = [0, 1, 2, 3].map((i) => (i === front ? '#ff6a1a' : '#ffffff'));
+    return { ready: true, cards, activeName: assets[front].name, c0: c[0], c1: c[1], c2: c[2], c3: c[3] };
+  }
+  _tst() {
+    const cur = (this.state && this.state.tst !== undefined) ? this.state.tst : 0;
+    if (!this._tstGo) this._tstGo = [0, 1, 2].map((i) => () => { if (((this.state && this.state.tst) ?? 0) !== i) this.setState({ tst: i }); });
+    const rows = [
+      { src: './assets/572c52bed4edb0b08c509ca505eaedb5.webp', alt: 'A trader in a white shirt reviewing notes at a desk lit orange, with charts on three monitors', quote: '“A straightforward trading experience with the tools and flexibility I need. The platform makes it easy to stay focused on my trades without unnecessary complexity.”', tag1: 'TRADER', tag2: 'Deposit' },
+      { src: './assets/17067675ad51cbc893122b3ce634242c.webp', alt: 'A trader in glasses and a suit writing notes beside a glowing candlestick chart', quote: '“The platform gives me a clear view of the market and the tools feel intuitive from the moment I start trading. It keeps the experience focused without adding unnecessary steps.”', tag1: 'FOREX TRADER', tag2: 'EUR/USD' },
+      { src: './assets/61a2dac41be86b41268ded27e0d2f1b5.webp', alt: 'A bearded trader in glasses studying a large orange market chart on a screen', quote: '“I like how easy it is to manage my trades and follow market movements in one place. The interface feels fast, clean, and built around what a trader actually needs.”', tag1: 'ACTIVE TRADER', tag2: 'GLOBAL MARKETS' }
+    ];
+    return rows.map((r, i) => ({ ...r, src: this._src(r.src), on: cur === i ? '1' : '0', expanded: cur === i ? 'true' : 'false', go: this._tstGo[i] }));
+  }
+  _s2lines() {
+    if (this._lines) return this._lines;
+    const text = ['AS A GLOBAL TEAM OF TRADING EXPERTS,', 'WE BUILD POWERFUL TRADING', 'PLATFORMS, SMARTER TOOLS, AND', 'GLOBAL ACCESS.'];
+    let i = 0;
+    this._lines = text.map((l) => { const ws = l.split(' '); return { words: ws.map((w, k) => ({ w: k < ws.length - 1 ? w + ' ' : w, i: i++ })) }; });
+    return this._lines;
+  }
+  componentDidMount() {
+    this.forceUpdate();
+    setTimeout(() => { if (this._h) this._h.onScroll(); }, 300);
+    this._m5t = setInterval(() => { if (!this._m5paused && !document.hidden) this.setState({ m5: (((this.state && this.state.m5) ?? 3) + 1) % 4 }); }, 3200);
+  }
+  _startEmbers(canvas) {
+    if (this._emRaf) cancelAnimationFrame(this._emRaf);
+    const ctx = canvas.getContext('2d');
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const P = [];
+    const spawn = (init) => ({ x: Math.random(), y: init ? Math.random() : 1.05, vx: (Math.random() - 0.5) * 0.012, vy: -(0.012 + Math.random() * 0.04), r: 0.6 + Math.random() * 2.2, ph: Math.random() * 6.28, life: 0 });
+    for (let k = 0; k < 110; k++) P.push(spawn(true));
+    let last = performance.now();
+    const loop = (now) => {
+      this._emRaf = requestAnimationFrame(loop);
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      if (this._s6vis === false || document.hidden) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const w = canvas.clientWidth, hh = canvas.clientHeight;
+      if (canvas.width !== Math.round(w * dpr)) { canvas.width = Math.round(w * dpr); canvas.height = Math.round(hh * dpr); }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, hh);
+      ctx.globalCompositeOperation = 'lighter';
+      const sp = reduce ? 0.25 : 1;
+      P.forEach((p, k) => {
+        p.life += dt; p.x += (p.vx + Math.sin(p.life * 0.9 + p.ph) * 0.004) * dt * sp; p.y += p.vy * dt * sp;
+        if (p.y < -0.05) P[k] = spawn(false);
+        const a = (0.45 + 0.55 * Math.sin(p.life * 3 + p.ph)) * Math.min(1, p.life * 2);
+        const x = p.x * w, y = p.y * hh;
+        ctx.fillStyle = 'rgba(255,130,40,' + (a * 0.28).toFixed(3) + ')'; ctx.beginPath(); ctx.arc(x, y, p.r * 3.2, 0, 6.283); ctx.fill();
+        ctx.fillStyle = 'rgba(255,214,150,' + a.toFixed(3) + ')'; ctx.beginPath(); ctx.arc(x, y, p.r, 0, 6.283); ctx.fill();
+      });
+    };
+    this._emRaf = requestAnimationFrame(loop);
+  }
+  _countUp() {
+    if (this._cuRaf) cancelAnimationFrame(this._cuRaf);
+    const t0 = performance.now(), dur = 1800;
+    const step = (now) => {
+      const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      if (this._s8n1) this._s8n1.textContent = String(Math.round(100 * e));
+      if (this._s8n2) this._s8n2.textContent = String(Math.round(24 * Math.min(1, e * 1.08)));
+      if (k < 1) this._cuRaf = requestAnimationFrame(step);
+    };
+    this._cuRaf = requestAnimationFrame(step);
+  }
+  _startDust(canvas) {
+    if (this._dustRaf) cancelAnimationFrame(this._dustRaf);
+    const ctx = canvas.getContext('2d');
+    const P = [];
+    const spawn = (init) => ({ x: Math.random(), y: init ? Math.random() : 1.02, vx: (Math.random() - 0.5) * 0.01, vy: -(0.008 + Math.random() * 0.022), r: 0.5 + Math.random() * 1.6, ph: Math.random() * 6.28, life: init ? Math.random() * 3 : 0 });
+    for (let k = 0; k < 70; k++) P.push(spawn(true));
+    let last = performance.now();
+    const loop = (now) => {
+      this._dustRaf = requestAnimationFrame(loop);
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      if (this._s8vis === false || document.hidden) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5), w = canvas.clientWidth, hh = canvas.clientHeight;
+      if (canvas.width !== Math.round(w * dpr)) { canvas.width = Math.round(w * dpr); canvas.height = Math.round(hh * dpr); }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, hh); ctx.globalCompositeOperation = 'lighter';
+      P.forEach((p, k) => {
+        p.life += dt; p.x += (p.vx + Math.sin(p.life * 0.7 + p.ph) * 0.003) * dt; p.y += p.vy * dt;
+        if (p.y < -0.02) P[k] = spawn(false);
+        const a = (0.35 + 0.65 * Math.sin(p.life * 2.4 + p.ph)) * Math.min(1, p.life) * 0.8;
+        if (a <= 0) return;
+        ctx.fillStyle = 'rgba(255,110,40,' + (a * 0.25).toFixed(3) + ')'; ctx.beginPath(); ctx.arc(p.x * w, p.y * hh, p.r * 3, 0, 6.283); ctx.fill();
+        ctx.fillStyle = 'rgba(255,190,130,' + a.toFixed(3) + ')'; ctx.beginPath(); ctx.arc(p.x * w, p.y * hh, p.r, 0, 6.283); ctx.fill();
+      });
+    };
+    this._dustRaf = requestAnimationFrame(loop);
+  }
+  _select(i) {
+    if (((this.state && this.state.active) || 0) !== i) this.setState({ active: i });
+    if (this._engine) this._engine.setVisual(i);
+  }
+  _handlers() {
+    if (this._h) return this._h;
+    const self = this;
+    self._refs = {};
+    const setter = (key) => (el) => {
+      if (self._refs[key] === el) return;
+      self._refs[key] = el;
+      if (!el && self._engine) { self._engine.dispose(); self._engine = null; }
+      if (el) self._tryMount();
+    };
+    this._h = {
+      setStage: setter('stage'), setRock: setter('rock'), setFx: setter('fx'), setBull: setter('bull'),
+      setGhost1: setter('g1'), setGhost2: setter('g2'), setFlash: setter('flash'), setPlate: setter('plate'), setPre: setter('pre'),
+      setRoot(el) { self._root = el; },
+      replay() { if (self._engine) self._engine.replay(); },
+      setSec(el) { self._sec = el; },
+      setS13(el) { self._s13 = el; }, setS14(el) { self._s14 = el; }, setS15(el) { self._s15 = el; },
+      formSubmit(e) { if (e && e.preventDefault) e.preventDefault(); },
+      setS12(el) { self._s12 = el; },
+      setS11(el) { self._s11 = el; }, setS11Words(el) { self._s11w = el; },
+      setS9(el) { self._s9 = el; },
+      s9move(e) {
+        const sec = self._s9; if (!sec) return;
+        const r = sec.getBoundingClientRect();
+        sec.style.setProperty('--sx', (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
+        sec.style.setProperty('--sy', (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
+      },
+      s9leave() { if (self._s9) { self._s9.style.setProperty('--sx', '0'); self._s9.style.setProperty('--sy', '0'); } },
+      setS8(el) { self._s8 = el; }, setS8n1(el) { self._s8n1 = el; }, setS8n2(el) { self._s8n2 = el; },
+      setS8Canvas(el) { if (el && el !== self._s8c) { self._s8c = el; self._startDust(el); } },
+      setS7(el) { self._s7 = el; }, setS7Zone(el) { self._s7z = el; }, setS7Head(el) { self._s7h = el; },
+      setS7c1(el) { self._s7c1 = el; }, setS7c2(el) { self._s7c2 = el; }, setS7c3(el) { self._s7c3 = el; },
+      setS6(el) { self._s6 = el; },
+      setS6Canvas(el) { if (el && el !== self._s6c) { self._s6c = el; self._startEmbers(el); } },
+      s6move(e) {
+        const sec = self._s6; if (!sec) return;
+        const r = sec.getBoundingClientRect();
+        sec.style.setProperty('--sx', (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
+        sec.style.setProperty('--sy', (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
+      },
+      s6leave() { if (self._s6) { self._s6.style.setProperty('--sx', '0'); self._s6.style.setProperty('--sy', '0'); } },
+      m5pause() { self._m5paused = true; },
+      m5resume() { self._m5paused = false; },
+      setS4(el) { self._s4 = el; }, setS4Stage(el) { self._s4s = el; },
+      s3leave() { if (((self.state && self.state.s3) ?? -1) !== -1) self.setState({ s3: -1 }); },
+      setHead(el) { self._head = el; },
+      setImg1(el) { self._img1 = el; }, setImg2(el) { self._img2 = el; }, setImg3(el) { self._img3 = el; },
+      onScroll() {
+        const el = self._root; if (!el) return;
+        if (self._sec) {
+          const vh = el.clientHeight || 1;
+          const clamp01 = (v) => Math.max(0, Math.min(1, v));
+          const top = self._sec.getBoundingClientRect().top - el.getBoundingClientRect().top;
+          const secH = Math.max(1, self._sec.offsetHeight);
+          // heading: grey -> white word by word while the section scrolls under it
+          if (self._head) self._head.style.setProperty('--hp', clamp01((vh * 0.6 - top) / Math.max(vh * 0.6, secH - vh * 0.6)).toFixed(4));
+          // images: progress from the section entering the screen to it leaving; each travels its own --dist
+          const p = clamp01((vh - top) / (secH + vh * 0.2));
+          const ranges = [[0, 0.75], [0.12, 0.9], [0.25, 1]];
+          [self._img1, self._img2, self._img3].forEach((img, k) => {
+            if (!img) return;
+            const r = ranges[k];
+            const t = clamp01((p - r[0]) / (r[1] - r[0]));
+            img.style.setProperty('--t', (t * t * (3 - 2 * t)).toFixed(4));
+          });
+        }
+        if (self._s4 && self._s4s) {
+          const vh4 = el.clientHeight || 1;
+          const t4 = self._s4.getBoundingClientRect().top - el.getBoundingClientRect().top;
+          const p4 = Math.max(0, Math.min(1, -t4 / Math.max(1, self._s4.offsetHeight - vh4)));
+          self._s4s.style.setProperty('--p4', p4.toFixed(4));
+        }
+        if (self._s7z && self._s7h) {
+          const vh7 = el.clientHeight || 1, rt = el.getBoundingClientRect().top;
+          const zt = self._s7z.getBoundingClientRect().top - rt;
+          const run = Math.max(1, self._s7z.offsetHeight - self._s7h.parentElement.offsetHeight);
+          // grey -> white word by word: starts as the heading comes in, done when the pin releases
+          self._s7h.style.setProperty('--hp7', Math.max(0, Math.min(1, (vh7 * 0.35 - zt) / (run + vh7 * 0.35))).toFixed(4));
+          [self._s7c1, self._s7c2, self._s7c3].forEach((c) => {
+            if (!c) return;
+            const ct = c.getBoundingClientRect().top - rt;
+            c.style.setProperty('--cp', Math.max(0, Math.min(1, (vh7 * 0.98 - ct) / (vh7 * 0.3))).toFixed(4));
+          });
+        }
+        if (self._s11 && self._s11w) {
+          const vh11 = el.clientHeight || 1;
+          const t11 = self._s11.getBoundingClientRect().top - el.getBoundingClientRect().top;
+          const h11 = self._s11.offsetHeight || vh11;
+          self._s11w.style.setProperty('--hp11', Math.max(0, Math.min(1, (vh11 * 0.55 - t11) / (h11 * 0.75))).toFixed(4));
+        }
+        [['_s13', 's13In'], ['_s14', 's14In'], ['_s15', 's15In']].forEach(([rk, sk]) => {
+          const node = self[rk]; if (!node) return;
+          const tt = node.getBoundingClientRect().top - el.getBoundingClientRect().top;
+          const v = tt < (el.clientHeight || 1) * 0.78 ? '1' : '0';
+          if (((self.state && self.state[sk]) || '0') !== v) self.setState({ [sk]: v });
+        });
+        if (self._s12) {
+          const t12 = self._s12.getBoundingClientRect().top - el.getBoundingClientRect().top;
+          const in12 = t12 < (el.clientHeight || 1) * 0.7 ? '1' : '0';
+          if (((self.state && self.state.s12In) || '0') !== in12) self.setState({ s12In: in12 });
+        }
+        if (self._s9) {
+          const t9 = self._s9.getBoundingClientRect().top - el.getBoundingClientRect().top;
+          const in9 = t9 < (el.clientHeight || 1) * 0.6 ? '1' : '0';
+          if (((self.state && self.state.s9In) || '0') !== in9) self.setState({ s9In: in9 });
+        }
+        if (self._s8) {
+          const t8 = self._s8.getBoundingClientRect().top - el.getBoundingClientRect().top;
+          const vh8 = el.clientHeight || 1;
+          self._s8vis = t8 < vh8 && t8 > -(self._s8.offsetHeight || 1);
+          const in8 = t8 < vh8 * 0.6 ? '1' : '0';
+          if (((self.state && self.state.s8In) || '0') !== in8) {
+            self.setState({ s8In: in8 });
+            if (in8 === '1') self._countUp(); else { if (self._s8n1) self._s8n1.textContent = '0'; if (self._s8n2) self._s8n2.textContent = '0'; }
+          }
+        }
+        if (self._s6) {
+          const t6 = self._s6.getBoundingClientRect().top - el.getBoundingClientRect().top;
+          const in6 = t6 < (el.clientHeight || 1) * 0.55 ? '1' : '0';
+          if (((self.state && self.state.s6In) || '0') !== in6) self.setState({ s6In: in6 });
+          self._s6vis = t6 < (el.clientHeight || 1) && t6 > -(self._s6.offsetHeight || 1);
+        }
+        const i = Math.max(0, Math.min(3, Math.round(el.scrollTop / Math.max(1, el.clientHeight))));
+        self._select(i);
+      },
+      onMove(e) {
+        const r = self._root && self._root.getBoundingClientRect();
+        if (!r) return;
+        const x = ((e.clientX - r.left) / r.width) * 2 - 1;
+        const y = ((e.clientY - r.top) / r.height) * 2 - 1;
+        self._root.style.setProperty('--mx', x.toFixed(3));
+        self._root.style.setProperty('--my', y.toFixed(3));
+        if (self._engine) self._engine.setPointer(x, y);
+      },
+      onLeave() {
+        if (self._root) { self._root.style.setProperty('--mx', '0'); self._root.style.setProperty('--my', '0'); }
+        if (self._engine) self._engine.setPointer(0, 0);
+      }
+    };
+    this._go = [0, 1, 2, 3].map((i) => (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      const el = self._root; if (!el) return;
+      el.scrollTo({ top: i * el.clientHeight, behavior: 'smooth' });
+    });
+    return this._h;
+  }
+  renderVals() {
+    const h = this._handlers();
+    const labels = ['FOREX', 'INDICES', 'STOCKS', 'COMMODITIES'];
+    const ids = ['forex', 'indices', 'stocks', 'commodities'];
+    const active = ((this.state && this.state.active) || 0) % labels.length;
+    const vis = this._visuals();
+    return {
+      h,
+      s2In: (this.state && this.state.s2In) || '0',
+      s2lines: this._s2lines(),
+      s3: this._s3(),
+      s6In: (this.state && this.state.s6In) || '0',
+      s8In: (this.state && this.state.s8In) || '0',
+      s9In: (this.state && this.state.s9In) || '0',
+      s12In: (this.state && this.state.s12In) || '0',
+      s13In: (this.state && this.state.s13In) || '0',
+      s14In: (this.state && this.state.s14In) || '0',
+      s15In: (this.state && this.state.s15In) || '0',
+      tst: this._tst(),
+      m5: this._m5(),
+      products: [
+        { k: 0, z: 3, num: '01', name: 'Forex Trading', line2: 'FOREX TRADING', title: 'Global Forex Trading', src: './assets/8225ca22085ca39ee3d05c38d906d33a.webp', alt: 'A forex dial with dollar, euro, pound and yen symbols around a candlestick chart, set in dark rock with a red laser line', desc: 'Trade global currency pairs with flexible access to one of the world’s most actively traded markets' },
+        { k: 1, z: 2, num: '02', name: 'Indices Trading', line2: 'INDICES TRADING', title: 'Global Indices Trading', src: './assets/bc07a2235369c5b39e7e7ca228848b79.webp', alt: 'A phone showing the XYZ indices screen, standing between two rocks lit by a red laser line', desc: 'Explore opportunities across global stocks and trade shares from some of the world’s leading' },
+        { k: 2, z: 1, num: '03', name: 'Stock', line2: 'STOCK TRADING', title: 'Global Stock Trading', src: './assets/2cea34aed85cf3f652a7c65805962057.webp', alt: 'A glowing bull and bear facing off on a rock ledge beneath a cave roof, with rising and falling candlestick charts', desc: 'Explore opportunities across global stocks and trade shares from some of the world’s leading companies.' }
+      ].map((p) => ({ ...p, src: this._src(p.src) })),
+      pills: [0, 1].flatMap((d) => ['RELIABLE', 'GLOBAL', 'TRUSTED', 'INNOVATIVE', 'EXPERT', 'RESPONSIBLE'].map((label) => ({ label, dup: d ? 'true' : 'false' }))),
+      missing: !vis[active],
+      cardsOn: active === 2,
+      activeLabel: labels[active],
+      offers: labels.map((label, i) => ({
+        label, href: '#' + ids[i], go: this._go[i],
+        current: i === active ? 'true' : 'false',
+        color: i === active ? '#ffffff' : '#9a9a9a',
+        delay: (0.6 + i * 0.1).toFixed(2) + 's'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

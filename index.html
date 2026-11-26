@@ -342,6 +342,13 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
   .xyz-frisk{position:relative !important;top:auto !important;margin:30px auto 0;font-size:10px !important}
 }
 @media (prefers-reduced-motion:reduce){.xyz-ctam,.xyz-ctabg,.xyz-smoke,.xyz-star,.xyz-iglow,.xyz-spark,.xyz-lap-sweep,.xyz-bigglow{animation:none}}
+/* --- performance (mobile) --- */
+[data-off],[data-off] *,[data-off] *::before,[data-off] *::after{animation-play-state:paused !important}
+.xyz-scroller{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+@media (hover:none) and (pointer:coarse){
+  .xyz-scroller{scroll-snap-type:y proximity !important}
+  @supports (height:100svh){.xyz-scroller{height:100svh !important}}
+}
 </style>
 </helmet>
 
@@ -358,7 +365,7 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
   <!-- ===== Cinematic stage (the banner plate, 1920 × 921, scaled to cover) ===== -->
   <div style="position: absolute; top: 77px; left: 0; right: 0; bottom: 0; overflow: hidden; container-type: size">
     <div ref="{{ h.setStage }}" style="position: absolute; left: 50%; top: 50%; width: max(100cqw, calc(100cqh * 1920 / 921)); aspect-ratio: 1920 / 921; transform: translate(-50%, -50%)">
-      <img src="./assets/7da3a73f11cef7b0eb2e8e12aa65bf3a.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
+      <img fetchpriority="high" src="./assets/7da3a73f11cef7b0eb2e8e12aa65bf3a.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
       <img ref="{{ h.setPlate }}" src="./assets/04f53b034e61fc42f0066be67245ce93.webp" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .2s ease-out">
       <img class="xyz-chartpulse" src="./assets/7da3a73f11cef7b0eb2e8e12aa65bf3a.webp" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; filter: brightness(1.8) saturate(1.4); mix-blend-mode: screen; -webkit-mask-image: radial-gradient(ellipse 26% 42% at 64% 32%, #000 25%, transparent 75%); mask-image: radial-gradient(ellipse 26% 42% at 64% 32%, #000 25%, transparent 75%)">
       <div class="xyz-ray" aria-hidden="true" style="position: absolute; top: -8%; left: 62%; width: 30%; height: 95%; background: conic-gradient(from 166deg at 50% 0%, rgba(255,255,255,0) 0deg, rgba(220,228,240,0.13) 12deg, rgba(255,255,255,0.04) 20deg, rgba(220,228,240,0.1) 26deg, rgba(255,255,255,0) 36deg); filter: blur(16px); mix-blend-mode: screen; pointer-events: none"></div>
@@ -368,21 +375,21 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
       <sc-if value="{{ cardsOn }}" hint-placeholder-val="{{ true }}">
       <!-- icon card behind the bull -->
       <div class="xyz-card xyz-card-back" style="left: 41.8%; top: 19.1%; width: 9.15%; --fx: 38%; --fy: 205%; --ry: -35deg; --d: .12s; --fd: .3s">
-        <div class="xyz-card-in"><img src="./assets/a736134d26c0764268c99e8281496253.png" alt="Market trend card" style="display: block; width: 100%; height: auto"></div>
+        <div class="xyz-card-in"><img width="188" height="158" src="./assets/a736134d26c0764268c99e8281496253.webp" alt="Market trend card" style="display: block; width: 100%; height: auto"></div>
       </div>
       </sc-if>
 
       <img ref="{{ h.setGhost1 }}" src="./assets/6fd72f99787217fcd200dbc65b983e81.webp" alt="" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 720px; height: 876px; transform-origin: 0 0; opacity: 0; filter: blur(4px); will-change: transform, opacity">
       <img ref="{{ h.setGhost2 }}" src="./assets/6fd72f99787217fcd200dbc65b983e81.webp" alt="" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 720px; height: 876px; transform-origin: 0 0; opacity: 0; filter: blur(7px); will-change: transform, opacity">
-      <img ref="{{ h.setBull }}" src="./assets/6fd72f99787217fcd200dbc65b983e81.webp" alt="A glass cube holding gold dollar coins, landing on a stone slab" style="position: absolute; left: 0; top: 0; width: 720px; height: 876px; transform-origin: 0 0; opacity: 0; filter: drop-shadow(0 0 14px rgba(255,100,30,0.28)); will-change: transform, opacity">
+      <img fetchpriority="high" ref="{{ h.setBull }}" src="./assets/6fd72f99787217fcd200dbc65b983e81.webp" alt="A glass cube holding gold dollar coins, landing on a stone slab" style="position: absolute; left: 0; top: 0; width: 720px; height: 876px; transform-origin: 0 0; opacity: 0; filter: drop-shadow(0 0 14px rgba(255,100,30,0.28)); will-change: transform, opacity">
 
       <sc-if value="{{ cardsOn }}" hint-placeholder-val="{{ true }}">
       <!-- icon cards emerging from the broken stone (in front of the bull) -->
       <div class="xyz-card " style="left: 28.3%; top: 43.3%; width: 10.8%; --fx: 148%; --fy: 61%; --ry: 45deg; --d: .22s; --fd: 1.6s">
-        <div class="xyz-card-in"><img src="./assets/9a8306c343629bcc2189941d41e13c14.png" alt="Trading card" style="display: block; width: 100%; height: auto"></div>
+        <div class="xyz-card-in"><img width="216" height="179" src="./assets/9a8306c343629bcc2189941d41e13c14.webp" alt="Trading card" style="display: block; width: 100%; height: auto"></div>
       </div>
       <div class="xyz-card " style="left: 61.8%; top: 43%; width: 7.8%; --fx: -203%; --fy: 96%; --ry: -45deg; --d: .3s; --fd: .9s">
-        <div class="xyz-card-in"><img src="./assets/02167ae1b212116702ccfc3f173b99d5.png" alt="Stock card" style="display: block; width: 100%; height: auto"></div>
+        <div class="xyz-card-in"><img width="150" height="137" src="./assets/02167ae1b212116702ccfc3f173b99d5.webp" alt="Stock card" style="display: block; width: 100%; height: auto"></div>
       </div>
       </sc-if>
 
@@ -398,27 +405,27 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
       <!-- hero image preload: real src attributes so paths resolve in the standalone export too -->
       <div ref="{{ h.setPre }}" aria-hidden="true" style="display: none">
         <img data-k="v0" src="./assets/6fd72f99787217fcd200dbc65b983e81.webp" alt="">
-        <img data-k="v1" src="./assets/42d4b3388c1f6f6e532a499c91612aad.webp" alt="">
-        <img data-k="v2" src="./assets/a7512c5913ea26d2310ae1db176989e7.webp" alt="">
-        <img data-k="v3" src="./assets/3aa01887b1436dade74a4db78ce503c2.webp" alt="">
+        <img fetchpriority="low" data-k="v1" src="./assets/42d4b3388c1f6f6e532a499c91612aad.webp" alt="">
+        <img fetchpriority="low" data-k="v2" src="./assets/a7512c5913ea26d2310ae1db176989e7.webp" alt="">
+        <img fetchpriority="low" data-k="v3" src="./assets/3aa01887b1436dade74a4db78ce503c2.webp" alt="">
         <img data-k="pile" src="./assets/1d8de113b6178cfe5a1ed8c14d5ad46a.webp" alt="">
         <img data-k="pileGlow" src="./assets/939c49d4053b3373b423457291b28c49.webp" alt="">
         <img data-k="rubble" src="./assets/6139981ebdb5fdabf26156089a1f6582.webp" alt="">
         <img data-k="rubbleGlow" src="./assets/141d680bc20880f7ba4b06e1c87ab19c.webp" alt="">
         <!-- section images whose paths live only in script data -->
-        <img data-id="82cf04b7b57932be90082a5aa90b88ef" src="./assets/82cf04b7b57932be90082a5aa90b88ef.png" alt="">
-        <img data-id="06a8efacc4ab20ad92ca00b9501b65b3" src="./assets/06a8efacc4ab20ad92ca00b9501b65b3.png" alt="">
-        <img data-id="bc8b7af709d92cf32173f866fade8c3c" src="./assets/bc8b7af709d92cf32173f866fade8c3c.png" alt="">
-        <img data-id="8225ca22085ca39ee3d05c38d906d33a" src="./assets/8225ca22085ca39ee3d05c38d906d33a.webp" alt="">
-        <img data-id="bc07a2235369c5b39e7e7ca228848b79" src="./assets/bc07a2235369c5b39e7e7ca228848b79.webp" alt="">
-        <img data-id="2cea34aed85cf3f652a7c65805962057" src="./assets/2cea34aed85cf3f652a7c65805962057.webp" alt="">
-        <img data-id="bce739096067f7a8677ee2685de0ae70" src="./assets/bce739096067f7a8677ee2685de0ae70.png" alt="">
-        <img data-id="b0b0bcd41d1faf124ea44ea868f95ffc" src="./assets/b0b0bcd41d1faf124ea44ea868f95ffc.png" alt="">
-        <img data-id="d039f43cfa728eb898b2ba5bf13c621a" src="./assets/d039f43cfa728eb898b2ba5bf13c621a.png" alt="">
-        <img data-id="c717e966bbecc17acc9ff193b003ee90" src="./assets/c717e966bbecc17acc9ff193b003ee90.png" alt="">
-        <img data-id="572c52bed4edb0b08c509ca505eaedb5" src="./assets/572c52bed4edb0b08c509ca505eaedb5.webp" alt="">
-        <img data-id="17067675ad51cbc893122b3ce634242c" src="./assets/17067675ad51cbc893122b3ce634242c.webp" alt="">
-        <img data-id="61a2dac41be86b41268ded27e0d2f1b5" src="./assets/61a2dac41be86b41268ded27e0d2f1b5.webp" alt="">
+        <img loading="lazy" data-id="82cf04b7b57932be90082a5aa90b88ef" src="./assets/82cf04b7b57932be90082a5aa90b88ef.webp" alt="">
+        <img loading="lazy" data-id="06a8efacc4ab20ad92ca00b9501b65b3" src="./assets/06a8efacc4ab20ad92ca00b9501b65b3.webp" alt="">
+        <img loading="lazy" data-id="bc8b7af709d92cf32173f866fade8c3c" src="./assets/bc8b7af709d92cf32173f866fade8c3c.webp" alt="">
+        <img loading="lazy" data-id="8225ca22085ca39ee3d05c38d906d33a" src="./assets/8225ca22085ca39ee3d05c38d906d33a.webp" alt="">
+        <img loading="lazy" data-id="bc07a2235369c5b39e7e7ca228848b79" src="./assets/bc07a2235369c5b39e7e7ca228848b79.webp" alt="">
+        <img loading="lazy" data-id="2cea34aed85cf3f652a7c65805962057" src="./assets/2cea34aed85cf3f652a7c65805962057.webp" alt="">
+        <img loading="lazy" data-id="bce739096067f7a8677ee2685de0ae70" src="./assets/bce739096067f7a8677ee2685de0ae70.webp" alt="">
+        <img loading="lazy" data-id="b0b0bcd41d1faf124ea44ea868f95ffc" src="./assets/b0b0bcd41d1faf124ea44ea868f95ffc.webp" alt="">
+        <img loading="lazy" data-id="d039f43cfa728eb898b2ba5bf13c621a" src="./assets/d039f43cfa728eb898b2ba5bf13c621a.webp" alt="">
+        <img loading="lazy" data-id="c717e966bbecc17acc9ff193b003ee90" src="./assets/c717e966bbecc17acc9ff193b003ee90.webp" alt="">
+        <img loading="lazy" data-id="572c52bed4edb0b08c509ca505eaedb5" src="./assets/572c52bed4edb0b08c509ca505eaedb5.webp" alt="">
+        <img loading="lazy" data-id="17067675ad51cbc893122b3ce634242c" src="./assets/17067675ad51cbc893122b3ce634242c.webp" alt="">
+        <img loading="lazy" data-id="61a2dac41be86b41268ded27e0d2f1b5" src="./assets/61a2dac41be86b41268ded27e0d2f1b5.webp" alt="">
       </div>
     </div>
   </div>
@@ -494,7 +501,7 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
 <section ref="{{ h.setSec }}" class="xyz-s2" aria-labelledby="xyz-s2-title" style="position: relative; scroll-snap-align: start; background: #070707; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; overflow: clip">
   <div class="xyz-s2-canvas" style="position: relative; width: 100%; aspect-ratio: 1807 / 2048">
     <!-- original rocky landscape (static) -->
-    <img class="xyz-s2-bg" src="./assets/1143602d4a0afaf2dd4cf8f7d9e9345e.webp" alt="" aria-hidden="true" style="position: absolute; left: 0; top: 49.3%; width: 100%; height: 50.7%; display: block">
+    <img loading="lazy" decoding="async" class="xyz-s2-bg" src="./assets/1143602d4a0afaf2dd4cf8f7d9e9345e.webp" alt="" aria-hidden="true" style="position: absolute; left: 0; top: 49.3%; width: 100%; height: 50.7%; display: block">
     <div class="xyz-glow" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 40%; pointer-events: none; mix-blend-mode: screen; background: radial-gradient(70% 70% at 18% 100%, rgba(255,70,25,0.32) 0%, rgba(255,70,25,0) 70%), radial-gradient(60% 55% at 85% 100%, rgba(255,110,40,0.22) 0%, rgba(255,110,40,0) 70%)"></div>
     <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 47%; height: 10%; pointer-events: none; background: linear-gradient(180deg, #070707 0%, rgba(7,7,7,0) 100%)"></div>
 
@@ -515,13 +522,13 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
 
     <!-- three images: rise faster than the page, each at its own speed -->
     <div class="xyz-s2-dash xyz-mover" ref="{{ h.setImg1 }}" style="position: absolute; left: 6.4%; top: 13.1%; width: 26.8%; z-index: 2; --dist: 260px">
-      <img class="xyz-float-a" src="./assets/f9db924ab36ec415c452233bfe6d9614.webp" alt="XYZ trading dashboard on a laptop and phone, set between dark rocks lit by a red laser line" style="display: block; width: 100%; height: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.6)">
+      <img loading="lazy" decoding="async" width="484" height="630" class="xyz-float-a" src="./assets/f9db924ab36ec415c452233bfe6d9614.webp" alt="XYZ trading dashboard on a laptop and phone, set between dark rocks lit by a red laser line" style="display: block; width: 100%; height: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.6)">
     </div>
     <div class="xyz-s2-rock xyz-mover" ref="{{ h.setImg2 }}" style="position: absolute; left: 74.6%; top: 37%; width: 10.5%; z-index: 2; --dist: 560px">
-      <img class="xyz-float-b" src="./assets/28018b46e60c0d9f5ec49c46692034e4.webp" alt="A floating rock above a sunset horizon with a circular logo badge" style="display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.55), 0 0 30px rgba(255,120,40,0.18)">
+      <img loading="lazy" decoding="async" width="190" height="248" class="xyz-float-b" src="./assets/28018b46e60c0d9f5ec49c46692034e4.webp" alt="A floating rock above a sunset horizon with a circular logo badge" style="display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.55), 0 0 30px rgba(255,120,40,0.18)">
     </div>
     <div class="xyz-s2-car xyz-mover" ref="{{ h.setImg3 }}" style="position: absolute; left: 37%; top: 52.8%; width: 17.2%; z-index: 2; --dist: 420px">
-      <img class="xyz-float-c" src="./assets/6e6f7cb6507dd444acfea31496aeaca4.webp" alt="An orange sports coupe with TRADING livery, headlights glowing in the dark" style="display: block; width: 100%; height: auto; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 44px rgba(255,110,30,0.28)">
+      <img loading="lazy" decoding="async" width="311" height="402" class="xyz-float-c" src="./assets/6e6f7cb6507dd444acfea31496aeaca4.webp" alt="An orange sports coupe with TRADING livery, headlights glowing in the dark" style="display: block; width: 100%; height: auto; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 44px rgba(255,110,30,0.28)">
     </div>
 
     <!-- value marquee (original position, scrolls with the page) -->
@@ -541,7 +548,7 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
   <div class="xyz-s3-lbl" style="position: absolute; right: 3.1vw; top: 16vh; font-size: clamp(12px, 0.82vw, 17px); color: #c8c8c8">[Engineered for Better Trading]</div>
   <sc-for list="{{ s3 }}" as="ln" hint-placeholder-count="3">
     <div class="xyz-s3-line" data-on="{{ ln.on }}" onMouseEnter="{{ ln.enter }}" onMouseLeave="{{ h.s3leave }}">
-      <img class="xyz-s3-card" src="{{ ln.src }}" alt="{{ ln.alt }}" style="left: {{ ln.cardLeft }}">
+      <img loading="lazy" decoding="async" class="xyz-s3-card" src="{{ ln.src }}" alt="{{ ln.alt }}" style="left: {{ ln.cardLeft }}">
       <button class="xyz-s3-word" type="button" onClick="{{ ln.enter }}" onFocus="{{ ln.enter }}" onBlur="{{ h.s3leave }}" aria-pressed="{{ ln.pressed }}" style="--shift: {{ ln.shift }}">{{ ln.label }}</button>
     </div>
   </sc-for>
@@ -561,7 +568,7 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
             <div class="xyz-p4-mid" style="text-align: center; color: #b5b5b5">Product Name: <span style="color: #ffffff; margin-left: 6px">{{ pr.name }}</span></div>
             <div style="text-align: right; letter-spacing: 0.02em">GLOBAL MARKETS</div>
           </div>
-          <img class="xyz-p4-img" src="{{ pr.src }}" alt="{{ pr.alt }}" style="display: block; width: min(44.6vw, calc(54vh * 1.58)); height: auto; margin: 0 auto; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)">
+          <img loading="lazy" decoding="async" class="xyz-p4-img" src="{{ pr.src }}" alt="{{ pr.alt }}" style="display: block; width: min(44.6vw, calc(54vh * 1.58)); height: auto; margin: 0 auto; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)">
           <div class="xyz-p4-bottom" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
             <h3 class="xyz-p4-h" style="margin: 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(30px, 3.45vw, 66px); line-height: 1.02; letter-spacing: -0.045em; position: relative">
               <span style="display: block">GLOBAL</span>
@@ -604,7 +611,7 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
     <!-- card stack -->
     <sc-for list="{{ m5.cards }}" as="cd" hint-placeholder-count="4">
       <button class="xyz-m5-card" type="button" onClick="{{ cd.pick }}" aria-label="Show {{ cd.name }}" style="padding: 0; border: 0; background: none; cursor: pointer; transform: {{ cd.tf }}; filter: {{ cd.filter }}; opacity: {{ cd.op }}; z-index: {{ cd.z }}">
-        <img src="{{ cd.src }}" alt="{{ cd.alt }}">
+        <img loading="lazy" decoding="async" src="{{ cd.src }}" alt="{{ cd.alt }}">
       </button>
     </sc-for>
 
@@ -631,26 +638,26 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
     <div style="position: absolute; left: 0; width: 100%; top: -7.3vw; aspect-ratio: 1920 / 1067">
       <!-- background plate -->
       <div class="xyz-s6-par" style="inset: -0.8%; transform: translate3d(calc(var(--sx, 0) * -6px), calc(var(--sy, 0) * -4px), 0)">
-        <img src="./assets/7236d30dd8de56003c4a7e8c0499b16d.webp" alt="" aria-hidden="true" style="display: block; width: 100%; height: 100%">
+        <img loading="lazy" decoding="async" src="./assets/7236d30dd8de56003c4a7e8c0499b16d.webp" alt="" aria-hidden="true" style="display: block; width: 100%; height: 100%">
       </div>
       <!-- pulsing light beam along the orange horizon -->
       <div class="xyz-s6-beam" aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; background: linear-gradient(149deg, rgba(255,120,30,0) 55%, rgba(255,150,60,0.30) 61%, rgba(255,190,110,0.42) 63%, rgba(255,120,30,0) 70%), radial-gradient(40% 40% at 92% 8%, rgba(255,140,40,0.35) 0%, rgba(255,140,40,0) 70%)"></div>
       <!-- particles -->
       <canvas ref="{{ h.setS6Canvas }}" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none"></canvas>
       <!-- floating rocks (different depths) -->
-      <div class="xyz-s6-par" style="left: 9.95%; top: 71.04%; width: 11.04%; height: 22.49%; transform: translate3d(calc(var(--sx, 0) * 30px), calc(var(--sy, 0) * 18px), 0)"><div class="xyz-s6-rock" style="transition-delay: .5s"><img class="xyz-s6-fc" src="./assets/f20754eabeb94eb5310470b481357925.webp" alt="" aria-hidden="true" style="display: block; width: 100%; height: 100%"></div></div>
-      <div class="xyz-s6-par" style="left: 81.82%; top: 18.18%; width: 10.42%; height: 17.34%; transform: translate3d(calc(var(--sx, 0) * 14px), calc(var(--sy, 0) * 8px), 0)"><div class="xyz-s6-rock" style="transition-delay: .7s"><img class="xyz-s6-fb" src="./assets/69b619da3119a651a30d3a8b8b0e214e.webp" alt="" aria-hidden="true" style="display: block; width: 100%; height: 100%"></div></div>
+      <div class="xyz-s6-par" style="left: 9.95%; top: 71.04%; width: 11.04%; height: 22.49%; transform: translate3d(calc(var(--sx, 0) * 30px), calc(var(--sy, 0) * 18px), 0)"><div class="xyz-s6-rock" style="transition-delay: .5s"><img loading="lazy" decoding="async" class="xyz-s6-fc" src="./assets/f20754eabeb94eb5310470b481357925.webp" alt="" aria-hidden="true" style="display: block; width: 100%; height: 100%"></div></div>
+      <div class="xyz-s6-par" style="left: 81.82%; top: 18.18%; width: 10.42%; height: 17.34%; transform: translate3d(calc(var(--sx, 0) * 14px), calc(var(--sy, 0) * 8px), 0)"><div class="xyz-s6-rock" style="transition-delay: .7s"><img loading="lazy" decoding="async" class="xyz-s6-fb" src="./assets/69b619da3119a651a30d3a8b8b0e214e.webp" alt="" aria-hidden="true" style="display: block; width: 100%; height: 100%"></div></div>
       <!-- phone -->
       <div class="xyz-s6-par" style="left: 39.06%; top: 5.62%; width: 60.94%; height: 94.38%; transform: translate3d(calc(var(--sx, 0) * 18px), calc(var(--sy, 0) * 11px), 0)">
         <div class="xyz-s6-phone" style="position: relative">
-          <img src="./assets/3c4a8e70c645cf3ac7214f9bd35562b2.webp" alt="A tilted smartphone showing a live EUR/USD chart at 1.08542 with BUY and SELL buttons" style="display: block; width: 100%; height: 100%">
+          <img loading="lazy" decoding="async" src="./assets/3c4a8e70c645cf3ac7214f9bd35562b2.webp" alt="A tilted smartphone showing a live EUR/USD chart at 1.08542 with BUY and SELL buttons" style="display: block; width: 100%; height: 100%">
           <!-- screen shimmer + live price tick -->
           <div class="xyz-s6-sweep" aria-hidden="true" style="position: absolute; inset: 0; mix-blend-mode: screen; clip-path: polygon(5.6% 5.9%, 50.9% 7.9%, 98% 93%, 38.4% 100%)"></div>
           <div class="xyz-s6-tick" aria-hidden="true" style="position: absolute; left: 63.4%; top: 31.4%; width: 1.9%; aspect-ratio: 1 / 1; border-radius: 50%; background: radial-gradient(circle, rgba(120,255,150,0.95) 0%, rgba(60,220,110,0.5) 35%, rgba(60,220,110,0) 70%); mix-blend-mode: screen"></div>
         </div>
       </div>
       <!-- big foreground rock (closest) -->
-      <div class="xyz-s6-par" style="left: 18.13%; top: 27.18%; width: 29.79%; height: 44.7%; transform: translate3d(calc(var(--sx, 0) * 40px), calc(var(--sy, 0) * 24px), 0)"><div class="xyz-s6-rock" style="transition-delay: .3s"><img class="xyz-s6-fa" src="./assets/a2bdaf4950879b27064df29f508ed933.webp" alt="" aria-hidden="true" style="display: block; width: 100%; height: 100%"></div></div>
+      <div class="xyz-s6-par" style="left: 18.13%; top: 27.18%; width: 29.79%; height: 44.7%; transform: translate3d(calc(var(--sx, 0) * 40px), calc(var(--sy, 0) * 24px), 0)"><div class="xyz-s6-rock" style="transition-delay: .3s"><img loading="lazy" decoding="async" class="xyz-s6-fa" src="./assets/a2bdaf4950879b27064df29f508ed933.webp" alt="" aria-hidden="true" style="display: block; width: 100%; height: 100%"></div></div>
     </div>
   </div>
 </section>
@@ -666,14 +673,14 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
       <div class="xyz-s7-right" style="position: absolute; right: 2.5vw; top: 10.9vw; text-align: right; font-size: clamp(9px, 0.75vw, 13px); line-height: 1.6; color: #d6d6d6">/ A SIMPLE JOURNEY<br>FROM ACCOUNT TO MARKET</div>
       <h2 id="xyz-s7-title" ref="{{ h.setS7Head }}" class="xyz-s7-h" style="margin: 0; padding: 0 2.9vw 0 4vw; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 9.6vw; line-height: 1.06; letter-spacing: -0.045em; --hp7: 0">
         <span class="xyz-s7-line"><span class="xyz-w7" style="--i: 0">ACCOUNT</span> <span class="xyz-w7" style="--i: 1">SETUP</span></span>
-        <span class="xyz-s7-line" style="display: flex; align-items: center; gap: 1.5vw"><span class="xyz-w7" style="--i: 2">FUNDING</span><img class="xyz-s7-pillimg" src="./assets/e3112cfa41957810910dadf67b8f6a3c.png" alt="" aria-hidden="true" style="display: block; width: 18.2vw; height: 7.1vw; object-fit: cover; border-radius: 999px"><span><span class="xyz-w7" style="--i: 3">YOUR</span> <span class="xyz-w7" style="--i: 4">TRADE</span></span></span>
+        <span class="xyz-s7-line" style="display: flex; align-items: center; gap: 1.5vw"><span class="xyz-w7" style="--i: 2">FUNDING</span><img loading="lazy" decoding="async" class="xyz-s7-pillimg" src="./assets/e3112cfa41957810910dadf67b8f6a3c.webp" alt="" aria-hidden="true" style="display: block; width: 18.2vw; height: 7.1vw; object-fit: cover; border-radius: 999px"><span><span class="xyz-w7" style="--i: 3">YOUR</span> <span class="xyz-w7" style="--i: 4">TRADE</span></span></span>
         <span class="xyz-s7-line" style="text-align: right"><span class="xyz-w7" style="--i: 5">START</span> <span class="xyz-w7" style="--i: 6">TRADING</span></span>
       </h2>
     </div>
   </div>
   <div class="xyz-s7-cards" style="width: 45.3%; margin: 0 auto; display: flex; flex-direction: column; gap: 1.8vw">
       <article class="xyz-s7-card" ref="{{ h.setS7c1 }}" style="position: relative; display: flex; gap: 1.8vw; padding: 1.7vw; background: #111111; border: 1px solid #262626; border-radius: 10px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04)">
-        <div class="xyz-s7-icon" style="flex: none; width: 14vw; aspect-ratio: 1 / 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: radial-gradient(70% 55% at 100% 100%, rgba(255,140,60,0.95) 0%, rgba(255,120,40,0) 70%), linear-gradient(180deg, #080504 0%, #110706 38%, #6e190b 72%, #cf3713 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04)"><img src="./assets/964c9bd1071312523624ac842e4781e4.png" alt="A white line icon of an application form with a pen" style="display: block; width: 56%; height: auto"></div>
+        <div class="xyz-s7-icon" style="flex: none; width: 14vw; aspect-ratio: 1 / 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: radial-gradient(70% 55% at 100% 100%, rgba(255,140,60,0.95) 0%, rgba(255,120,40,0) 70%), linear-gradient(180deg, #080504 0%, #110706 38%, #6e190b 72%, #cf3713 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04)"><img loading="lazy" decoding="async" width="396" height="396" src="./assets/964c9bd1071312523624ac842e4781e4.webp" alt="A white line icon of an application form with a pen" style="display: block; width: 56%; height: auto"></div>
         <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 18px">
           <h3 class="xyz-s7-title" style="margin: 0.4vw 0 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(20px, 2.35vw, 44px); line-height: 1.08; letter-spacing: -0.035em; color: #ffffff">CREATE YOUR<br>TRADING ACCOUNT</h3>
           <p class="xyz-s7-desc" style="margin: 0 0 0.4vw; max-width: 21vw; font-size: clamp(11px, 0.85vw, 15px); line-height: 1.5; color: #b8b8b8">Complete the registration process and set up your trading account with the details you need to get started.</p>
@@ -681,7 +688,7 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
         <span class="xyz-s7-num" style="position: absolute; right: 1.8vw; top: 1.9vw; font-size: clamp(10px, 0.82vw, 14px); color: #9a9a9a">[01]</span>
       </article>
       <article class="xyz-s7-card" ref="{{ h.setS7c2 }}" style="position: relative; display: flex; gap: 1.8vw; padding: 1.7vw; background: #111111; border: 1px solid #262626; border-radius: 10px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04)">
-        <div class="xyz-s7-icon" style="flex: none; width: 14vw; aspect-ratio: 1 / 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: radial-gradient(70% 55% at 100% 100%, rgba(255,140,60,0.95) 0%, rgba(255,120,40,0) 70%), linear-gradient(180deg, #080504 0%, #110706 38%, #6e190b 72%, #cf3713 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04)"><img src="./assets/f4a4a01f53e92dacbc08b5bb29c5344d.png" alt="A white line icon of banknotes with a dollar sign" style="display: block; width: 56%; height: auto"></div>
+        <div class="xyz-s7-icon" style="flex: none; width: 14vw; aspect-ratio: 1 / 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: radial-gradient(70% 55% at 100% 100%, rgba(255,140,60,0.95) 0%, rgba(255,120,40,0) 70%), linear-gradient(180deg, #080504 0%, #110706 38%, #6e190b 72%, #cf3713 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04)"><img loading="lazy" decoding="async" width="396" height="396" src="./assets/f4a4a01f53e92dacbc08b5bb29c5344d.webp" alt="A white line icon of banknotes with a dollar sign" style="display: block; width: 56%; height: auto"></div>
         <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 18px">
           <h3 class="xyz-s7-title" style="margin: 0.4vw 0 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(20px, 2.35vw, 44px); line-height: 1.08; letter-spacing: -0.035em; color: #ffffff">FUND YOUR<br>ACCOUNT</h3>
           <p class="xyz-s7-desc" style="margin: 0 0 0.4vw; max-width: 21vw; font-size: clamp(11px, 0.85vw, 15px); line-height: 1.5; color: #b8b8b8">Choose an available payment method and add funds to your trading account before entering the market.</p>
@@ -689,7 +696,7 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
         <span class="xyz-s7-num" style="position: absolute; right: 1.8vw; top: 1.9vw; font-size: clamp(10px, 0.82vw, 14px); color: #9a9a9a">[02]</span>
       </article>
       <article class="xyz-s7-card" ref="{{ h.setS7c3 }}" style="position: relative; display: flex; gap: 1.8vw; padding: 1.7vw; background: #111111; border: 1px solid #262626; border-radius: 10px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04)">
-        <div class="xyz-s7-icon" style="flex: none; width: 14vw; aspect-ratio: 1 / 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: radial-gradient(70% 55% at 100% 100%, rgba(255,140,60,0.95) 0%, rgba(255,120,40,0) 70%), linear-gradient(180deg, #080504 0%, #110706 38%, #6e190b 72%, #cf3713 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04)"><img src="./assets/e780b129831fd14f5ebbd08eec74371a.png" alt="A white line icon of a monitor showing candlesticks and a stop-loss marker" style="display: block; width: 56%; height: auto"></div>
+        <div class="xyz-s7-icon" style="flex: none; width: 14vw; aspect-ratio: 1 / 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: radial-gradient(70% 55% at 100% 100%, rgba(255,140,60,0.95) 0%, rgba(255,120,40,0) 70%), linear-gradient(180deg, #080504 0%, #110706 38%, #6e190b 72%, #cf3713 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04)"><img loading="lazy" decoding="async" width="396" height="396" src="./assets/e780b129831fd14f5ebbd08eec74371a.webp" alt="A white line icon of a monitor showing candlesticks and a stop-loss marker" style="display: block; width: 56%; height: auto"></div>
         <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 18px">
           <h3 class="xyz-s7-title" style="margin: 0.4vw 0 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(20px, 2.35vw, 44px); line-height: 1.08; letter-spacing: -0.035em; color: #ffffff">CHOOSE YOUR<br>MARKET &amp; TRADE</h3>
           <p class="xyz-s7-desc" style="margin: 0 0 0.4vw; max-width: 21vw; font-size: clamp(11px, 0.85vw, 15px); line-height: 1.5; color: #b8b8b8">Select your preferred instrument, review the market, place your trade, and manage your position from the platform.</p>
@@ -704,8 +711,8 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
   <div class="xyz-s8-frame" style="position: relative; width: 100%; aspect-ratio: 2576 / 1334">
     <!-- dotted world map -->
     <div class="xyz-s8-mapwrap" aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 46.1%; height: 53.9%; pointer-events: none">
-      <img class="xyz-s8-map" src="./assets/9a41e812c1b57e68f16a468f80ce6466.png" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
-      <img class="xyz-s8-light" src="./assets/9a41e812c1b57e68f16a468f80ce6466.png" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; filter: sepia(1) saturate(6) hue-rotate(-18deg) brightness(1.25)">
+      <img loading="lazy" decoding="async" class="xyz-s8-map" src="./assets/9a41e812c1b57e68f16a468f80ce6466.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
+      <img loading="lazy" decoding="async" class="xyz-s8-light" src="./assets/9a41e812c1b57e68f16a468f80ce6466-light.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
       <span class="xyz-s8-ping" style="left: 29.5%; top: 25%; animation-delay: 0s"></span><span class="xyz-s8-ping" style="left: 49.2%; top: 30%; animation-delay: 0.6s"></span><span class="xyz-s8-ping" style="left: 60.6%; top: 52%; animation-delay: 1.2s"></span><span class="xyz-s8-ping" style="left: 82.3%; top: 38%; animation-delay: 1.8s"></span><span class="xyz-s8-ping" style="left: 75.3%; top: 70%; animation-delay: 0.9s"></span><span class="xyz-s8-ping" style="left: 84%; top: 90%; animation-delay: 2.2s"></span><span class="xyz-s8-ping" style="left: 26.5%; top: 79%; animation-delay: 1.5s"></span>
       <canvas ref="{{ h.setS8Canvas }}" style="position: absolute; left: 0; right: 0; bottom: 0; top: -40%; width: 100%; height: 140%"></canvas>
     </div>
@@ -745,7 +752,7 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
     <!-- rock (clipped to the disk) -->
     <div class="xyz-s9-rock xyz-s9-rv" aria-hidden="true" style="position: absolute; left: 26.85%; top: 48.1%; width: 48.7%; height: 49.9%; transition-delay: .3s">
       <div style="position: absolute; inset: 0; transform: translate3d(calc(var(--sx, 0) * -6px), calc(var(--sy, 0) * -4px), 0); transition: transform 1s cubic-bezier(.16,.84,.24,1)">
-        <img src="./assets/d201231c34089817e9b2edc6b4a629c0.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
+        <img loading="lazy" decoding="async" src="./assets/d201231c34089817e9b2edc6b4a629c0.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
         <div class="xyz-s9-sheen" style="position: absolute; inset: 0; mix-blend-mode: screen; pointer-events: none; background: radial-gradient(30% 45% at 50% 35%, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 100%)"></div>
       </div>
     </div>
@@ -796,7 +803,7 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
     <div class="xyz-s10-panel" role="list" style="background: #000000; padding: 3.7cqw 0 2cqw; margin-top: 3cqw">
       <sc-for list="{{ tst }}" as="t" hint-placeholder-count="3">
         <div class="xyz-t-row" role="listitem" tabindex="0" data-on="{{ t.on }}" onMouseEnter="{{ t.go }}" onFocus="{{ t.go }}" onClick="{{ t.go }}" aria-expanded="{{ t.expanded }}">
-          <img class="xyz-t-img" src="{{ t.src }}" alt="{{ t.alt }}">
+          <img loading="lazy" decoding="async" class="xyz-t-img" src="{{ t.src }}" alt="{{ t.alt }}">
           <div class="xyz-t-body">
             <div style="font-size: clamp(11px, 0.86cqw, 18px); color: #a8a8a8; letter-spacing: 0.02em">[THE EXPERIENCE]</div>
             <p style="margin: 2.5cqw 0 0; max-width: 20.5cqw; font-size: clamp(12px, 0.82cqw, 17px); line-height: 1.62; color: #ffffff">{{ t.quote }}</p>
@@ -819,9 +826,9 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
     <!-- film-frame visual -->
     <div aria-hidden="true" style="position: absolute; left: 14.87%; top: 19.99%; width: 84.3%; height: 67.2%; background: #000000; overflow: hidden">
       <div style="position: absolute; left: 50%; top: 50%; width: 111.95%; height: 175.65%; transform: translate(-50%, -50%) rotate(25.6deg); container-type: inline-size">
-        <div class="xyz-strip-down" style="position: absolute; left: 11.7cqw; top: -4cqw; width: 19.1cqw; animation-duration: 48s"><img src="./assets/90911d32fe8ee21d9af9d1a47c254dee.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5172226ad801bdcd00ad7fd020140eb4.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5dec5d05916a12b94c8570d6f938be78.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/e6a4ee1901717292c3691dd30d78627b.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/90911d32fe8ee21d9af9d1a47c254dee.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5172226ad801bdcd00ad7fd020140eb4.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5dec5d05916a12b94c8570d6f938be78.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/e6a4ee1901717292c3691dd30d78627b.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.jpg" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"></div>
-        <div class="xyz-strip-up" style="position: absolute; left: 34.5cqw; top: -4cqw; width: 29.8cqw; animation-duration: 80s"><img src="./assets/5dec5d05916a12b94c8570d6f938be78.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/90911d32fe8ee21d9af9d1a47c254dee.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5172226ad801bdcd00ad7fd020140eb4.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/e6a4ee1901717292c3691dd30d78627b.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5dec5d05916a12b94c8570d6f938be78.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/90911d32fe8ee21d9af9d1a47c254dee.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5172226ad801bdcd00ad7fd020140eb4.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/e6a4ee1901717292c3691dd30d78627b.jpg" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"></div>
-        <div class="xyz-strip-down" style="position: absolute; left: 67.5cqw; top: -4cqw; width: 20.3cqw; animation-duration: 52s"><img src="./assets/e6a4ee1901717292c3691dd30d78627b.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5172226ad801bdcd00ad7fd020140eb4.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/90911d32fe8ee21d9af9d1a47c254dee.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5dec5d05916a12b94c8570d6f938be78.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/e6a4ee1901717292c3691dd30d78627b.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5172226ad801bdcd00ad7fd020140eb4.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/90911d32fe8ee21d9af9d1a47c254dee.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img src="./assets/5dec5d05916a12b94c8570d6f938be78.jpg" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"></div>
+        <div class="xyz-strip-down" style="position: absolute; left: 11.7cqw; top: -4cqw; width: 19.1cqw; animation-duration: 48s"><img loading="lazy" decoding="async" src="./assets/90911d32fe8ee21d9af9d1a47c254dee.webp" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/5172226ad801bdcd00ad7fd020140eb4.webp" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.webp" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/5dec5d05916a12b94c8570d6f938be78.webp" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/e6a4ee1901717292c3691dd30d78627b.webp" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.webp" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/90911d32fe8ee21d9af9d1a47c254dee.webp" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/5172226ad801bdcd00ad7fd020140eb4.webp" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.webp" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/5dec5d05916a12b94c8570d6f938be78.webp" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/e6a4ee1901717292c3691dd30d78627b.webp" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.webp" alt="" style="display: block; width: 100%; height: 21.14cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"></div>
+        <div class="xyz-strip-up" style="position: absolute; left: 34.5cqw; top: -4cqw; width: 29.8cqw; animation-duration: 80s"><img loading="lazy" decoding="async" src="./assets/5dec5d05916a12b94c8570d6f938be78.webp" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.webp" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.webp" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/90911d32fe8ee21d9af9d1a47c254dee.webp" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/5172226ad801bdcd00ad7fd020140eb4.webp" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/e6a4ee1901717292c3691dd30d78627b.webp" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/5dec5d05916a12b94c8570d6f938be78.webp" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.webp" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.webp" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/90911d32fe8ee21d9af9d1a47c254dee.webp" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/5172226ad801bdcd00ad7fd020140eb4.webp" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/e6a4ee1901717292c3691dd30d78627b.webp" alt="" style="display: block; width: 100%; height: 32.98cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"></div>
+        <div class="xyz-strip-down" style="position: absolute; left: 67.5cqw; top: -4cqw; width: 20.3cqw; animation-duration: 52s"><img loading="lazy" decoding="async" src="./assets/e6a4ee1901717292c3691dd30d78627b.webp" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.webp" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/5172226ad801bdcd00ad7fd020140eb4.webp" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.webp" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/90911d32fe8ee21d9af9d1a47c254dee.webp" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/5dec5d05916a12b94c8570d6f938be78.webp" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/e6a4ee1901717292c3691dd30d78627b.webp" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/b2bdb484177bd5673bfb4837b1c3e8ac.webp" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/5172226ad801bdcd00ad7fd020140eb4.webp" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/8ab2dc6fce402a55c1ad6cc6f7eca33d.webp" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/90911d32fe8ee21d9af9d1a47c254dee.webp" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"><img loading="lazy" decoding="async" src="./assets/5dec5d05916a12b94c8570d6f938be78.webp" alt="" style="display: block; width: 100%; height: 22.47cqw; object-fit: cover; margin-bottom: 2.36cqw; border-radius: 2px; filter: brightness(0.55) saturate(0.85) contrast(1.05)"></div>
       </div>
       <div class="xyz-s11-sweep" style="position: absolute; inset: 0; mix-blend-mode: screen; pointer-events: none"></div>
       <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 55% 52% at 55% 48%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.85) 100%)"></div>
@@ -903,7 +910,7 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
 
 <section ref="{{ h.setS14 }}" id="xyz-contact" data-in="{{ s14In }}" class="xyz-contact" aria-labelledby="xyz-contact-title" style="position: relative; scroll-snap-align: start; height: 42.5cqw; background: #050505; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; container-type: inline-size">
   <div class="xyz-contact-bg" style="position: absolute; left: 0; top: 0; width: 62.8%; height: 100%; overflow: hidden">
-    <img src="./assets/4cb329d4e60f40f5a4b9ed2a09de3fd6.webp" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
+    <img loading="lazy" decoding="async" src="./assets/4cb329d4e60f40f5a4b9ed2a09de3fd6.webp" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
     <span class="xyz-iglow" style="left: 32.9%; top: 39.3%"></span><span class="xyz-iglow" style="left: 24.8%; top: 77%; animation-delay: -1.3s"></span><span class="xyz-iglow" style="left: 67%; top: 67.8%; animation-delay: -2.6s"></span>
     <div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none"><span class="xyz-spark" style="left: 34.1%; top: 31.3%; width: 4.0px; height: 2.2px; animation-duration: 8.2s; animation-delay: -3.7s"></span><span class="xyz-spark" style="left: 10.2%; top: 58.1%; width: 2.1px; height: 3.3px; animation-duration: 5.4s; animation-delay: -0.9s"></span><span class="xyz-spark" style="left: 43.2%; top: 82.0%; width: 2.4px; height: 2.7px; animation-duration: 8.8s; animation-delay: -9.5s"></span><span class="xyz-spark" style="left: 56.9%; top: 49.8%; width: 4.9px; height: 2.1px; animation-duration: 10.2s; animation-delay: -2.9s"></span><span class="xyz-spark" style="left: 18.0%; top: 28.8%; width: 2.9px; height: 4.4px; animation-duration: 6.1s; animation-delay: -5.8s"></span><span class="xyz-spark" style="left: 62.5%; top: 47.9%; width: 3.6px; height: 2.2px; animation-duration: 5.4s; animation-delay: -2.1s"></span><span class="xyz-spark" style="left: 66.2%; top: 52.1%; width: 2.9px; height: 3.8px; animation-duration: 7.7s; animation-delay: -3.0s"></span><span class="xyz-spark" style="left: 76.5%; top: 72.4%; width: 2.7px; height: 3.7px; animation-duration: 8.2s; animation-delay: -8.8s"></span><span class="xyz-spark" style="left: 70.7%; top: 41.6%; width: 4.9px; height: 2.4px; animation-duration: 7.5s; animation-delay: -7.6s"></span><span class="xyz-spark" style="left: 18.7%; top: 56.7%; width: 2.1px; height: 4.0px; animation-duration: 9.6s; animation-delay: -5.7s"></span><span class="xyz-spark" style="left: 83.8%; top: 43.5%; width: 4.1px; height: 3.8px; animation-duration: 8.5s; animation-delay: -4.6s"></span><span class="xyz-spark" style="left: 80.6%; top: 90.9%; width: 3.4px; height: 4.0px; animation-duration: 5.4s; animation-delay: -7.0s"></span><span class="xyz-spark" style="left: 63.2%; top: 94.5%; width: 4.5px; height: 2.9px; animation-duration: 7.3s; animation-delay: -6.7s"></span><span class="xyz-spark" style="left: 7.0%; top: 54.6%; width: 2.5px; height: 2.4px; animation-duration: 5.4s; animation-delay: -7.7s"></span><span class="xyz-spark" style="left: 16.6%; top: 38.6%; width: 3.2px; height: 4.6px; animation-duration: 5.5s; animation-delay: -4.5s"></span><span class="xyz-spark" style="left: 54.4%; top: 86.3%; width: 4.5px; height: 4.6px; animation-duration: 6.7s; animation-delay: -4.2s"></span><span class="xyz-spark" style="left: 37.3%; top: 86.3%; width: 4.9px; height: 2.5px; animation-duration: 6.1s; animation-delay: -2.3s"></span><span class="xyz-spark" style="left: 26.0%; top: 56.4%; width: 3.8px; height: 2.8px; animation-duration: 5.0s; animation-delay: -4.2s"></span><span class="xyz-spark" style="left: 38.2%; top: 62.5%; width: 4.9px; height: 4.1px; animation-duration: 8.1s; animation-delay: -6.2s"></span><span class="xyz-spark" style="left: 65.9%; top: 24.0%; width: 4.7px; height: 4.3px; animation-duration: 10.2s; animation-delay: -8.0s"></span><span class="xyz-spark" style="left: 40.3%; top: 49.9%; width: 2.3px; height: 3.9px; animation-duration: 5.4s; animation-delay: -0.7s"></span><span class="xyz-spark" style="left: 23.8%; top: 32.2%; width: 3.0px; height: 2.2px; animation-duration: 5.0s; animation-delay: -1.5s"></span><span class="xyz-spark" style="left: 14.1%; top: 47.3%; width: 2.1px; height: 4.6px; animation-duration: 8.7s; animation-delay: -1.5s"></span><span class="xyz-spark" style="left: 27.7%; top: 46.1%; width: 3.1px; height: 2.4px; animation-duration: 10.1s; animation-delay: -9.9s"></span><span class="xyz-spark" style="left: 46.9%; top: 56.3%; width: 2.3px; height: 2.3px; animation-duration: 7.1s; animation-delay: -2.6s"></span><span class="xyz-spark" style="left: 79.6%; top: 32.1%; width: 2.1px; height: 4.9px; animation-duration: 8.2s; animation-delay: -1.5s"></span><span class="xyz-spark" style="left: 53.9%; top: 22.0%; width: 3.6px; height: 4.9px; animation-duration: 10.2s; animation-delay: -7.0s"></span><span class="xyz-spark" style="left: 28.5%; top: 47.5%; width: 2.5px; height: 4.3px; animation-duration: 8.2s; animation-delay: -7.8s"></span></div>
     <h2 id="xyz-contact-title" class="xyz-contact-h xyz-rv13" style="position: absolute; left: 6.2%; top: 14%; margin: 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 6.9cqw; line-height: 0.98; letter-spacing: -0.05em; color: #ffffff"><span style="display: block">CONTACT</span><span style="display: block">FORM</span></h2>
@@ -924,7 +931,7 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
 <footer ref="{{ h.setS15 }}" data-in="{{ s15In }}" class="xyz-footer" style="position: relative; scroll-snap-align: end; height: 49cqw; background: #050505; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; container-type: inline-size; overflow: hidden">
   <div class="xyz-bigglow" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 20cqw; background: linear-gradient(180deg, rgba(60,24,8,0) 0%, rgba(70,28,8,0.85) 55%, rgba(90,36,10,1) 100%)"></div>
   <div class="xyz-fvisual xyz-rv13 d1" aria-hidden="true" style="position: absolute; left: 36.6%; top: 5.06cqw; width: 58%; height: 30cqw">
-    <img src="./assets/f456fd864a6adc65792bd03e8bdf4990.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
+    <img loading="lazy" decoding="async" src="./assets/f456fd864a6adc65792bd03e8bdf4990.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
     <div class="xyz-lap-sweep" style="position: absolute; inset: 0; mix-blend-mode: screen"></div>
   </div>
   <div class="xyz-flogo xyz-rv13" style="position: absolute; left: 3.9cqw; top: 13.1cqw; font-weight: 600; font-size: clamp(22px, 2.4cqw, 44px); letter-spacing: 0.04em">XYZ<span style="color: #ff5a1f">.</span></div>
@@ -949,6 +956,9 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
 class Component extends DCLogic {
   componentWillUnmount() {
     this._dead = true;
+    if (this._offIO) this._offIO.disconnect();
+    if (this._imgIO) this._imgIO.disconnect();
+    if (this._scrollRaf) cancelAnimationFrame(this._scrollRaf);
     if (this._dustRaf) cancelAnimationFrame(this._dustRaf);
     if (this._cuRaf) cancelAnimationFrame(this._cuRaf);
     if (this._emRaf) cancelAnimationFrame(this._emRaf);
@@ -977,7 +987,8 @@ class Component extends DCLogic {
       .then(() => (im.naturalWidth && im.decode ? im.decode().catch(() => {}) : null));
     this._mounting = true;
     // wait for every hero image before the charge animation starts
-    Promise.all(Object.keys(pre).map((k) => loaded(pre[k]))).then(() => {
+    const first = 'v' + ((this.state && this.state.active) || 0);
+    Promise.all(Object.keys(pre).filter((k) => k.charAt(0) !== 'v' || k === first).map((k) => loaded(pre[k]))).then(() => {
       this._mounting = false;
       const q = this._refs || {};
       if (this._dead || this._engine || !q.stage || !q.rock || !q.fx || !q.bull) return;
@@ -1008,9 +1019,9 @@ class Component extends DCLogic {
     const cur = (this.state && this.state.s3 !== undefined) ? this.state.s3 : -1;
     if (!this._s3enter) this._s3enter = [0, 1, 2].map((i) => () => { if (((this.state && this.state.s3) ?? -1) !== i) this.setState({ s3: i }); });
     const rows = [
-      { label: 'TRADING', src: './assets/82cf04b7b57932be90082a5aa90b88ef.png', alt: 'A glass cube holding gold dollar coins above two floating stone slabs', shift: '-5.8vw', cardLeft: '47.7%' },
-      { label: 'PRODUCTS', src: './assets/06a8efacc4ab20ad92ca00b9501b65b3.png', alt: 'Gold coins, an oil barrel, gold bars, corn and stock and index tiles bursting out of glowing cracked rocks', shift: '8.9vw', cardLeft: '18.6%' },
-      { label: 'BUILT TO SCALE', src: './assets/bc8b7af709d92cf32173f866fade8c3c.png', alt: 'A surfboard riding a molten orange sea beside two glowing candlesticks', shift: '-9vw', cardLeft: '57%' }
+      { label: 'TRADING', src: './assets/82cf04b7b57932be90082a5aa90b88ef.webp', alt: 'A glass cube holding gold dollar coins above two floating stone slabs', shift: '-5.8vw', cardLeft: '47.7%' },
+      { label: 'PRODUCTS', src: './assets/06a8efacc4ab20ad92ca00b9501b65b3.webp', alt: 'Gold coins, an oil barrel, gold bars, corn and stock and index tiles bursting out of glowing cracked rocks', shift: '8.9vw', cardLeft: '18.6%' },
+      { label: 'BUILT TO SCALE', src: './assets/bc8b7af709d92cf32173f866fade8c3c.webp', alt: 'A surfboard riding a molten orange sea beside two glowing candlesticks', shift: '-9vw', cardLeft: '57%' }
     ];
     return rows.map((r, i) => ({ ...r, src: this._src(r.src), on: cur === i ? '1' : '0', pressed: cur === i ? 'true' : 'false', enter: this._s3enter[i] }));
   }
@@ -1018,10 +1029,10 @@ class Component extends DCLogic {
     const front = (this.state && this.state.m5 !== undefined) ? this.state.m5 : 3;
     if (!this._m5pick) this._m5pick = [0, 1, 2, 3].map((i) => () => this.setState({ m5: i }));
     const assets = [
-      { name: 'Forex Trading', src: './assets/bce739096067f7a8677ee2685de0ae70.png', alt: 'Forex Trading: green SELL and red BUY buttons among gold coins and candlesticks' },
-      { name: 'Indices Trading', src: './assets/b0b0bcd41d1faf124ea44ea868f95ffc.png', alt: 'Indices Trading: stacked glossy orange tiles labelled 100GBP, S35EUR, 200AUD, 225JPY and D40EUR' },
-      { name: 'Stock Trading', src: './assets/d039f43cfa728eb898b2ba5bf13c621a.png', alt: 'Stock Trading: company app icons riding roller-coaster carts past Wall Street' },
-      { name: 'Commodities Trading', src: './assets/c717e966bbecc17acc9ff193b003ee90.png', alt: 'Commodities Trading: rows of silver and gold GOLD/USD tiles' }
+      { name: 'Forex Trading', src: './assets/bce739096067f7a8677ee2685de0ae70.webp', alt: 'Forex Trading: green SELL and red BUY buttons among gold coins and candlesticks' },
+      { name: 'Indices Trading', src: './assets/b0b0bcd41d1faf124ea44ea868f95ffc.webp', alt: 'Indices Trading: stacked glossy orange tiles labelled 100GBP, S35EUR, 200AUD, 225JPY and D40EUR' },
+      { name: 'Stock Trading', src: './assets/d039f43cfa728eb898b2ba5bf13c621a.webp', alt: 'Stock Trading: company app icons riding roller-coaster carts past Wall Street' },
+      { name: 'Commodities Trading', src: './assets/c717e966bbecc17acc9ff193b003ee90.webp', alt: 'Commodities Trading: rows of silver and gold GOLD/USD tiles' }
     ];
     const slots = [
       { tf: 'perspective(1400px) translateX(0px) scale(1) rotateY(0deg)', filter: 'brightness(1)', op: 1, z: 10 },
@@ -1052,8 +1063,26 @@ class Component extends DCLogic {
   }
   componentDidMount() {
     this.forceUpdate();
+    setTimeout(() => this._perf(), 0);
     setTimeout(() => { if (this._h) this._h.onScroll(); }, 300);
-    this._m5t = setInterval(() => { if (!this._m5paused && !document.hidden) this.setState({ m5: (((this.state && this.state.m5) ?? 3) + 1) % 4 }); }, 3200);
+    this._m5t = setInterval(() => { const s5 = this._root && this._root.querySelector('.xyz-s5'); if (!this._m5paused && !document.hidden && !(s5 && s5.hasAttribute('data-off'))) this.setState({ m5: (((this.state && this.state.m5) ?? 3) + 1) % 4 }); }, 3200);
+  }
+  _perf() {
+    const root = this._root;
+    if (!root || this._offIO || !('IntersectionObserver' in window)) return;
+    // pause CSS animations in sections that are off screen (they still run, invisibly, otherwise)
+    this._offIO = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) e.target.removeAttribute('data-off'); else e.target.setAttribute('data-off', '');
+    }), { root, rootMargin: '15% 0px' });
+    root.querySelectorAll('.xyz-hero, section, footer').forEach((n) => this._offIO.observe(n));
+    // start fetching lazy images ahead of the inner scroller (native lazy-loading only looks at the window)
+    // (whole section at once, so moving copies in marquees/strips are ready before they slide into view)
+    this._imgIO = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('img[loading="lazy"]:not([data-id])').forEach((im) => { im.loading = 'eager'; });
+      this._imgIO.unobserve(e.target);
+    }), { root, rootMargin: '150% 0px' });
+    root.querySelectorAll('section, footer').forEach((n) => this._imgIO.observe(n));
   }
   _startEmbers(canvas) {
     if (this._emRaf) cancelAnimationFrame(this._emRaf);
@@ -1067,7 +1096,7 @@ class Component extends DCLogic {
       this._emRaf = requestAnimationFrame(loop);
       const dt = Math.min(0.05, (now - last) / 1000); last = now;
       if (this._s6vis === false || document.hidden) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const dpr = Math.min((window.devicePixelRatio || 1) * ((window.screen && window.screen.width && window.innerWidth > window.screen.width) ? window.screen.width / window.innerWidth : 1), 1.5);
       const w = canvas.clientWidth, hh = canvas.clientHeight;
       if (canvas.width !== Math.round(w * dpr)) { canvas.width = Math.round(w * dpr); canvas.height = Math.round(hh * dpr); }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, hh);
@@ -1106,7 +1135,7 @@ class Component extends DCLogic {
       this._dustRaf = requestAnimationFrame(loop);
       const dt = Math.min(0.05, (now - last) / 1000); last = now;
       if (this._s8vis === false || document.hidden) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5), w = canvas.clientWidth, hh = canvas.clientHeight;
+      const dpr = Math.min((window.devicePixelRatio || 1) * ((window.screen && window.screen.width && window.innerWidth > window.screen.width) ? window.screen.width / window.innerWidth : 1), 1.5), w = canvas.clientWidth, hh = canvas.clientHeight;
       if (canvas.width !== Math.round(w * dpr)) { canvas.width = Math.round(w * dpr); canvas.height = Math.round(hh * dpr); }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, hh); ctx.globalCompositeOperation = 'lighter';
       P.forEach((p, k) => {
@@ -1172,14 +1201,19 @@ class Component extends DCLogic {
       setHead(el) { self._head = el; },
       setImg1(el) { self._img1 = el; }, setImg2(el) { self._img2 = el; }, setImg3(el) { self._img3 = el; },
       onScroll() {
+        if (self._scrollRaf) return;
+        self._scrollRaf = requestAnimationFrame(() => { self._scrollRaf = 0; self._h.scrollWork(); });
+      },
+      scrollWork() {
         const el = self._root; if (!el) return;
+        const W = [], set = (n, k, v) => W.push([n, k, v]);
         if (self._sec) {
           const vh = el.clientHeight || 1;
           const clamp01 = (v) => Math.max(0, Math.min(1, v));
           const top = self._sec.getBoundingClientRect().top - el.getBoundingClientRect().top;
           const secH = Math.max(1, self._sec.offsetHeight);
           // heading: grey -> white word by word while the section scrolls under it
-          if (self._head) self._head.style.setProperty('--hp', clamp01((vh * 0.6 - top) / Math.max(vh * 0.6, secH - vh * 0.6)).toFixed(4));
+          if (self._head) set(self._head, '--hp', clamp01((vh * 0.6 - top) / Math.max(vh * 0.6, secH - vh * 0.6)).toFixed(4));
           // images: progress from the section entering the screen to it leaving; each travels its own --dist
           const p = clamp01((vh - top) / (secH + vh * 0.2));
           const ranges = [[0, 0.75], [0.12, 0.9], [0.25, 1]];
@@ -1187,32 +1221,32 @@ class Component extends DCLogic {
             if (!img) return;
             const r = ranges[k];
             const t = clamp01((p - r[0]) / (r[1] - r[0]));
-            img.style.setProperty('--t', (t * t * (3 - 2 * t)).toFixed(4));
+            set(img, '--t', (t * t * (3 - 2 * t)).toFixed(4));
           });
         }
         if (self._s4 && self._s4s) {
           const vh4 = el.clientHeight || 1;
           const t4 = self._s4.getBoundingClientRect().top - el.getBoundingClientRect().top;
           const p4 = Math.max(0, Math.min(1, -t4 / Math.max(1, self._s4.offsetHeight - vh4)));
-          self._s4s.style.setProperty('--p4', p4.toFixed(4));
+          set(self._s4s, '--p4', p4.toFixed(4));
         }
         if (self._s7z && self._s7h) {
           const vh7 = el.clientHeight || 1, rt = el.getBoundingClientRect().top;
           const zt = self._s7z.getBoundingClientRect().top - rt;
           const run = Math.max(1, self._s7z.offsetHeight - self._s7h.parentElement.offsetHeight);
           // grey -> white word by word: starts as the heading comes in, done when the pin releases
-          self._s7h.style.setProperty('--hp7', Math.max(0, Math.min(1, (vh7 * 0.35 - zt) / (run + vh7 * 0.35))).toFixed(4));
+          set(self._s7h, '--hp7', Math.max(0, Math.min(1, (vh7 * 0.35 - zt) / (run + vh7 * 0.35))).toFixed(4));
           [self._s7c1, self._s7c2, self._s7c3].forEach((c) => {
             if (!c) return;
             const ct = c.getBoundingClientRect().top - rt;
-            c.style.setProperty('--cp', Math.max(0, Math.min(1, (vh7 * 0.98 - ct) / (vh7 * 0.3))).toFixed(4));
+            set(c, '--cp', Math.max(0, Math.min(1, (vh7 * 0.98 - ct) / (vh7 * 0.3))).toFixed(4));
           });
         }
         if (self._s11 && self._s11w) {
           const vh11 = el.clientHeight || 1;
           const t11 = self._s11.getBoundingClientRect().top - el.getBoundingClientRect().top;
           const h11 = self._s11.offsetHeight || vh11;
-          self._s11w.style.setProperty('--hp11', Math.max(0, Math.min(1, (vh11 * 0.55 - t11) / (h11 * 0.75))).toFixed(4));
+          set(self._s11w, '--hp11', Math.max(0, Math.min(1, (vh11 * 0.55 - t11) / (h11 * 0.75))).toFixed(4));
         }
         [['_s13', 's13In'], ['_s14', 's14In'], ['_s15', 's15In']].forEach(([rk, sk]) => {
           const node = self[rk]; if (!node) return;
@@ -1247,6 +1281,7 @@ class Component extends DCLogic {
           self._s6vis = t6 < (el.clientHeight || 1) && t6 > -(self._s6.offsetHeight || 1);
         }
         const i = Math.max(0, Math.min(3, Math.round(el.scrollTop / Math.max(1, el.clientHeight))));
+        for (const [n, k, v] of W) { const key = '__v' + k; if (n[key] !== v) { n[key] = v; n.style.setProperty(k, v); } }
         self._select(i);
       },
       onMove(e) {

@@ -36,3 +36,38 @@ names start with `_`. The original `_runtime/` folder was therefore missing on t
 live site, so the page's template (`{{ … }}`, `<sc-for>`, `<sc-if>`) was never
 rendered. The runtime now lives in `runtime/`, and an empty `.nojekyll` file turns
 Jekyll off. Keep both when you redeploy.
+
+## Mobile performance changes (November 2026)
+
+Images
+- The 21 PNG/JPG images the page uses now have WebP copies of the same name in
+  `assets/` (alpha kept, each checked against the original for visible quality),
+  and the page points at them. The page's image downloads dropped from 6.9 MB to 3.1 MB.
+  The original PNG/JPG files are still in `assets/`, untouched, but nothing loads them.
+- Below-the-fold images are `loading="lazy"`. A small observer starts each
+  section's images ~1.5 screens before it arrives, because the page scrolls inside its own
+  container, which native lazy-loading doesn't watch.
+- Hero background and hero visual have `fetchpriority="high"`. The three other hero
+  visuals load at low priority, and the hero animation no longer waits for them.
+- Height-auto images carry `width`/`height` so the browser reserves their space.
+- The map highlight in the "global" section uses a pre-tinted copy
+  (`9a41e…-light.webp`) instead of a live CSS colour filter. It looks the same and is
+  much cheaper to repaint while its light sweep animates.
+
+Scrolling and animation
+- Scroll work runs at most once per frame (requestAnimationFrame), reads layout
+  before writing, and skips style writes whose value hasn't changed.
+- CSS animations pause in sections that are off screen and resume when they come back.
+- The asset carousel stops auto-advancing while it is off screen.
+- Hero canvases cover only the visible strip of the stage, at a resolution matched
+  to the screen's real pixel density. On phones this is ~85% fewer canvas pixels per frame.
+- The hero engine skips transform/opacity writes that haven't changed.
+- On touch devices the page's inner scroller uses proximity snapping instead of
+  mandatory snapping, `overscroll-behavior: contain`, and `100svh` height (iOS Safari).
+- Existing `prefers-reduced-motion` rules are unchanged and still apply.
+
+## Deploying
+
+Replace the files in your repository with the contents of this folder
+(keep `.nojekyll` and `runtime/`), commit and push. GitHub Pages serves `index.html`
+from the repository root. No build step is needed.

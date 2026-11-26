@@ -19,18 +19,31 @@
     var stage = o.stage, rc = o.rockCanvas, fc = o.fxCanvas, bull = o.bull, ghosts = o.ghosts || [];
     var rctx = rc.getContext('2d'), fctx = fc.getContext('2d');
     var imgs = {}, ready = false, dead = false;
-    var DPR = Math.min(window.devicePixelRatio || 1, 1.75), S = 1;
+    var coarse = window.matchMedia && window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    // Real device pixels per CSS pixel: without a viewport meta tag phones lay the page out ~980px wide and
+    // zoom it out, so window.devicePixelRatio (3 on iPhone) overstates what the screen can show.
+    var zoom = (window.screen && window.screen.width && window.innerWidth > window.screen.width) ? window.screen.width / window.innerWidth : 1;
+    var DPR = Math.min((window.devicePixelRatio || 1) * zoom, coarse ? 1.25 : 1.75), S = 1, lastStageTf = '';
 
     Promise.all([load(o.assets.pile), load(o.assets.rubble), load(o.assets.pileGlow), load(o.assets.rubbleGlow)]).then(function (r) {
       imgs.pile = r[0]; imgs.rubble = r[1]; imgs.pileGlow = r[2]; imgs.rubbleGlow = r[3];
       ready = true; start();
     });
 
+    var OX = 0; // left edge (css px) of the part of the stage the canvases cover
     function resize() {
       var w = stage.clientWidth || 1; S = w / W;
-      [rc, fc].forEach(function (c) { c.width = Math.round(w * DPR); c.height = Math.round(w * H / W * DPR); });
+      // On tall/narrow screens the stage is far wider than what its clipping parent shows.
+      // Size the canvases to the visible strip only (+ margin for shake/parallax) instead of the whole stage.
+      var vis = stage.parentElement ? stage.parentElement.clientWidth : w;
+      var cw = Math.min(w, vis + 80); OX = Math.max(0, (w - cw) / 2);
+      [rc, fc].forEach(function (c) {
+        if (OX > 0) { c.style.left = OX + 'px'; c.style.right = 'auto'; c.style.width = cw + 'px'; }
+        else { c.style.left = ''; c.style.right = ''; c.style.width = ''; }
+        c.width = Math.round(cw * DPR); c.height = Math.round(w * H / W * DPR);
+      });
     }
-    var ro = new ResizeObserver(resize); ro.observe(stage); resize();
+    var ro = new ResizeObserver(resize); ro.observe(stage); if (stage.parentElement) ro.observe(stage.parentElement); resize();
 
     /* ---------- shards of the intact pile (jittered grid) ---------- */
     var shards = [];
@@ -138,8 +151,11 @@
 
     function placeBull(el, p, dx, dy, op, bob, rot) {
       var fx = (p.l + dx + BULL.cx * p.s) * S, fy = (p.f + bob + dy) * S, k = p.s * S;
-      el.style.transform = 'translate3d(' + fx.toFixed(1) + 'px,' + fy.toFixed(1) + 'px,0) rotate(' + rot.toFixed(2) + 'deg) scale(' + k.toFixed(4) + ') translate(' + (-BULL.cx) + 'px,' + (-BULL.feet) + 'px)';
-      el.style.opacity = op.toFixed(3);
+      var o3 = op.toFixed(3);
+      if (o3 !== el._xo) { el._xo = o3; el.style.opacity = o3; }
+      if (op <= 0 && el._xt) return; // invisible ghost: no need to move it every frame
+      var tf = 'translate3d(' + fx.toFixed(1) + 'px,' + fy.toFixed(1) + 'px,0) rotate(' + rot.toFixed(2) + 'deg) scale(' + k.toFixed(4) + ') translate(' + (-BULL.cx) + 'px,' + (-BULL.feet) + 'px)';
+      if (tf !== el._xt) { el._xt = tf; el.style.transform = tf; }
     }
 
     function frame(now) {
@@ -184,7 +200,8 @@
       /* shake */
       shake = Math.max(0, shake - dt * 2.2);
       var sx = (Math.random() - 0.5) * 26 * shake * shake, sy = (Math.random() - 0.5) * 18 * shake * shake;
-      stage.style.transform = 'translate(-50%,-50%) translate3d(' + (sx - ptr.sx * 10).toFixed(1) + 'px,' + (sy - ptr.sy * 6).toFixed(1) + 'px,0)';
+      var stf = 'translate(-50%,-50%) translate3d(' + (sx - ptr.sx * 10).toFixed(1) + 'px,' + (sy - ptr.sy * 6).toFixed(1) + 'px,0)';
+      if (stf !== lastStageTf) { lastStageTf = stf; stage.style.transform = stf; }
       flare = Math.max(0, flare - dt * 0.9);
 
       drawRocks(dt);
@@ -248,7 +265,7 @@
       });
     }
     function drawRocks(dt) {
-      var ctx = rctx; ctx.setTransform(S * DPR, 0, 0, S * DPR, 0, 0); ctx.clearRect(0, 0, W, H);
+      var ctx = rctx; ctx.setTransform(S * DPR, 0, 0, S * DPR, -OX * DPR, 0); ctx.clearRect(0, 0, W, H);
       drawRing(ctx);
       if (impacted) {
         var ra = clamp((t - IMPACT) / 0.18, 0, 1) * (exiting ? 1 - exitK : 1);
@@ -285,7 +302,7 @@
 
     /* ---------- fx layer: debris, sparks, dust, embers, shockwave ---------- */
     function drawFx(dt) {
-      var ctx = fctx; ctx.setTransform(S * DPR, 0, 0, S * DPR, 0, 0); ctx.clearRect(0, 0, W, H);
+      var ctx = fctx; ctx.setTransform(S * DPR, 0, 0, S * DPR, -OX * DPR, 0); ctx.clearRect(0, 0, W, H);
       // shockwave
       waves = waves.filter(function (w) { w.t += dt; return w.t < 1.2; });
       waves.forEach(function (w) {

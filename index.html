@@ -315,6 +315,17 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
 .xyz-field{display:block;width:100%;box-sizing:border-box;margin-top:1.2cqw;padding:0 0 1cqw .6cqw;border:0;border-bottom:1px solid #353535;background:transparent;color:#ffffff;font-family:'Archivo',sans-serif;font-size:clamp(12px,.82cqw,15px);outline:none;transition:border-color .3s ease}
 .xyz-field::placeholder{color:#7a7a7a}
 .xyz-field:focus{border-bottom-color:#ff6a1a}
+.xyz-field[aria-invalid="true"]{border-bottom-color:#ff6a1a}
+.xyz-ferr{position:absolute;left:.6cqw;top:100%;margin-top:3px;font-family:'Archivo',sans-serif;font-size:clamp(11px,.72cqw,13px);line-height:1.2;color:#ff8a4d;pointer-events:none}
+.xyz-ferr:empty{display:none}
+.xyz-hp{position:absolute !important;left:-9999px !important;width:1px;height:1px;opacity:0}
+.xyz-fmsg{position:absolute;left:0;right:0;bottom:100%;margin:0 0 .7cqw;font-family:'Archivo',sans-serif;font-size:clamp(12px,.8cqw,15px);line-height:1.3;color:#ffffff}
+.xyz-fmsg:empty{display:none}
+.xyz-fmsg[data-kind="ok"]{color:#7fdc9a}.xyz-fmsg[data-kind="err"]{color:#ff8a4d}
+.xyz-fbtn[data-sending="true"]{cursor:progress;opacity:.75}.xyz-fbtn[data-sending="true"]:hover{transform:none}
+.xyz-fbtn[data-sending="true"] .xyz-fa svg{animation:xyzFspin 1s linear infinite}
+@keyframes xyzFspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.xyz-fbtn[data-sending="true"] .xyz-fa svg{animation:none}}
 .xyz-fbtn{flex:1;display:flex;align-items:center;justify-content:space-between;height:2.95cqw;min-height:44px;padding:0 .25cqw 0 1cqw;border-radius:999px;border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:clamp(12px,.8cqw,15px);text-decoration:none;transition:transform .3s ease,background .3s ease}
 .xyz-fbtn:hover{transform:translateY(-2px)}
 .xyz-fbtn .xyz-fa{display:flex;align-items:center;justify-content:center;width:2.4cqw;height:2.4cqw;min-width:36px;min-height:36px;border-radius:50%;transition:transform .3s ease}
@@ -916,13 +927,15 @@ a{color:#a6a6a6;text-decoration:none}a:hover{color:#ffffff}
     <h2 id="xyz-contact-title" class="xyz-contact-h xyz-rv13" style="position: absolute; left: 6.2%; top: 14%; margin: 0; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 6.9cqw; line-height: 0.98; letter-spacing: -0.05em; color: #ffffff"><span style="display: block">CONTACT</span><span style="display: block">FORM</span></h2>
     <p class="xyz-rv13 d2" style="position: absolute; left: 6.2%; bottom: 8%; margin: 0; max-width: 18cqw; font-size: clamp(11px, 0.8cqw, 15px); line-height: 1.55; color: #e0e0e0">Drop us a line, we’ll respond to you in 24 hours.</p>
   </div>
-  <form class="xyz-form xyz-rv13 d1" onSubmit="{{ h.formSubmit }}" style="position: absolute; left: 62.85%; top: -0.25cqw; width: 33.3%; height: 42.75cqw; box-sizing: border-box; padding: 2.9cqw 2.5cqw 3cqw; border-radius: 16px; background: #1b1b1b; display: flex; flex-direction: column">
-    <label class="xyz-lbl" style="font-size: clamp(12px, 1cqw, 17px); color: #ffffff">Full Name<input class="xyz-field" type="text" name="name" required="" placeholder="Enter the Full Name" autocomplete="name"></label>
-    <label class="xyz-lbl" style="margin-top: 2.6cqw; font-size: clamp(12px, 1cqw, 17px); color: #ffffff">Your Email<input class="xyz-field" type="email" name="email" required="" placeholder="Enter the Email" autocomplete="email"></label>
+  <form class="xyz-form xyz-rv13 d1" onSubmit="{{ h.formSubmit }}" onInput="{{ h.formInput }}" novalidate="" aria-busy="{{ fs.busy }}" style="position: absolute; left: 62.85%; top: -0.25cqw; width: 33.3%; height: 42.75cqw; box-sizing: border-box; padding: 2.9cqw 2.5cqw 3cqw; border-radius: 16px; background: #1b1b1b; display: flex; flex-direction: column">
+    <label class="xyz-lbl" style="position: relative; font-size: clamp(12px, 1cqw, 17px); color: #ffffff">Full Name<input class="xyz-field" type="text" name="name" required="" maxlength="100" placeholder="Enter the Full Name" autocomplete="name" aria-invalid="{{ fs.nameBad }}" aria-describedby="xyz-err-name"><span id="xyz-err-name" class="xyz-ferr">{{ fs.nameErr }}</span></label>
+    <label class="xyz-lbl" style="margin-top: 2.6cqw; font-size: clamp(12px, 1cqw, 17px); color: #ffffff; position: relative">Your Email<input class="xyz-field" type="email" name="email" required="" maxlength="200" inputmode="email" placeholder="Enter the Email" autocomplete="email" aria-invalid="{{ fs.emailBad }}" aria-describedby="xyz-err-email"><span id="xyz-err-email" class="xyz-ferr">{{ fs.emailErr }}</span></label>
     <label class="xyz-lbl" style="margin-top: 2.6cqw; font-size: clamp(12px, 1cqw, 17px); color: #ffffff">Your Phone<input class="xyz-field" type="tel" name="phone" placeholder="Enter your phone number" autocomplete="tel"></label>
-    <label class="xyz-lbl" style="margin-top: 2.6cqw; font-size: clamp(12px, 1cqw, 17px); color: #ffffff">Your Message<textarea class="xyz-field" name="message" rows="3" required="" placeholder="Let us know about your Query" style="resize: none; padding-bottom: 3.2cqw"></textarea></label>
-    <div style="display: flex; gap: 0.7cqw; margin-top: auto">
-      <button class="xyz-fbtn" type="submit" style="background: #ffffff; color: #0a0a0a"><span>Submit</span><span class="xyz-fa" style="background: #0a0a0a; color: #ffffff"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+    <label class="xyz-lbl" style="margin-top: 2.6cqw; font-size: clamp(12px, 1cqw, 17px); color: #ffffff; position: relative">Your Message<textarea class="xyz-field" name="message" rows="3" required="" maxlength="5000" placeholder="Let us know about your Query" aria-invalid="{{ fs.messageBad }}" aria-describedby="xyz-err-message" style="resize: none; padding-bottom: 3.2cqw"></textarea><span id="xyz-err-message" class="xyz-ferr">{{ fs.messageErr }}</span></label>
+    <input class="xyz-hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div style="position: relative; display: flex; gap: 0.7cqw; margin-top: auto">
+      <p class="xyz-fmsg" data-kind="{{ fs.kind }}" role="status" aria-live="polite">{{ fs.msg }}</p>
+      <button class="xyz-fbtn" type="submit" disabled="{{ fs.sending }}" data-sending="{{ fs.busy }}" style="background: #ffffff; color: #0a0a0a"><span>{{ fs.label }}</span><span class="xyz-fa" style="background: #0a0a0a; color: #ffffff"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
       <a class="xyz-fbtn" href="#" style="background: #2a2a2a; color: #ffffff">Open An Account<span class="xyz-fa" style="background: #ffffff; color: #0a0a0a"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
     </div>
   </form>
@@ -1014,6 +1027,68 @@ class Component extends DCLogic {
     const pre = this._refs && this._refs.pre, id = String(p).split('/').pop();
     const im = pre && pre.querySelector('img[data-id="' + id + '"]');
     return (im && im.src) || p;
+  }
+  // Formspree form endpoint, e.g. 'https://formspree.io/f/abcdwxyz' (from your Formspree dashboard).
+  _formEndpoint() { return 'https://formspree.io/f/mvkaypwy'; }
+  _validate(f) {
+    const v = (n) => ((f.elements[n] && f.elements[n].value) || '').trim();
+    const errors = {};
+    const name = v('name'), email = v('email'), message = v('message');
+    if (!name) errors.name = 'Please enter your full name.';
+    else if (name.length < 2) errors.name = 'Name must be at least 2 characters.';
+    if (!email) errors.email = 'Please enter your email address.';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) errors.email = 'Please enter a valid email address.';
+    if (!message) errors.message = 'Please enter your message.';
+    else if (message.length < 10) errors.message = 'Message must be at least 10 characters.';
+    return errors;
+  }
+  _submitForm(f) {
+    if (!f) return;
+    const cur = (this.state && this.state.fs) || {};
+    if (cur.status === 'sending') return;
+    const errors = this._validate(f);
+    const bad = ['name', 'email', 'message'].filter((k) => errors[k]);
+    if (bad.length) {
+      this.setState({ fs: { status: 'idle', tried: true, errors, msg: '' } });
+      const el = f.elements[bad[0]]; if (el && el.focus) el.focus();
+      return;
+    }
+    const endpoint = this._formEndpoint();
+    if (!endpoint) {
+      this.setState({ fs: { status: 'err', tried: true, errors: {}, msg: 'The contact form is not connected yet. Please try again later.' } });
+      return;
+    }
+    this.setState({ fs: { status: 'sending', tried: true, errors: {}, msg: '' } });
+    const data = new FormData(f);
+    ['name', 'email', 'phone', 'message'].forEach((k) => { if (data.has(k)) data.set(k, String(data.get(k)).trim()); });
+    const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    const timer = setTimeout(() => { if (ctrl) ctrl.abort(); }, 20000);
+    fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' }, signal: ctrl ? ctrl.signal : undefined })
+      .then((res) => res.json().catch(() => ({})).then((body) => ({ res, body })))
+      .then(({ res, body }) => {
+        if (this._dead) return;
+        if (res.ok) {
+          f.reset();
+          this.setState({ fs: { status: 'ok', tried: false, errors: {}, msg: 'Thank you! Your message has been sent. We will get back to you soon.' } });
+        } else {
+          const detail = body && Array.isArray(body.errors) && body.errors.length ? body.errors.map((x) => x.message).filter(Boolean).join(' ') : '';
+          this.setState({ fs: { status: 'err', tried: true, errors: {}, msg: 'Sorry, your message could not be sent.' + (detail ? ' ' + detail.replace(/([^.!?])$/, '$1.') : ' Please try again.') } });
+        }
+      })
+      .catch(() => {
+        if (this._dead) return;
+        this.setState({ fs: { status: 'err', tried: true, errors: {}, msg: 'Sorry, your message could not be sent. Please check your connection and try again.' } });
+      })
+      .then(() => clearTimeout(timer));
+  }
+  _fs() {
+    const fs = (this.state && this.state.fs) || {}; const er = fs.errors || {}; const sending = fs.status === 'sending';
+    return {
+      nameErr: er.name || '', emailErr: er.email || '', messageErr: er.message || '',
+      nameBad: er.name ? 'true' : 'false', emailBad: er.email ? 'true' : 'false', messageBad: er.message ? 'true' : 'false',
+      sending, busy: sending ? 'true' : 'false', label: sending ? 'Sending…' : 'Submit',
+      kind: fs.status === 'ok' ? 'ok' : (fs.status === 'err' ? 'err' : ''), msg: fs.msg || ''
+    };
   }
   _s3() {
     const cur = (this.state && this.state.s3 !== undefined) ? this.state.s3 : -1;
@@ -1170,7 +1245,13 @@ class Component extends DCLogic {
       replay() { if (self._engine) self._engine.replay(); },
       setSec(el) { self._sec = el; },
       setS13(el) { self._s13 = el; }, setS14(el) { self._s14 = el; }, setS15(el) { self._s15 = el; },
-      formSubmit(e) { if (e && e.preventDefault) e.preventDefault(); },
+      formSubmit(e) { if (e && e.preventDefault) e.preventDefault(); self._submitForm(e && e.currentTarget); },
+      formInput(e) {
+        const f = e && e.currentTarget; const fs = (self.state && self.state.fs) || {};
+        if (!f || fs.status === 'sending') return;
+        // after a first attempt, re-check as the visitor types so errors clear as soon as they're fixed
+        if (fs.tried) self.setState({ fs: { ...fs, errors: self._validate(f), status: fs.status === 'ok' ? 'idle' : fs.status, msg: fs.status === 'ok' ? '' : fs.msg } });
+      },
       setS12(el) { self._s12 = el; },
       setS11(el) { self._s11 = el; }, setS11Words(el) { self._s11w = el; },
       setS9(el) { self._s9 = el; },
@@ -1313,6 +1394,7 @@ class Component extends DCLogic {
     const vis = this._visuals();
     return {
       h,
+      fs: this._fs(),
       s2In: (this.state && this.state.s2In) || '0',
       s2lines: this._s2lines(),
       s3: this._s3(),
